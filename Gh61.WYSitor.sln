@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1525
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gh61.WYSitor", "Gh61.WYSitor\Gh61.WYSitor.csproj", "{04009E2D-9E54-423F-B6F0-62E15F1C8AE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gh61.WYSitor.Tester", "Gh61.WYSitor.Tester\Gh61.WYSitor.Tester.csproj", "{747DD279-D9F7-405C-BB09-21E914EC17B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04009E2D-9E54-423F-B6F0-62E15F1C8AE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04009E2D-9E54-423F-B6F0-62E15F1C8AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04009E2D-9E54-423F-B6F0-62E15F1C8AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04009E2D-9E54-423F-B6F0-62E15F1C8AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D34D2DA2-20EE-45F3-955F-CD592147B788}
+	EndGlobalSection
+EndGlobal
