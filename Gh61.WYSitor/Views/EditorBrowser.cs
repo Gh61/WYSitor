@@ -29,6 +29,8 @@ namespace Gh61.WYSitor.Views
         /// </summary>
         public WebBrowser Browser => Content as WebBrowser;
 
+        #region Browser init
+
         private void InitInternalBrowser()
         {
             if (this.Content != null)
@@ -80,5 +82,7 @@ namespace Gh61.WYSitor.Views
             comWebBrowser.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, comWebBrowser, new object[] { hide });
             _scriptErrorsHidden = true;
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using mshtml;
 
 namespace Gh61.WYSitor.Interfaces
@@ -8,5 +9,9 @@ namespace Gh61.WYSitor.Interfaces
         WebBrowser Browser { get; }
 
         HTMLDocument CurrentDocument { get; }
+
+        bool IsLoaded { get; }
+        event RoutedEventHandler Loaded;
+        event RoutedEventHandler Unloaded;
     }
 }

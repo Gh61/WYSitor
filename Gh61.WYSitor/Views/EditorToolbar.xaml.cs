@@ -12,14 +12,6 @@ namespace Gh61.WYSitor.Views
     /// </summary>
     internal partial class EditorToolbar : UserControl, IToolbarControl
     {
-        private readonly IBrowserControl _browserControl;
-
-        public EditorToolbar(IBrowserControl browserControl)
-            :this()
-        {
-            _browserControl = browserControl;
-        }
-
         public EditorToolbar()
         {
             InitializeComponent();
@@ -69,7 +61,7 @@ namespace Gh61.WYSitor.Views
         {
             if (ViewModel != null && e.Command is RoutedUICommand command)
             {
-                ViewModel.CommandExecuted(_browserControl, command);
+                ViewModel.CommandExecuted(sender, command, e.Parameter);
             }
         }
 

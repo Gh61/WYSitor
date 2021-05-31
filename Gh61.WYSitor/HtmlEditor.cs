@@ -8,8 +8,6 @@ namespace Gh61.WYSitor
     {
         public HtmlEditor()
         {
-            Toolbar = new ToolbarViewModel();
-
             InitializeEditor();
         }
 
@@ -18,7 +16,7 @@ namespace Gh61.WYSitor
             var dockPanel = new DockPanel();
 
             var browser = new EditorBrowser( /*TODO*/);
-            var toolbar = new EditorToolbar(browser);
+            var toolbar = new EditorToolbar();
 
             DockPanel.SetDock(toolbar, Dock.Top);
             dockPanel.Children.Add(toolbar);
@@ -28,7 +26,7 @@ namespace Gh61.WYSitor
             Content = dockPanel;
 
             DataContext = this;
-            toolbar.DataContext = Toolbar;
+            toolbar.DataContext = Toolbar = new ToolbarViewModel(browser);
         }
 
         /// <summary>
@@ -37,6 +35,7 @@ namespace Gh61.WYSitor
         public ToolbarViewModel Toolbar
         {
             get;
+            private set;
         }
     }
 }
