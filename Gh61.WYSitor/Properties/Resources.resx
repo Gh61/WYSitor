@@ -124,4 +124,10 @@
   <data name="Text_Bold" xml:space="preserve">
     <value>Bold</value>
   </data>
+  <data name="Text_Italic" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="Text_Underline" xml:space="preserve">
+    <value>Underline</value>
+  </data>
 </root>

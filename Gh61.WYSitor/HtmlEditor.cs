@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Gh61.WYSitor.ViewModels;
 using Gh61.WYSitor.Views;
 
 namespace Gh61.WYSitor
@@ -7,6 +8,8 @@ namespace Gh61.WYSitor
     {
         public HtmlEditor()
         {
+            Toolbar = new ToolbarViewModel();
+
             InitializeEditor();
         }
 
@@ -14,15 +17,26 @@ namespace Gh61.WYSitor
         {
             var dockPanel = new DockPanel();
 
-            var toolbar = new EditorToolbar();
+            var browser = new EditorBrowser( /*TODO*/);
+            var toolbar = new EditorToolbar(browser);
+
             DockPanel.SetDock(toolbar, Dock.Top);
             dockPanel.Children.Add(toolbar);
-
-            var browser = new EditorBrowser(/*TODO*/);
             DockPanel.SetDock(browser, Dock.Bottom);
             dockPanel.Children.Add(browser);
 
-            this.Content = dockPanel;
+            Content = dockPanel;
+
+            DataContext = this;
+            toolbar.DataContext = Toolbar;
+        }
+
+        /// <summary>
+        /// Gets toolbar view model.
+        /// </summary>
+        public ToolbarViewModel Toolbar
+        {
+            get;
         }
     }
 }

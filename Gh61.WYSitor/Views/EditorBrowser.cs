@@ -2,11 +2,12 @@
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Gh61.WYSitor.Interfaces;
 using mshtml;
 
 namespace Gh61.WYSitor.Views
 {
-    internal class EditorBrowser : UserControl
+    internal class EditorBrowser : UserControl, IBrowserControl
     {
         private readonly string _startDocument;
         private bool _scriptErrorsHidden;
@@ -19,9 +20,14 @@ namespace Gh61.WYSitor.Views
         }
 
         /// <summary>
-        /// Gets actually opened HTML document by this browser.
+        /// Gets actually opened HTML document by <see cref="Browser"/>.
         /// </summary>
         public HTMLDocument CurrentDocument { get; private set; }
+
+        /// <summary>
+        /// Gets 
+        /// </summary>
+        public WebBrowser Browser => Content as WebBrowser;
 
         private void InitInternalBrowser()
         {

@@ -90,5 +90,23 @@ namespace Gh61.WYSitor.Properties {
                 return ResourceManager.GetString("Text_Bold", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italic.
+        /// </summary>
+        internal static string Text_Italic {
+            get {
+                return ResourceManager.GetString("Text_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underline.
+        /// </summary>
+        internal static string Text_Underline {
+            get {
+                return ResourceManager.GetString("Text_Underline", resourceCulture);
+            }
+        }
     }
 }
