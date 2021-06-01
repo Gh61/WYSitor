@@ -4,28 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:code="clr-namespace:Gh61.WYSitor.Code"
-             xmlns:local="clr-namespace:Gh61.WYSitor.Views"
-             xmlns:resx="clr-namespace:Gh61.WYSitor.Properties"
              mc:Ignorable="d"
              d:DesignHeight="28" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style TargetType="{x:Type ToggleButton}">
-            <Setter Property="Background" Value="Blue"/>
-        </Style>
-    </UserControl.Resources>
-
     <ToolBarTray>
         <ToolBar x:Name="CommandBar">
-            <ToggleButton x:Name="ToggleBold" ToolTip="{code:Resource resx:Resources.Text_Bold}" Command="code:ToolbarCommands.Bold">
-                <Bold>B</Bold>
-            </ToggleButton>
-            <ToggleButton x:Name="ToggleItalic" ToolTip="{code:Resource resx:Resources.Text_Italic}" Command="code:ToolbarCommands.Italic">
-                <Italic>I</Italic>
-            </ToggleButton>
-            <ToggleButton x:Name="ToggleUnderline" ToolTip="{code:Resource resx:Resources.Text_Underline}" Command="code:ToolbarCommands.Underline">
-                <Underline>U</Underline>
-            </ToggleButton>
+            <!-- CommandBar is managed dynamically, this is just for design purposes: -->
+            <ToggleButton><Bold>B</Bold></ToggleButton>
+            <ToggleButton><Italic>I</Italic></ToggleButton>
+            <ToggleButton><Underline>U</Underline></ToggleButton>
         </ToolBar>
     </ToolBarTray>
 </UserControl>

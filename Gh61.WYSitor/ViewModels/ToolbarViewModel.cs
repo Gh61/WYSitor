@@ -1,9 +1,15 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Windows.Input;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 using Gh61.WYSitor.Code;
 using Gh61.WYSitor.Interfaces;
+using Gh61.WYSitor.Views;
+using VisibleElement = System.Tuple<Gh61.WYSitor.Code.ToolbarElement, System.Windows.FrameworkElement>;
 
 namespace Gh61.WYSitor.ViewModels
 {
@@ -11,41 +17,83 @@ namespace Gh61.WYSitor.ViewModels
     {
         private readonly IBrowserControl _browser;
         private DispatcherTimer _styleCheckTimer;
+        private ItemsControl _container;
 
-        public ToolbarViewModel(IBrowserControl browser)
+        internal ToolbarViewModel(EditorBrowser browser)
         {
             _browser = browser;
+            _elements = new Dictionary<string, Tuple<ToolbarElement, FrameworkElement>>();
+            ToolbarElements = new ObservableCollection<ToolbarElement>();
+            ToolbarElements.CollectionChanged += ToolbarChanged;
 
             InitStyleCheckTimer();
         }
 
         /// <summary>
-        /// Returns it the passed command can be now executed.
+        /// Sets toolbar container, where <see cref="ToolbarElements"/> will be managed.
         /// </summary>
-        internal bool CommandCanExecute(object sender, RoutedUICommand command, object parameter)
+        internal void SetToolbarContainer(ItemsControl container)
         {
-            // all commands are allowed - for now
+            // changing container means moving all elements to new container
+            List<object> oldItems = null;
+            if (_container != null)
+            {
+                oldItems = _container.Items.Cast<object>().ToList();
+                _container.Items.Clear();
+            }
 
-            return true;
+            _container = container;
+            _container.Items.Clear();
+
+            // filling new container with old items
+            oldItems?.ForEach(i => _container.Items.Add(i));
         }
 
-        internal void CommandExecuted(object sender, RoutedUICommand command, object parameter)
+        /// <summary>
+        /// Collection of all toolbar elements is it's shown in toolbar above the browser.
+        /// Adding, removing and changing position reflects on toolbar UI.
+        /// </summary>
+        public ObservableCollection<ToolbarElement> ToolbarElements
         {
-            // TODO: add handling event
-            var handled = false;
+            get;
+        }
 
-            if (!handled)
+        #region Manage toolbar items
+
+        private readonly IDictionary<string, VisibleElement> _elements;
+
+        private void ToolbarChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            // just to be sure
+            if (_container == null)
+                _container = new ItemsControl();
+
+            switch (e.Action)
             {
-                ToolbarCommands.HandleCommand(_browser, command);
+                // new items
+                case NotifyCollectionChangedAction.Add:
+                    foreach (ToolbarElement item in e.NewItems)
+                    {
+                        var element = item.CreateElement(_browser);
+
+                        // saving for fast access
+                        _elements.Add(item.Identifier, new VisibleElement(item, element));
+
+                        // adding to container
+                        _container.Items.Insert(e.NewStartingIndex, element);
+                    }
+                    break;
             }
         }
+
+        #endregion
 
         #region Style-check timer
 
         private void InitStyleCheckTimer()
         {
             _styleCheckTimer = new DispatcherTimer();
-            _styleCheckTimer.Interval = TimeSpan.FromMilliseconds(2000); // TODO: back to 200ms
+            _styleCheckTimer.Interval = TimeSpan.FromMilliseconds(200);
             _styleCheckTimer.Tick += TryCheckStyle;
 
             // Timer running only when browser is loaded
@@ -62,7 +110,11 @@ namespace Gh61.WYSitor.ViewModels
             if (_browser.CurrentDocument.readyState != "complete")
                 return;
 
-            Debug.WriteLine("Is Bold: " + _browser.CurrentDocument.queryCommandState("Bold"));
+            // going through all CheckState elements and calling CheckState
+            foreach (var visibleElement in _elements.Values.Where(el => el.Item1.EnableCheckState))
+            {
+                visibleElement.Item1.CheckState(visibleElement.Item2, _browser);
+            }
         }
 
         #endregion

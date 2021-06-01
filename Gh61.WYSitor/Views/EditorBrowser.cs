@@ -25,7 +25,7 @@ namespace Gh61.WYSitor.Views
         public HTMLDocument CurrentDocument { get; private set; }
 
         /// <summary>
-        /// Gets 
+        /// Gets actual WebBrowser component.
         /// </summary>
         public WebBrowser Browser => Content as WebBrowser;
 
