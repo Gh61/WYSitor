@@ -1,9 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using Gh61.WYSitor.Code;
-using Gh61.WYSitor.Interfaces;
 
 namespace Gh61.WYSitor.Tester
 {
@@ -16,7 +15,9 @@ namespace Gh61.WYSitor.Tester
         {
             InitializeComponent();
 
+            // Testing API
             AddCustomButton();
+            RemoveUnderlineButton();
         }
 
         private void AddCustomButton()
@@ -27,8 +28,7 @@ namespace Gh61.WYSitor.Tester
                 new Bold(new Run("TRY ME!") { FontFamily = new FontFamily("Times New Roman") }),
                 b =>
                 {
-                    MessageBox.Show("You clicked my custom button.", "Congratulations!", MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                    MessageBox.Show("You clicked my custom button.", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
                 });
 
             // add button to last place
@@ -36,20 +36,13 @@ namespace Gh61.WYSitor.Tester
 
             // insert separator before button
             var position = HtmlEditor.Toolbar.ToolbarElements.Count - 1;
-            HtmlEditor.Toolbar.ToolbarElements.Insert(position, new SeparatorElement());
+            HtmlEditor.Toolbar.ToolbarElements.Insert(position, new ToolbarSeparatorElement());
         }
 
-        private class SeparatorElement : ToolbarElement
+        private void RemoveUnderlineButton()
         {
-            public SeparatorElement() : base("Separator" + ++_separatorCount)
-            { }
-
-            public override FrameworkElement CreateElement(IBrowserControl browserControl)
-            {
-                return new Separator();
-            }
-
-            private static int _separatorCount = 0;
+            var underlineButton = HtmlEditor.Toolbar.ToolbarElements.FirstOrDefault(e => e.Identifier == "Underline");
+            HtmlEditor.Toolbar.ToolbarElements.Remove(underlineButton);
         }
     }
 }

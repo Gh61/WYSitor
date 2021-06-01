@@ -83,6 +83,16 @@ namespace Gh61.WYSitor.ViewModels
                         _container.Items.Insert(e.NewStartingIndex, element);
                     }
                     break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (ToolbarElement item in e.OldItems)
+                    {
+                        var visibleElement = _elements[item.Identifier];
+
+                        _container.Items.Remove(visibleElement.Item2);
+                        _elements.Remove(item.Identifier);
+                    }
+                    break;
             }
         }
 

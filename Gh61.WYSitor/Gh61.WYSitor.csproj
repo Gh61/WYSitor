@@ -52,6 +52,7 @@
     <Compile Include="Code\ToolbarButton.cs" />
     <Compile Include="Code\ToolbarCommands.cs" />
     <Compile Include="Code\ToolbarElement.cs" />
+    <Compile Include="Code\ToolbarSeparatorElement.cs" />
     <Compile Include="HtmlEditor.cs" />
     <Compile Include="Interfaces\IBrowserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
