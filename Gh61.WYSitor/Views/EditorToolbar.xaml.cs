@@ -16,7 +16,11 @@ namespace Gh61.WYSitor.Views
 
             if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
             {
-                Loaded += (s, e) => InitViewModel();
+                Loaded += (s, e) =>
+                {
+                    HideToolbarOverflowToggleButton(CommandBar);
+                    InitViewModel();
+                };
                 DataContextChanged += (s, e) => InitViewModel();
             }
         }
@@ -29,6 +33,19 @@ namespace Gh61.WYSitor.Views
                 ViewModel.SetToolbarContainer(CommandBar);
                 ToolbarCommands.RegisterAll(ViewModel);
                 _isInitialized = true;
+            }
+        }
+
+        private static void HideToolbarOverflowToggleButton(ToolBar toolBar)
+        {
+            if (toolBar.Template.FindName("OverflowGrid", toolBar) is FrameworkElement overflowGrid)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
+
+            if (toolBar.Template.FindName("MainPanelBorder", toolBar) is FrameworkElement mainPanelBorder)
+            {
+                mainPanelBorder.Margin = new Thickness();
             }
         }
 

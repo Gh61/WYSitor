@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Gh61.WYSitor.Code;
-using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.Views;
 using VisibleElement = System.Tuple<Gh61.WYSitor.Code.ToolbarElement, System.Windows.FrameworkElement>;
 
@@ -15,7 +14,7 @@ namespace Gh61.WYSitor.ViewModels
 {
     public class ToolbarViewModel
     {
-        private readonly IBrowserControl _browser;
+        private readonly EditorBrowser _browser;
         private DispatcherTimer _styleCheckTimer;
         private ItemsControl _container;
 
@@ -92,11 +91,26 @@ namespace Gh61.WYSitor.ViewModels
                         {
                             var uiElement = item.CreateElement(_browser);
 
+                            // so the element never overflow the toolbar (where overflow toggle button is hidden)
+                            ToolBar.SetOverflowMode(uiElement, OverflowMode.Never);
+
+                            // custom exception - better searching for error
+                            if(_elements.ContainsKey(item.Identifier))
+                                throw new InvalidOperationException($"Cannot add second toolbar element with identifier '{item.Identifier}'.");
+
                             // saving for fast access
-                            _elements.Add(item.Identifier, new VisibleElement(item, uiElement));
+                            _elements[item.Identifier] = new VisibleElement(item, uiElement);
 
                             // adding to container
-                            _container.Items.Insert(e.NewStartingIndex, uiElement);
+                            if (e.NewStartingIndex < 0) // just to be sure
+                            {
+                                _container.Items.Add(uiElement);
+                            }
+                            else
+                            {
+                                _container.Items.Insert(e.NewStartingIndex, uiElement);
+                            }
+                            
                         }
                     }
 

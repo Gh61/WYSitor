@@ -18,9 +18,6 @@ namespace Gh61.WYSitor.Tester
 
             // Testing API
             AddCustomButton();
-            RemoveUnderlineButton();
-            SwitchBoldAndItalic();
-            ReplaceSeparator();
         }
 
         private ObservableCollection<ToolbarElement> ToolbarItems => HtmlEditor.Toolbar.ToolbarElements;
@@ -33,20 +30,37 @@ namespace Gh61.WYSitor.Tester
                 new Bold(new Run("TRY ME!") { FontFamily = new FontFamily("Times New Roman") }),
                 b =>
                 {
-                    MessageBox.Show("You clicked my custom button.\r\nClearing toolbar... (and adding default B/I/U)", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("You clicked my custom button.\r\nEditing toolbar...", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    ToolbarItems.Clear();
+                    RemoveUnderlineButton();
+                    SwitchBoldAndItalic();
+                    ReplaceSeparator();
+                });
+            var restoreButton = new ToolbarButton(
+                "RestoreButton",
+                "Restores whole toolbar to default",
+                new Run("RESTORE"),
+                browser =>
+                {
+                    ToolbarCommands.RestoreAll(HtmlEditor.Toolbar);
+                });
 
-                    ToolbarItems.Add(ToolbarCommands.Bold);
-                    ToolbarItems.Add(ToolbarCommands.Italic);
-                    ToolbarItems.Add(ToolbarCommands.Underline);
+            var resetButton = new ToolbarButton(
+                "ResetButton",
+                "Resets the editor",
+                new Run("RESET"),
+                browser =>
+                {
+                    HtmlEditor.Browser.OpenDocument();
                 });
 
             // add button to last place
             ToolbarItems.Add(customButton);
+            ToolbarItems.Add(restoreButton);
+            ToolbarItems.Add(resetButton);
 
             // insert separator before button
-            var position = ToolbarItems.Count - 1;
+            var position = ToolbarItems.Count - 3;
             ToolbarItems.Insert(position, new ToolbarSeparatorElement());
         }
 

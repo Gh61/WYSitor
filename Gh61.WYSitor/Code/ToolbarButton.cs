@@ -97,6 +97,7 @@ namespace Gh61.WYSitor.Code
             button.Click += (s, e) =>
             {
                 Clicked(browserControl);
+                browserControl.Focus();
             };
 
             return button;

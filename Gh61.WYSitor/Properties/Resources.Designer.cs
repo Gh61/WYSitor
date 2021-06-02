@@ -66,13 +66,17 @@ namespace Gh61.WYSitor.Properties {
         ///&lt;head&gt;
         ///&lt;meta content=&quot;text/html;utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
         ///&lt;style type=&quot;text/css&quot;&gt;
-        ///p {
-        ///margin-bottom: 0;
-        ///margin-top: 0;
-        ///}
+        ///    * {
+        ///        font-family: Calibri, Candara, Segoe, &quot;Segoe UI&quot;, Optima, Arial, sans-serif;
+        ///    }
+        ///    p {
+        ///        margin-bottom: 0;
+        ///        margin-top: 0;
+        ///    }
         ///&lt;/style&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
+        ///&lt;p&gt;EMPTY&lt;/p&gt;
         ///&lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>

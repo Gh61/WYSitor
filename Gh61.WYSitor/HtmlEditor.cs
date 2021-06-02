@@ -16,7 +16,7 @@ namespace Gh61.WYSitor
         {
             var dockPanel = new DockPanel();
 
-            var browser = new EditorBrowser( /*TODO*/);
+            var browser = new EditorBrowser();
             var toolbar = new EditorToolbar();
 
             DockPanel.SetDock(toolbar, Dock.Top);
