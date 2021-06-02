@@ -70,28 +70,43 @@ namespace Gh61.WYSitor.ViewModels
 
             switch (e.Action)
             {
-                // new items
+                case NotifyCollectionChangedAction.Move:
+                case NotifyCollectionChangedAction.Remove:
                 case NotifyCollectionChangedAction.Add:
-                    foreach (ToolbarElement item in e.NewItems)
+                case NotifyCollectionChangedAction.Replace:
+
+                    if (e.OldItems != null)
                     {
-                        var element = item.CreateElement(_browser);
+                        foreach (ToolbarElement item in e.OldItems)
+                        {
+                            var visibleElement = _elements[item.Identifier];
 
-                        // saving for fast access
-                        _elements.Add(item.Identifier, new VisibleElement(item, element));
-
-                        // adding to container
-                        _container.Items.Insert(e.NewStartingIndex, element);
+                            _container.Items.Remove(visibleElement.Item2);
+                            _elements.Remove(item.Identifier);
+                        }
                     }
+
+                    if (e.NewItems != null)
+                    {
+                        foreach (ToolbarElement item in e.NewItems)
+                        {
+                            var uiElement = item.CreateElement(_browser);
+
+                            // saving for fast access
+                            _elements.Add(item.Identifier, new VisibleElement(item, uiElement));
+
+                            // adding to container
+                            _container.Items.Insert(e.NewStartingIndex, uiElement);
+                        }
+                    }
+
                     break;
 
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (ToolbarElement item in e.OldItems)
-                    {
-                        var visibleElement = _elements[item.Identifier];
+                case NotifyCollectionChangedAction.Reset:
+                    // since we're using default ObservableCollection, Reset is only called when collection is Cleared
+                    _container.Items.Clear();
+                    _elements.Clear();
 
-                        _container.Items.Remove(visibleElement.Item2);
-                        _elements.Remove(item.Identifier);
-                    }
                     break;
             }
         }
