@@ -124,6 +124,9 @@
   <data name="Text_Bold" xml:space="preserve">
     <value>Bold</value>
   </data>
+  <data name="Text_HighlightColor" xml:space="preserve">
+    <value>Line highlight color</value>
+  </data>
   <data name="Text_Italic" xml:space="preserve">
     <value>Italic</value>
   </data>

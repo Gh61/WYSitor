@@ -64,19 +64,18 @@ namespace Gh61.WYSitor.Properties {
         ///   Looks up a localized string similar to &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
         ///&lt;html&gt;
         ///&lt;head&gt;
-        ///&lt;meta content=&quot;text/html;utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
-        ///&lt;style type=&quot;text/css&quot;&gt;
-        ///    * {
-        ///        font-family: Calibri, Candara, Segoe, &quot;Segoe UI&quot;, Optima, Arial, sans-serif;
-        ///    }
-        ///    p {
-        ///        margin-bottom: 0;
-        ///        margin-top: 0;
-        ///    }
-        ///&lt;/style&gt;
+        ///    &lt;title&gt;doc&lt;/title&gt;
+        ///    &lt;meta content=&quot;text/html;utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///        p {
+        ///            font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+        ///            margin-bottom: 0;
+        ///            margin-top: 0;
+        ///        }
+        ///    &lt;/style&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
-        ///&lt;p&gt;EMPTY&lt;/p&gt;
+        ///&lt;p&gt;&lt;/p&gt;
         ///&lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>
@@ -92,6 +91,15 @@ namespace Gh61.WYSitor.Properties {
         internal static string Text_Bold {
             get {
                 return ResourceManager.GetString("Text_Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line highlight color.
+        /// </summary>
+        internal static string Text_HighlightColor {
+            get {
+                return ResourceManager.GetString("Text_HighlightColor", resourceCulture);
             }
         }
         

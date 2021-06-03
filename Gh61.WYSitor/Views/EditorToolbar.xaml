@@ -20,10 +20,21 @@
             <ComboBox Width="128" />
             <ComboBox Width="42" />
             <Separator/>
-            <ToggleButton><ContentControl Content="{StaticResource Icon_Bold}"></ContentControl></ToggleButton>
-            <ToggleButton><ContentControl Content="{StaticResource Icon_Italic}"></ContentControl></ToggleButton>
-            <ToggleButton><ContentControl Content="{StaticResource Icon_Underline}"></ContentControl></ToggleButton>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_Bold}"/></ToggleButton>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_Italic}"/></ToggleButton>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_Underline}"/></ToggleButton>
             <Separator/>
+            <Button Padding="2,2,0,2">
+                <Viewbox Height="16">
+                    <Grid>
+                        <ContentControl Content="{StaticResource Icon_HighlightColor_Main}" Margin="-2,0,2,0" />
+                        <ContentControl Content="{StaticResource Icon_HighlightColor_Underscore}" Margin="-2,0,2,0" />
+                    </Grid>
+                </Viewbox>
+            </Button>
+            <ToggleButton Margin="0" Padding="0,7,2,7">
+                <ContentControl Content="{StaticResource Icon_DropDownArrow}"></ContentControl>
+            </ToggleButton>
         </ToolBar>
     </ToolBarTray>
 </UserControl>

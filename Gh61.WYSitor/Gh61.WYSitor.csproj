@@ -48,7 +48,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\FontPickerElement.cs" />
+    <Compile Include="Code\HighlightColorButton.cs" />
+    <Compile Include="Code\ResourceHelper.cs" />
+    <Compile Include="Code\ToolbarSplitButton.cs" />
     <Compile Include="Html\FontSize.cs" />
     <Compile Include="Code\FontSizePicker.cs" />
     <Compile Include="Code\ToolbarButton.cs" />

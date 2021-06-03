@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.Properties;
 using Gh61.WYSitor.ViewModels;
@@ -16,18 +15,10 @@ namespace Gh61.WYSitor.Code
             FontFamily = new FontPickerElement();
             FontSize = new FontSizePicker();
 
-            #region Buttons
-
-            // Init resource for getting icons
-            var icons = new ResourceDictionary();
-            icons.Source = new Uri("/Gh61.WYSitor;component/Resources/Icons.xaml", UriKind.RelativeOrAbsolute);
-            UIElement GetIcon(string name) => (UIElement) icons[name];
-
-            Bold = new ToolbarButton("Bold", Resources.Text_Bold, GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
-            Italic = new ToolbarButton("Italic", Resources.Text_Italic, GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
-            Underline = new ToolbarButton("Underline", Resources.Text_Underline, GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
-
-            #endregion
+            Bold = new ToolbarButton("Bold", Resources.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
+            Italic = new ToolbarButton("Italic", Resources.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
+            Underline = new ToolbarButton("Underline", Resources.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
+            LineHighlightColor = new HighlightColorButton();
         }
 
         public static readonly ToolbarElement FontFamily;
@@ -35,6 +26,7 @@ namespace Gh61.WYSitor.Code
         public static readonly ToolbarButton Bold;
         public static readonly ToolbarButton Italic;
         public static readonly ToolbarButton Underline;
+        public static readonly ToolbarSplitButton LineHighlightColor;
 
         /// <summary>
         /// Restores toolbar elements to default.
@@ -68,7 +60,7 @@ namespace Gh61.WYSitor.Code
             model.ToolbarElements.Add(Underline);
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-
+            LineHighlightColor.Register(model);
         }
     }
 }

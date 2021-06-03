@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Gh61.WYSitor.Tester
+namespace Gh61.WYSitor.Code
 {
     public static class Extensions
     {

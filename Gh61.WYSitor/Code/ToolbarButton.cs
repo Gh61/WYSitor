@@ -79,6 +79,8 @@ namespace Gh61.WYSitor.Code
         /// </summary>
         public virtual bool GetToggleState(IBrowserControl browserControl) => _getToggleState(browserControl);
 
+        protected virtual object GetButtonContent() => _buttonContent;
+
         public override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             ButtonBase button;
@@ -93,7 +95,7 @@ namespace Gh61.WYSitor.Code
             }
 
             button.ToolTip = Name;
-            button.Content = _buttonContent;
+            button.Content = GetButtonContent();
             button.Click += (s, e) =>
             {
                 Clicked(browserControl);

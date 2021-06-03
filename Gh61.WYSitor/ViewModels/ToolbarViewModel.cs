@@ -110,7 +110,6 @@ namespace Gh61.WYSitor.ViewModels
                             {
                                 _container.Items.Insert(e.NewStartingIndex, uiElement);
                             }
-                            
                         }
                     }
 
