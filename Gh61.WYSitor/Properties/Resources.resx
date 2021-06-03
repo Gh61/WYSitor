@@ -145,6 +145,9 @@
   <data name="Text_Italic" xml:space="preserve">
     <value>Italic</value>
   </data>
+  <data name="Text_NumberedList" xml:space="preserve">
+    <value>Ordered list</value>
+  </data>
   <data name="Text_Outdent" xml:space="preserve">
     <value>Smaller indent</value>
   </data>

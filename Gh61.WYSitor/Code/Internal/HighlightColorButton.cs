@@ -42,6 +42,8 @@ namespace Gh61.WYSitor.Code
 
         private Path Underscore { get; set; }
 
+        private ColorPickerControl ColorPicker { get; set; }
+
         protected override void MainButtonClicked(IBrowserControl browserControl)
         {
             MessageBox.Show("Yes, you clicked");
@@ -49,17 +51,13 @@ namespace Gh61.WYSitor.Code
 
         protected override ContextMenu CreateContextMenu()
         {
-            var contextMenu = new ContextMenu();
+            ColorPicker = new ColorPickerControl(Colors.Yellow);
+            ColorPicker.ColorSelected += (s, e) =>
+            {
+                Underscore.Fill = e.SelectedBrush;
+            };
 
-            var red = new MenuItem() {Header = "Red"};
-            var blue = new MenuItem() {Header = "Blue"};
-            red.Click += (s, e) => { Underscore.Fill = Brushes.Red; };
-            blue.Click += (s, e) => { Underscore.Fill = Brushes.Blue; };
-
-            contextMenu.Items.Add(red);
-            contextMenu.Items.Add(blue);
-
-            return contextMenu;
+            return ColorPicker.CreateContextMenu();
         }
     }
 }

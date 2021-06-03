@@ -27,6 +27,7 @@ namespace Gh61.WYSitor.Code
             AlignRight = new ToolbarButton(nameof(AlignRight), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
 
             BulletList = new ToolbarButton(nameof(BulletList), Resources.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
+            NumberedList = new ToolbarButton(nameof(NumberedList), Resources.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));
             Outdent = new ToolbarButton(nameof(Outdent), Resources.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
             Indent = new ToolbarButton(nameof(Indent), Resources.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
         }
@@ -42,6 +43,7 @@ namespace Gh61.WYSitor.Code
         public static readonly ToolbarButton AlignCenter;
         public static readonly ToolbarButton AlignRight;
         public static readonly ToolbarButton BulletList;
+        public static readonly ToolbarButton NumberedList;
         public static readonly ToolbarButton Outdent;
         public static readonly ToolbarButton Indent;
 
@@ -87,6 +89,9 @@ namespace Gh61.WYSitor.Code
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
             model.ToolbarElements.Add(BulletList);
+            model.ToolbarElements.Add(NumberedList);
+            model.ToolbarElements.Add(new ToolbarSeparatorElement());
+
             model.ToolbarElements.Add(Outdent);
             model.ToolbarElements.Add(Indent);
         }

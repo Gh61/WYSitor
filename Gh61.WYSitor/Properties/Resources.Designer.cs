@@ -67,8 +67,11 @@ namespace Gh61.WYSitor.Properties {
         ///    &lt;title&gt;doc&lt;/title&gt;
         ///    &lt;meta content=&quot;text/html;utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
         ///    &lt;style type=&quot;text/css&quot;&gt;
-        ///        p {
+        ///        p, ul, ol {
         ///            font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+        ///        }
+        ///
+        ///        p {
         ///            margin-bottom: 0;
         ///            margin-top: 0;
         ///        }
@@ -154,6 +157,15 @@ namespace Gh61.WYSitor.Properties {
         internal static string Text_Italic {
             get {
                 return ResourceManager.GetString("Text_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordered list.
+        /// </summary>
+        internal static string Text_NumberedList {
+            get {
+                return ResourceManager.GetString("Text_NumberedList", resourceCulture);
             }
         }
         

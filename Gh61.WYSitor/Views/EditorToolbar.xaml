@@ -52,6 +52,8 @@
             <ToggleButton><ContentControl Content="{StaticResource Icon_AlignRight}"/></ToggleButton>
             <Separator/>
             <ToggleButton><ContentControl Content="{StaticResource Icon_BulletList}"/></ToggleButton>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_NumberedList}"/></ToggleButton>
+            <Separator/>
             <Button><ContentControl Content="{StaticResource Icon_Outdent}"/></Button>
             <Button><ContentControl Content="{StaticResource Icon_Indent}"/></Button>
         </ToolBar>
