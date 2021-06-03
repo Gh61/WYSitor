@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Icons" Width="32" Height="32">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: metadata-->
+  <!--Unknown tag: sodipodi:namedview-->
+  <Canvas Name="g6">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="-1"/>
+    </Canvas.RenderTransform>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path2" Fill="#000000" Data="m 26.4 12 1.4 -1.4 C 29 9.4 28.9 7.5 27.7 6.3 l -3 -3 C 24.1 2.7 23.4 2.4 22.5 2.4 21.7 2.4 20.9 2.7 20.3 3.3 L 19 4.6 ZM 17.6 6 6.9 16.7 C 6.7 16.9 6.6 17.1 6.6 17.3 L 6 23.9 c 0 0.3 0.1 0.6 0.3 0.8 0.2 0.2 0.4 0.3 0.7 0.3 0 0 0.1 0 0.1 0 l 6.6 -0.6 c 0.2 0 0.5 -0.1 0.6 -0.3 L 25 13.4 Z"/>
+    <!--<Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4" Fill="#000000" Data="m 26.4 12 1.4 -1.4 C 29 9.4 28.9 7.5 27.7 6.3 l -3 -3 C 24.1 2.7 23.4 2.4 22.5 2.4 21.7 2.4 20.9 2.7 20.3 3.3 L 19 4.6 Z"/>-->
+  </Canvas>
+  <Canvas Name="g10">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path8" Fill="#000000" StrokeThickness="1.42355" Data="M 28 30.053 H 4 C 3.4 30.053 3 29.2424 3 28.0265 3 26.8106 3.4 26 4 26 h 24 c 0.6 0 1 0.8106 1 2.0265 0 1.2159 -0.4 2.0265 -1 2.0265 z"/>
+  </Canvas>
+</Canvas>

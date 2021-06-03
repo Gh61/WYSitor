@@ -86,11 +86,47 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text align center.
+        /// </summary>
+        internal static string Text_AlignCenter {
+            get {
+                return ResourceManager.GetString("Text_AlignCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text align left.
+        /// </summary>
+        internal static string Text_AlignLeft {
+            get {
+                return ResourceManager.GetString("Text_AlignLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text align right.
+        /// </summary>
+        internal static string Text_AlignRight {
+            get {
+                return ResourceManager.GetString("Text_AlignRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bold.
         /// </summary>
         internal static string Text_Bold {
             get {
                 return ResourceManager.GetString("Text_Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unordered list.
+        /// </summary>
+        internal static string Text_BulletList {
+            get {
+                return ResourceManager.GetString("Text_BulletList", resourceCulture);
             }
         }
         
@@ -104,11 +140,38 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bigger indent.
+        /// </summary>
+        internal static string Text_Indent {
+            get {
+                return ResourceManager.GetString("Text_Indent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Italic.
         /// </summary>
         internal static string Text_Italic {
             get {
                 return ResourceManager.GetString("Text_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smaller indent.
+        /// </summary>
+        internal static string Text_Outdent {
+            get {
+                return ResourceManager.GetString("Text_Outdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text color.
+        /// </summary>
+        internal static string Text_TextColor {
+            get {
+                return ResourceManager.GetString("Text_TextColor", resourceCulture);
             }
         }
         

@@ -121,14 +121,35 @@
   <data name="Empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Empty.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
+  <data name="Text_AlignCenter" xml:space="preserve">
+    <value>Text align center</value>
+  </data>
+  <data name="Text_AlignLeft" xml:space="preserve">
+    <value>Text align left</value>
+  </data>
+  <data name="Text_AlignRight" xml:space="preserve">
+    <value>Text align right</value>
+  </data>
   <data name="Text_Bold" xml:space="preserve">
     <value>Bold</value>
+  </data>
+  <data name="Text_BulletList" xml:space="preserve">
+    <value>Unordered list</value>
   </data>
   <data name="Text_HighlightColor" xml:space="preserve">
     <value>Line highlight color</value>
   </data>
+  <data name="Text_Indent" xml:space="preserve">
+    <value>Bigger indent</value>
+  </data>
   <data name="Text_Italic" xml:space="preserve">
     <value>Italic</value>
+  </data>
+  <data name="Text_Outdent" xml:space="preserve">
+    <value>Smaller indent</value>
+  </data>
+  <data name="Text_TextColor" xml:space="preserve">
+    <value>Text color</value>
   </data>
   <data name="Text_Underline" xml:space="preserve">
     <value>Underline</value>

@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <wySitor:HtmlEditor x:Name="HtmlEditor"/>
+        <wySitor:HtmlEditor x:Name="HtmlEditor" Margin="0 12 0 0">
+            <!--<wySitor:HtmlEditor.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </wySitor:HtmlEditor.RenderTransform>-->
+        </wySitor:HtmlEditor>
     </Grid>
 </Window>

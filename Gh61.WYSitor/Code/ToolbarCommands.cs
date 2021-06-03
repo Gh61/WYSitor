@@ -15,10 +15,20 @@ namespace Gh61.WYSitor.Code
             FontFamily = new FontPickerElement();
             FontSize = new FontSizePicker();
 
-            Bold = new ToolbarButton("Bold", Resources.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
-            Italic = new ToolbarButton("Italic", Resources.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
-            Underline = new ToolbarButton("Underline", Resources.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
+            Bold = new ToolbarButton(nameof(Bold), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
+            Italic = new ToolbarButton(nameof(Italic), Resources.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
+            Underline = new ToolbarButton(nameof(Underline), Resources.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
+
             LineHighlightColor = new HighlightColorButton();
+            TextColor = new TextColorButton();
+
+            AlignLeft = new ToolbarButton(nameof(AlignLeft), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
+            AlignCenter = new ToolbarButton(nameof(AlignCenter), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
+            AlignRight = new ToolbarButton(nameof(AlignRight), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
+
+            BulletList = new ToolbarButton(nameof(BulletList), Resources.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
+            Outdent = new ToolbarButton(nameof(Outdent), Resources.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
+            Indent = new ToolbarButton(nameof(Indent), Resources.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
         }
 
         public static readonly ToolbarElement FontFamily;
@@ -27,6 +37,13 @@ namespace Gh61.WYSitor.Code
         public static readonly ToolbarButton Italic;
         public static readonly ToolbarButton Underline;
         public static readonly ToolbarSplitButton LineHighlightColor;
+        public static readonly ToolbarSplitButton TextColor;
+        public static readonly ToolbarButton AlignLeft;
+        public static readonly ToolbarButton AlignCenter;
+        public static readonly ToolbarButton AlignRight;
+        public static readonly ToolbarButton BulletList;
+        public static readonly ToolbarButton Outdent;
+        public static readonly ToolbarButton Indent;
 
         /// <summary>
         /// Restores toolbar elements to default.
@@ -61,6 +78,17 @@ namespace Gh61.WYSitor.Code
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
             LineHighlightColor.Register(model);
+            TextColor.Register(model);
+            model.ToolbarElements.Add(new ToolbarSeparatorElement());
+
+            model.ToolbarElements.Add(AlignLeft);
+            model.ToolbarElements.Add(AlignCenter);
+            model.ToolbarElements.Add(AlignRight);
+            model.ToolbarElements.Add(new ToolbarSeparatorElement());
+
+            model.ToolbarElements.Add(BulletList);
+            model.ToolbarElements.Add(Outdent);
+            model.ToolbarElements.Add(Indent);
         }
     }
 }

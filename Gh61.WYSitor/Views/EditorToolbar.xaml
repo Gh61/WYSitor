@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="24" d:DesignWidth="800">
+             d:DesignHeight="26" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,7 +15,7 @@
     </UserControl.Resources>
 
     <ToolBarTray>
-        <!-- CommandBar is managed dynamically, this is just for design purposes: -->
+        <!-- CommandBar is managed dynamically, this is just for preview/design purposes: -->
         <ToolBar x:Name="CommandBar" ToolBarTray.IsLocked="True">
             <ComboBox Width="128" />
             <ComboBox Width="42" />
@@ -35,6 +35,25 @@
             <ToggleButton Margin="0" Padding="0,7,2,7">
                 <ContentControl Content="{StaticResource Icon_DropDownArrow}"></ContentControl>
             </ToggleButton>
+            <Button Padding="2,2,0,2">
+                <Viewbox Height="16">
+                    <Grid>
+                        <ContentControl Content="{StaticResource Icon_TextColor_Main}" Margin="-2,0,2,0" />
+                        <ContentControl Content="{StaticResource Icon_TextColor_Underscore}" Margin="-2,0,2,0" />
+                    </Grid>
+                </Viewbox>
+            </Button>
+            <ToggleButton Margin="0" Padding="0,7,2,7">
+                <ContentControl Content="{StaticResource Icon_DropDownArrow}"></ContentControl>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_AlignLeft}"/></ToggleButton>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_AlignCenter}"/></ToggleButton>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_AlignRight}"/></ToggleButton>
+            <Separator/>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_BulletList}"/></ToggleButton>
+            <Button><ContentControl Content="{StaticResource Icon_Outdent}"/></Button>
+            <Button><ContentControl Content="{StaticResource Icon_Indent}"/></Button>
         </ToolBar>
     </ToolBarTray>
 </UserControl>

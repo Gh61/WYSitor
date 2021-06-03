@@ -19,7 +19,7 @@ namespace Gh61.WYSitor.Code
             _identifier = identifier;
 
             MainButton = new MainButtonElement(identifier, name, CreateMainButtonContent, CreateContextMenu, MainButtonClicked);
-            DropDownButton = new DropDownButtonElement(identifier, (MainButtonElement)MainButton);
+            DropDownButton = new DropDownButtonElement(identifier, name, (MainButtonElement)MainButton);
         }
 
         /// <summary>
@@ -132,10 +132,12 @@ namespace Gh61.WYSitor.Code
         private class DropDownButtonElement : ToolbarElement
         {
             private readonly MainButtonElement _mainButton;
+            private readonly string _name;
 
-            public DropDownButtonElement(string identifier, MainButtonElement mainButton) : base(GetIdentifier(identifier))
+            public DropDownButtonElement(string identifier, string name, MainButtonElement mainButton) : base(GetIdentifier(identifier))
             {
                 _mainButton = mainButton;
+                _name = name;
             }
 
             public override FrameworkElement CreateElement(IBrowserControl browserControl)
@@ -150,6 +152,7 @@ namespace Gh61.WYSitor.Code
                 button.Margin = new Thickness(0);
                 button.Padding = new Thickness(0, 7, 2, 7);
                 button.Content = ResourceHelper.GetIcon("Icon_DropDownArrow");
+                button.ToolTip = _name;
 
                 button.Click += (s, e) =>
                 {

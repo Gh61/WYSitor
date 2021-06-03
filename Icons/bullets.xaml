@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="Icons" Width="32" Height="32">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: metadata-->
+    <!--Unknown tag: sodipodi:namedview-->
+    <Canvas Name="g14">
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path2" Fill="#000000">
+        <Path.Data>
+          <PathGeometry Figures="M11 8h18c0.6 0 1-0.4 1-1s-0.4-1-1-1H11c-0.6 0-1 0.4-1 1S10.4 8 11 8z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4" Fill="#000000">
+        <Path.Data>
+          <PathGeometry Figures="M11 17h11c0.6 0 1-0.4 1-1s-0.4-1-1-1H11c-0.6 0-1 0.4-1 1S10.4 17 11 17z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6" Fill="#000000">
+        <Path.Data>
+          <PathGeometry Figures="M29 24H11c-0.6 0-1 0.4-1 1s0.4 1 1 1h18c0.6 0 1-0.4 1-1S29.6 24 29 24z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path8" Fill="#000000">
+        <Path.Data>
+          <PathGeometry Figures="M5 4C3.3 4 2 5.3 2 7s1.3 3 3 3s3-1.3 3-3S6.7 4 5 4z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path10" Fill="#000000">
+        <Path.Data>
+          <PathGeometry Figures="M5 13c-1.7 0-3 1.3-3 3s1.3 3 3 3s3-1.3 3-3S6.7 13 5 13z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path12" Fill="#000000">
+        <Path.Data>
+          <PathGeometry Figures="M5 22c-1.7 0-3 1.3-3 3s1.3 3 3 3s3-1.3 3-3S6.7 22 5 22z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+    </Canvas>
+  </Canvas>
+</Viewbox>

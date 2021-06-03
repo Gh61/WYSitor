@@ -141,7 +141,7 @@ namespace Gh61.WYSitor.Views
             ExecuteCommand("FontSize", false, fontSize.Key);
         }
 
-        public void Focus()
+        void IBrowserControl.Focus()
         {
             TryFocusBody();
         }

@@ -1,16 +1,59 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <Path x:Key="Icon_Bold" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M23.3 14.7c0.5-1 0.7-2.1 0.7-3.2C24 7.4 20.6 4 16.5 4H7C6.4 4 6 4.4 6 5v22c0 0.6 0.4 1 1 1h11.5c4.1 0 7.5-3.4 7.5-7.5  C26 18.2 25 16.1 23.3 14.7z M10 9c0-0.6 0.4-1 1-1h5.6c2 0 3.5 1.7 3.4 3.6C19.9 13 18.8 14 17.4 14H11c-0.6 0-1-0.4-1-1V9z   M18.3 24H11c-0.6 0-1-0.4-1-1v-4c0-0.6 0.4-1 1-1h8.4c1.3 0 2.4 0.9 2.5 2.2c0 0 0 0 0 0.1C22.1 22.3 20.3 24 18.3 24z"/>
-  <Path x:Key="Icon_Italic" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M22 4h-8c-0.6 0-1 0.4-1 1s0.4 1 1 1h2.8l-3.6 20H10c-0.6 0-1 0.4-1 1s0.4 1 1 1h8c0.6 0 1-0.4 1-1s-0.4-1-1-1h-2.8l3.6-20  H22c0.6 0 1-0.4 1-1S22.6 4 22 4z"/>
-  <Path x:Key="Icon_Underline" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M27 26H5c-0.6 0-1 0.4-1 1s0.4 1 1 1h22c0.6 0 1-0.4 1-1S27.6 26 27 26zM16 24c5 0 9-4 9-9V5c0-0.6-0.4-1-1-1s-1 0.4-1 1v10c0 3.9-3.1 7-7 7s-7-3.1-7-7V5c0-0.6-0.4-1-1-1S7 4.4 7 5v10   C7 20 11 24 16 24z"/>
-  
+<!-- x:Shared="False" - so anyone can use its own instance of icon -->
+
+  <Path x:Shared="False" x:Key="Icon_Bold" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M23.3 14.7c0.5-1 0.7-2.1 0.7-3.2C24 7.4 20.6 4 16.5 4H7C6.4 4 6 4.4 6 5v22c0 0.6 0.4 1 1 1h11.5c4.1 0 7.5-3.4 7.5-7.5  C26 18.2 25 16.1 23.3 14.7z M10 9c0-0.6 0.4-1 1-1h5.6c2 0 3.5 1.7 3.4 3.6C19.9 13 18.8 14 17.4 14H11c-0.6 0-1-0.4-1-1V9z   M18.3 24H11c-0.6 0-1-0.4-1-1v-4c0-0.6 0.4-1 1-1h8.4c1.3 0 2.4 0.9 2.5 2.2c0 0 0 0 0 0.1C22.1 22.3 20.3 24 18.3 24z"/>
+  <Path x:Shared="False" x:Key="Icon_Italic" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M22 4h-8c-0.6 0-1 0.4-1 1s0.4 1 1 1h2.8l-3.6 20H10c-0.6 0-1 0.4-1 1s0.4 1 1 1h8c0.6 0 1-0.4 1-1s-0.4-1-1-1h-2.8l3.6-20  H22c0.6 0 1-0.4 1-1S22.6 4 22 4z"/>
+  <Path x:Shared="False" x:Key="Icon_Underline" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M27 26H5c-0.6 0-1 0.4-1 1s0.4 1 1 1h22c0.6 0 1-0.4 1-1S27.6 26 27 26zM16 24c5 0 9-4 9-9V5c0-0.6-0.4-1-1-1s-1 0.4-1 1v10c0 3.9-3.1 7-7 7s-7-3.1-7-7V5c0-0.6-0.4-1-1-1S7 4.4 7 5v10   C7 20 11 24 16 24z"/>
+  <Path x:Shared="False" x:Key="Icon_AlignLeft" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M3 5h16c0.6 0 1-0.4 1-1s-0.4-1-1-1H3C2.4 3 2 3.4 2 4S2.4 5 3 5zM3 11h26c0.6 0 1-0.4 1-1s-0.4-1-1-1H3c-0.6 0-1 0.4-1 1S2.4 11 3 11zM3 17h16c0.6 0 1-0.4 1-1s-0.4-1-1-1H3c-0.6 0-1 0.4-1 1S2.4 17 3 17zM29 21H3c-0.6 0-1 0.4-1 1s0.4 1 1 1h26c0.6 0 1-0.4 1-1S29.6 21 29 21zM19 27H3c-0.6 0-1 0.4-1 1s0.4 1 1 1h16c0.6 0 1-0.4 1-1S19.6 27 19 27"/>
+  <Path x:Shared="False" x:Key="Icon_AlignCenter" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M8 5h16c0.6 0 1-0.4 1-1s-0.4-1-1-1H8C7.4 3 7 3.4 7 4S7.4 5 8 5zM3 11h26c0.6 0 1-0.4 1-1s-0.4-1-1-1H3c-0.6 0-1 0.4-1 1S2.4 11 3 11zM8 15c-0.6 0-1 0.4-1 1s0.4 1 1 1h16c0.6 0 1-0.4 1-1s-0.4-1-1-1H8zM29 21H3c-0.6 0-1 0.4-1 1s0.4 1 1 1h26c0.6 0 1-0.4 1-1S29.6 21 29 21zM24 27H8c-0.6 0-1 0.4-1 1s0.4 1 1 1h16c0.6 0 1-0.4 1-1S24.6 27 24 27z"/>
+  <Path x:Shared="False" x:Key="Icon_AlignRight" Stretch="Uniform" Width="16" Height="16" Fill="#000000" Data="M29 5H13c-0.6 0-1-0.4-1-1s0.4-1 1-1h16c0.6 0 1 0.4 1 1S29.6 5 29 5zM29 11H3c-0.6 0-1-0.4-1-1s0.4-1 1-1h26c0.6 0 1 0.4 1 1S29.6 11 29 11zM29 17H13c-0.6 0-1-0.4-1-1s0.4-1 1-1h16c0.6 0 1 0.4 1 1S29.6 17 29 17zM29 23H3c-0.6 0-1-0.4-1-1s0.4-1 1-1h26c0.6 0 1 0.4 1 1S29.6 23 29 23zM29 29H13c-0.6 0-1-0.4-1-1s0.4-1 1-1h16c0.6 0 1 0.4 1 1S29.6 29 29 29z"/>
+
+  <Path x:Shared="False" x:Key="Icon_Outdent" Stretch="Uniform" Width="16" Height="16" Fill="#000000">
+    <Path.Data>
+      <GeometryGroup>
+        <PathGeometry Figures="M 29 21 H 17 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 12 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 17 17 h 8 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 h -8 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 17 11 h 12 c 0.6 0 1 -0.4 1 -1 C 30 9.4 29.6 9 29 9 H 17 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 2.075 15.6 c 0.1 -0.1 0.1 -0.2 0.2 -0.3 l 4 -4 c 0.4 -0.4 1 -0.4 1.4 0 0.4 0.4 0.4 1 0 1.4 l -2.3 2.3 h 3.6 c 0.6 0 1 0.4 1 1 0 0.6 -0.4 1 -1 1 h -3.6 l 2.3 2.3 c 0.4 0.4 0.4 1 0 1.4 -0.2 0.2 -0.4 0.3 -0.7 0.3 -0.3 0 -0.5 -0.1 -0.7 -0.3 l -4 -4 c -0.1 -0.1 -0.2 -0.2 -0.2 -0.3 -0.1 -0.3 -0.1 -0.5 0 -0.8 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 29.1 3 h -26 c -0.6 0 -1 0.4 -1 1 0 0.5999995 0.4 0.9999995 1 0.9999995 h 26 c 0.6 0 1 -0.4 1 -0.9999995 0 -0.6 -0.4 -1 -1 -1 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 29.1 27 h -26 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 26 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 11.997939 23.868041 c 0 0.6 0.4 1 1 1 0.6 0 1 -0.4 1 -1 V 7.8680412 c 0 -0.6 -0.4 -1 -1 -1 -0.6 0 -1 0.4 -1 1 z" FillRule="NonZero"/>
+      </GeometryGroup>
+    </Path.Data>
+  </Path>
+  <Path x:Shared="False" x:Key="Icon_Indent" Stretch="Uniform" Width="16" Height="16" Fill="#000000">
+    <Path.Data>
+        <GeometryGroup>
+            <PathGeometry Figures="M 29 21 H 17 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 12 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 z" FillRule="NonZero"/>
+            <PathGeometry Figures="m 17 17 h 8 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 h -8 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 z" FillRule="NonZero"/>
+            <PathGeometry Figures="m 17 11 h 12 c 0.6 0 1 -0.4 1 -1 C 30 9.4 29.6 9 29 9 H 17 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 z" FillRule="NonZero"/>
+            <PathGeometry Figures="M 9.9 15.6 C 9.8 15.5 9.8 15.4 9.7 15.3 l -4 -4 c -0.4 -0.4 -1 -0.4 -1.4 0 -0.4 0.4 -0.4 1 0 1.4 L 6.6 15 H 3 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 3.6 l -2.3 2.3 c -0.4 0.4 -0.4 1 0 1.4 0.2 0.2 0.4 0.3 0.7 0.3 0.3 0 0.5 -0.1 0.7 -0.3 l 4 -4 c 0.1 -0.1 0.2 -0.2 0.2 -0.3 0.1 -0.3 0.1 -0.5 0 -0.8 z" FillRule="NonZero"/>
+            <PathGeometry Figures="m 29.1 3 h -26 c -0.6 0 -1 0.4 -1 1 0 0.5999995 0.4 0.9999995 1 0.9999995 h 26 c 0.6 0 1 -0.4 1 -0.9999995 0 -0.6 -0.4 -1 -1 -1 z" FillRule="NonZero"/>
+            <PathGeometry Figures="m 29.1 27 h -26 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 26 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 z" FillRule="NonZero"/>
+            <PathGeometry Figures="m 11.997939 23.868041 c 0 0.6 0.4 1 1 1 0.6 0 1 -0.4 1 -1 V 7.8680412 c 0 -0.6 -0.4 -1 -1 -1 -0.6 0 -1 0.4 -1 1 z" FillRule="NonZero"/>
+        </GeometryGroup>
+    </Path.Data>
+  </Path>
+  <Path x:Shared="False" x:Key="Icon_BulletList" Stretch="Uniform" Width="16" Height="16" Fill="#000000">
+    <Path.Data>
+      <GeometryGroup>
+          <PathGeometry Figures="M11 8h18c0.6 0 1-0.4 1-1s-0.4-1-1-1H11c-0.6 0-1 0.4-1 1S10.4 8 11 8zM11 17h11c0.6 0 1-0.4 1-1s-0.4-1-1-1H11c-0.6 0-1 0.4-1 1S10.4 17 11 17zM29 24H11c-0.6 0-1 0.4-1 1s0.4 1 1 1h18c0.6 0 1-0.4 1-1S29.6 24 29 24z" FillRule="NonZero"/>
+          <PathGeometry Figures="M5 4C3.3 4 2 5.3 2 7s1.3 3 3 3s3-1.3 3-3S6.7 4 5 4zM5 13c-1.7 0-3 1.3-3 3s1.3 3 3 3s3-1.3 3-3S6.7 13 5 13zM5 22c-1.7 0-3 1.3-3 3s1.3 3 3 3s3-1.3 3-3S6.7 22 5 22z" FillRule="NonZero"/>
+      </GeometryGroup>
+    </Path.Data>
+  </Path>
+
   <!-- Use with ViewBox scaling -->
-  <Path x:Key="Icon_HighlightColor_Main" Fill="#000000" Data="M17.6 6L6.9 16.7c-0.2 0.2-0.3 0.4-0.3 0.6L6 23.9c0 0.3 0.1 0.6 0.3 0.8C6.5 24.9 6.7 25 7 25c0 0 0.1 0 0.1 0l6.6-0.6   c0.2 0 0.5-0.1 0.6-0.3L25 13.4L17.6 6zM26.4 12l1.4-1.4c1.2-1.2 1.1-3.1-0.1-4.3l-3-3c-0.6-0.6-1.3-0.9-2.2-0.9c-0.8 0-1.6 0.3-2.2 0.9L19 4.6L26.4 12z"/>
-  <Path x:Key="Icon_HighlightColor_Underscore" Fill="#000000" Data="M28 29H4c-0.6 0-1-0.4-1-1s0.4-1 1-1h24c0.6 0 1 0.4 1 1S28.6 29 28 29z"/>
+  <Path x:Shared="False" x:Key="Icon_HighlightColor_Main" Fill="#000000" Data="m 26.4 12 1.4 -1.4 C 29 9.4 28.9 7.5 27.7 6.3 l -3 -3 C 24.1 2.7 23.4 2.4 22.5 2.4 21.7 2.4 20.9 2.7 20.3 3.3 L 19 4.6 ZM 17.6 6 6.9 16.7 C 6.7 16.9 6.6 17.1 6.6 17.3 L 6 23.9 c 0 0.3 0.1 0.6 0.3 0.8 0.2 0.2 0.4 0.3 0.7 0.3 0 0 0.1 0 0.1 0 l 6.6 -0.6 c 0.2 0 0.5 -0.1 0.6 -0.3 L 25 13.4 Z"/>
+  <Path x:Shared="False" x:Key="Icon_HighlightColor_Underscore" Fill="#000000" StrokeThickness="1.42355" Data="M 28 30.053 H 4 C 3.4 30.053 3 29.2424 3 28.0265 3 26.8106 3.4 26 4 26 h 24 c 0.6 0 1 0.8106 1 2.0265 0 1.2159 -0.4 2.0265 -1 2.0265 z"/>
+  <Path x:Shared="False" x:Key="Icon_TextColor_Main" Fill="#000000" Data="m 5 24 h 4 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 H 8.6 l 1.9 -4 h 11.1 l 1.9 4 H 23 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 h 4 c 0.6 0 1 -0.4 1 -1 0 -0.6 -0.4 -1 -1 -1 H 25.6 L 16.9 3.6 C 16.7 3.2 16.4 3 16 3 15.6 3 15.3 3.2 15.1 3.6 L 6.4 22 H 5 c -0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1 z M 16 6.3 20.6 16 h -9.2 z"/>
+  <Path x:Shared="False" x:Key="Icon_TextColor_Underscore" Fill="#000000" StrokeThickness="1.42352" Data="M 29 26 H 3 c -0.6 0 -1 0.810559 -1 2.026398 0 1.215839 0.4 2.026399 1 2.026399 h 26 c 0.6 0 1 -0.81056 1 -2.026399 C 30 26.810559 29.6 26 29 26 Z"/>
 
 
-  <Path x:Key="Icon_DropDownArrow" Stretch="Uniform" Width="6" Fill="#000000" Data="M 5.4 5.9 C 5.5 5.8 5.6 5.8 5.7 5.7 l 4 -4 c 0.4 -0.4 0.4 -1 0 -1.4 -0.4 -0.4 -1 -0.4 -1.4 0 L 6 2.6 c -1.15716 1.040813 -2 0 -2 0 L 1.7 0.3 C 1.3 -0.1 0.7 -0.1 0.3 0.3 0.1 0.5 0 0.7 0 1 0 1.3 0.1 1.5 0.3 1.7 l 4 4 C 4.4 5.8 4.5 5.9 4.6 5.9 4.9 6 5.1 6 5.4 5.9 Z"/>
+  <Path x:Shared="False" x:Key="Icon_DropDownArrow" Stretch="Uniform" Width="6" Fill="#000000" Data="M 5.4 5.9 C 5.5 5.8 5.6 5.8 5.7 5.7 l 4 -4 c 0.4 -0.4 0.4 -1 0 -1.4 -0.4 -0.4 -1 -0.4 -1.4 0 L 6 2.6 c -1.15716 1.040813 -2 0 -2 0 L 1.7 0.3 C 1.3 -0.1 0.7 -0.1 0.3 0.3 0.1 0.5 0 0.7 0 1 0 1.3 0.1 1.5 0.3 1.7 l 4 4 C 4.4 5.8 4.5 5.9 4.6 5.9 4.9 6 5.1 6 5.4 5.9 Z"/>
 
 </ResourceDictionary>
 
 <!-- Source: https://www.iconfinder.com/iconsets/text-editing-7 -->
 <!-- Credit to: https://www.iconfinder.com/bitfreak86 -->
+<!-- With little edits of me Gh61  -->
