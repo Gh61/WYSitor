@@ -7,9 +7,9 @@ using Gh61.WYSitor.Properties;
 
 namespace Gh61.WYSitor.Code
 {
-    internal class TextColorButton : ToolbarSplitButton
+    internal class TextColorButton : ColorButtonBase
     {
-        public TextColorButton() : base("TextColor", Resources.Text_TextColor)
+        public TextColorButton() : base("TextColor", Resources.Text_TextColor, Colors.Red)
         {
         }
 
@@ -38,24 +38,10 @@ namespace Gh61.WYSitor.Code
             return scaler;
         }
 
-        private Path Underscore { get; set; }
-
-        private ColorPickerControl ColorPicker { get; set; }
-
-        protected override void MainButtonClicked(IBrowserControl browserControl)
+        protected override void UseCurrentColor(IBrowserControl browserControl)
         {
-            MessageBox.Show("Yes, you clicked");
-        }
-
-        protected override ContextMenu CreateContextMenu()
-        {
-            ColorPicker = new ColorPickerControl(Colors.Red);
-            ColorPicker.ColorSelected += (s, e) =>
-            {
-                Underscore.Fill = e.SelectedBrush;
-            };
-
-            return ColorPicker.CreateContextMenu();
+            var color = ColorPicker.LastSelectedColor;
+            browserControl.ExecuteCommand("ForeColor", false, $"#{color.R:X2}{color.G:X2}{color.B:X2}");
         }
     }
 }

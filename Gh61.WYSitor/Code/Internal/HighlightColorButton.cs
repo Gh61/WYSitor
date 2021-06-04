@@ -1,17 +1,15 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.Properties;
-using MessageBox = System.Windows.MessageBox;
 
 namespace Gh61.WYSitor.Code
 {
-    internal class HighlightColorButton : ToolbarSplitButton
+    internal class HighlightColorButton : ColorButtonBase
     {
-        public HighlightColorButton() : base("HighlightColor", Resources.Text_HighlightColor)
+        public HighlightColorButton() : base("HighlightColor", Resources.Text_HighlightColor, Colors.Yellow)
         {
         }
 
@@ -40,24 +38,12 @@ namespace Gh61.WYSitor.Code
             return scaler;
         }
 
-        private Path Underscore { get; set; }
-
-        private ColorPickerControl ColorPicker { get; set; }
-
-        protected override void MainButtonClicked(IBrowserControl browserControl)
+        protected override void UseCurrentColor(IBrowserControl browserControl)
         {
-            MessageBox.Show("Yes, you clicked");
+            var color = ColorPicker.LastSelectedColor;
+            browserControl.ExecuteCommand("BackColor", false, $"#{color.R:X2}{color.G:X2}{color.B:X2}");
         }
 
-        protected override ContextMenu CreateContextMenu()
-        {
-            ColorPicker = new ColorPickerControl(Colors.Yellow);
-            ColorPicker.ColorSelected += (s, e) =>
-            {
-                Underscore.Fill = e.SelectedBrush;
-            };
-
-            return ColorPicker.CreateContextMenu();
-        }
+        //TODO: Hide default context menu
     }
 }

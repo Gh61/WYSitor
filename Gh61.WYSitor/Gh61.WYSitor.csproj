@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Extensions.cs" />
+    <Compile Include="Code\Internal\ColorButtonBase.cs" />
     <Compile Include="Code\Internal\ColorPickerControl.cs" />
     <Compile Include="Code\Internal\FontPickerElement.cs" />
     <Compile Include="Code\Internal\HighlightColorButton.cs" />

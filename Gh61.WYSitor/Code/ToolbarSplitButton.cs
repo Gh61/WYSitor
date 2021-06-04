@@ -75,7 +75,7 @@ namespace Gh61.WYSitor.Code
         /// <summary>
         /// Creates content of dropdown menu.
         /// </summary>
-        protected abstract ContextMenu CreateContextMenu();
+        protected abstract ContextMenu CreateContextMenu(IBrowserControl browserControl);
 
         /// <summary>
         /// Class helping with standard button behaviour.
@@ -83,9 +83,9 @@ namespace Gh61.WYSitor.Code
         private class MainButtonElement : ToolbarButton
         {
             private readonly Func<UIElement> _createButtonContent;
-            private readonly Func<ContextMenu> _createContextMenu;
+            private readonly Func<IBrowserControl, ContextMenu> _createContextMenu;
 
-            public MainButtonElement(string identifier, string name, Func<UIElement> createButtonContent, Func<ContextMenu> createContextMenu, Action<IBrowserControl> onClick)
+            public MainButtonElement(string identifier, string name, Func<UIElement> createButtonContent, Func<IBrowserControl, ContextMenu> createContextMenu, Action<IBrowserControl> onClick)
                 : base(GetIdentifier(identifier), name, (UIElement)null, onClick)
             {
                 _createButtonContent = createButtonContent;
@@ -99,7 +99,7 @@ namespace Gh61.WYSitor.Code
                 var button = (Button)base.CreateElement(browserControl);
                 button.Padding = new Thickness(2, 2, 0, 2);
 
-                var contextMenu = _createContextMenu();
+                var contextMenu = _createContextMenu(browserControl);
                 contextMenu.HasDropShadow = false;
                 contextMenu.PlacementTarget = button;
                 contextMenu.Placement = PlacementMode.Left;
