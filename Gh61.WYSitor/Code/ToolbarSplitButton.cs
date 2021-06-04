@@ -100,16 +100,7 @@ namespace Gh61.WYSitor.Code
                 button.Padding = new Thickness(2, 2, 0, 2);
 
                 var contextMenu = _createContextMenu(browserControl);
-                contextMenu.HasDropShadow = false;
-                contextMenu.PlacementTarget = button;
-                contextMenu.Placement = PlacementMode.Left;
-                contextMenu.Opened += (s, e) =>
-                {
-                    contextMenu.HorizontalOffset = -button.ActualWidth;
-                    contextMenu.VerticalOffset = button.ActualHeight;
-                };
-
-                button.ContextMenu = contextMenu;
+                Utils.SetContextMenuAndPosition(contextMenu, button);
 
                 // saving last created context menu, so dropdown button can manipulate with it
                 LastContextMenu = contextMenu;
@@ -154,12 +145,7 @@ namespace Gh61.WYSitor.Code
                 button.Content = ResourceHelper.GetIcon("Icon_DropDownArrow");
                 button.ToolTip = _name;
 
-                button.Click += (s, e) =>
-                {
-                    // ReSharper disable once PossibleInvalidOperationException
-                    _mainButton.LastContextMenu.IsOpen = button.IsChecked.Value;
-                };
-                _mainButton.LastContextMenu.Closed += (s, e) => { button.IsChecked = false; };
+                Utils.SetContextMenuOpening(_mainButton.LastContextMenu, button);
 
                 return button;
             }

@@ -49,11 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Extensions.cs" />
+    <Compile Include="Code\Internal\BackgroundColorButton.cs" />
     <Compile Include="Code\Internal\ColorButtonBase.cs" />
     <Compile Include="Code\Internal\ColorPickerControl.cs" />
     <Compile Include="Code\Internal\FontPickerElement.cs" />
     <Compile Include="Code\Internal\HighlightColorButton.cs" />
+    <Compile Include="Code\Internal\ImageButton.cs" />
+    <Compile Include="Code\Internal\LinkButton.cs" />
+    <Compile Include="Code\Internal\ShowHtmlButton.cs" />
     <Compile Include="Code\Internal\TemplateGenerator.cs" />
+    <Compile Include="Code\Internal\Utils.cs" />
     <Compile Include="Code\ResourceHelper.cs" />
     <Compile Include="Code\Internal\TextColorButton.cs" />
     <Compile Include="Code\ToolbarSplitButton.cs" />

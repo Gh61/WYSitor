@@ -55,6 +55,7 @@ namespace Gh61.WYSitor.Code
                     Underscore.Fill = e.SelectedBrush;
 
                 UseCurrentColor(browserControl);
+                browserControl.Focus(); // focus back to editor
             };
 
             return ColorPicker.CreateContextMenu();

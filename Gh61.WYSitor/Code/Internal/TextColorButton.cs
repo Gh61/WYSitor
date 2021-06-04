@@ -41,7 +41,7 @@ namespace Gh61.WYSitor.Code
         protected override void UseCurrentColor(IBrowserControl browserControl)
         {
             var color = ColorPicker.LastSelectedColor;
-            browserControl.ExecuteCommand("ForeColor", false, $"#{color.R:X2}{color.G:X2}{color.B:X2}");
+            browserControl.ExecuteCommand("ForeColor", false, Utils.FormatColor(color));
         }
     }
 }

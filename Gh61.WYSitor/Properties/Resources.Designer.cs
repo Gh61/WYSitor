@@ -116,6 +116,15 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background color.
+        /// </summary>
+        internal static string Text_BackgroundColor {
+            get {
+                return ResourceManager.GetString("Text_BackgroundColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bold.
         /// </summary>
         internal static string Text_Bold {
@@ -143,6 +152,24 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show HTML code.
+        /// </summary>
+        internal static string Text_HtmlCode {
+            get {
+                return ResourceManager.GetString("Text_HtmlCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert image.
+        /// </summary>
+        internal static string Text_Image {
+            get {
+                return ResourceManager.GetString("Text_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bigger indent.
         /// </summary>
         internal static string Text_Indent {
@@ -157,6 +184,15 @@ namespace Gh61.WYSitor.Properties {
         internal static string Text_Italic {
             get {
                 return ResourceManager.GetString("Text_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert link.
+        /// </summary>
+        internal static string Text_Link {
+            get {
+                return ResourceManager.GetString("Text_Link", resourceCulture);
             }
         }
         

@@ -56,6 +56,19 @@
             <Separator/>
             <Button><ContentControl Content="{StaticResource Icon_Outdent}"/></Button>
             <Button><ContentControl Content="{StaticResource Icon_Indent}"/></Button>
+            <Separator/>
+            <ToggleButton>
+                <Viewbox Height="16">
+                    <Grid>
+                        <ContentControl Content="{StaticResource Icon_Bucket_Main}"/>
+                        <ContentControl Content="{StaticResource Icon_Bucket_UnderscoreAndDrop}"/>
+                    </Grid>
+                </Viewbox>
+            </ToggleButton>
+            <Button><ContentControl Content="{StaticResource Icon_Image}"/></Button>
+            <Button><ContentControl Content="{StaticResource Icon_Earth}"/></Button>
+            <Separator/>
+            <ToggleButton><ContentControl Content="{StaticResource Icon_Code}"/></ToggleButton>
         </ToolBar>
     </ToolBarTray>
 </UserControl>

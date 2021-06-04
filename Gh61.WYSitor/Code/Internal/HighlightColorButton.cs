@@ -41,9 +41,7 @@ namespace Gh61.WYSitor.Code
         protected override void UseCurrentColor(IBrowserControl browserControl)
         {
             var color = ColorPicker.LastSelectedColor;
-            browserControl.ExecuteCommand("BackColor", false, $"#{color.R:X2}{color.G:X2}{color.B:X2}");
+            browserControl.ExecuteCommand("BackColor", false, Utils.FormatColor(color));
         }
-
-        //TODO: Hide default context menu
     }
 }

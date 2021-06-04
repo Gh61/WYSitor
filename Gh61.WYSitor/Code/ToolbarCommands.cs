@@ -30,6 +30,12 @@ namespace Gh61.WYSitor.Code
             NumberedList = new ToolbarButton(nameof(NumberedList), Resources.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));
             Outdent = new ToolbarButton(nameof(Outdent), Resources.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
             Indent = new ToolbarButton(nameof(Indent), Resources.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
+
+            BackgroundColor = new BackgroundColorButton();
+            Image = new ImageButton();
+            Link = new LinkButton();
+
+            ShowHtml = new ShowHtmlButton();
         }
 
         public static readonly ToolbarElement FontFamily;
@@ -46,6 +52,10 @@ namespace Gh61.WYSitor.Code
         public static readonly ToolbarButton NumberedList;
         public static readonly ToolbarButton Outdent;
         public static readonly ToolbarButton Indent;
+        public static readonly ToolbarElement BackgroundColor;
+        public static readonly ToolbarButton Image;
+        public static readonly ToolbarButton Link;
+        public static readonly ToolbarElement ShowHtml;
 
         /// <summary>
         /// Restores toolbar elements to default.
@@ -94,6 +104,14 @@ namespace Gh61.WYSitor.Code
 
             model.ToolbarElements.Add(Outdent);
             model.ToolbarElements.Add(Indent);
+            model.ToolbarElements.Add(new ToolbarSeparatorElement());
+
+            model.ToolbarElements.Add(BackgroundColor);
+            model.ToolbarElements.Add(Image);
+            model.ToolbarElements.Add(Link);
+            model.ToolbarElements.Add(new ToolbarSeparatorElement());
+
+            model.ToolbarElements.Add(ShowHtml);
         }
     }
 }
