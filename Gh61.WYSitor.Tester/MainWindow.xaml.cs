@@ -24,6 +24,14 @@ namespace Gh61.WYSitor.Tester
 
         private void AddCustomButton()
         {
+            var signatureButton = new ToolbarButton(
+                "Signature",
+                "Signature",
+                ResourceHelper.GetIcon("Icon_Signature"),
+                b =>
+                {
+                    b.GetSelectedRange().PasteHtml("[SIGNATURE]");
+                });
             var customButton = new ToolbarButton(
                 "MyCustomButton",
                 "Try me!",
@@ -55,12 +63,13 @@ namespace Gh61.WYSitor.Tester
                 });
 
             // add button to last place
+            ToolbarItems.Add(signatureButton);
             ToolbarItems.Add(customButton);
             ToolbarItems.Add(restoreButton);
             ToolbarItems.Add(resetButton);
 
             // insert separator before button
-            var position = ToolbarItems.Count - 3;
+            var position = ToolbarItems.Count - 4;
             ToolbarItems.Insert(position, new ToolbarSeparatorElement());
         }
 

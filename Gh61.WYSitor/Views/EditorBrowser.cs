@@ -167,6 +167,11 @@ namespace Gh61.WYSitor.Views
             }
         }
 
+        public SelectedRange GetSelectedRange()
+        {
+            return new SelectedRange((IHTMLTxtRange)CurrentDocument.selection.createRange());
+        }
+
         public void ExecuteCommand(string commandId, bool showUI = false, object value = null)
         {
             if (CurrentDocument.readyState != "complete")

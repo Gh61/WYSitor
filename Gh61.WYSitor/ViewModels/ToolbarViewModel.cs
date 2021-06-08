@@ -126,6 +126,9 @@ namespace Gh61.WYSitor.ViewModels
                     _container.Items.Clear();
                     _elements.Clear();
 
+                    // waiting for elements to be removed from visual tree
+                    _container.Dispatcher.Invoke(() => { }, DispatcherPriority.Render);
+
                     break;
             }
         }

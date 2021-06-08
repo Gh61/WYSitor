@@ -23,6 +23,11 @@ namespace Gh61.WYSitor.Interfaces
         string GetCurrentHtml();
 
         /// <summary>
+        /// Returns current selected text (or just current position of cursor).
+        /// </summary>
+        SelectedRange GetSelectedRange();
+
+        /// <summary>
         /// Executes given command on current document.
         /// </summary>
         /// <remarks>

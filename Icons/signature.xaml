@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="Icons" Width="32" Height="32">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: metadata-->
+    <!--Unknown tag: sodipodi:namedview-->
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="line" Fill="#000000" StrokeThickness="0.85485">
+      <Path.Data>
+        <PathGeometry Figures="M 24.769231 25.5 H 7.2307693 C 6.7923077 25.5 6.5 25.1 6.5 24.5 c 0 -0.6 0.2923077 -1 0.7307693 -1 H 24.769231 c 0.438462 0 0.730769 0.4 0.730769 1 0 0.6 -0.292307 1 -0.730769 1 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="pen" Fill="#000000" StrokeThickness="0.44147">
+      <Path.Data>
+        <PathGeometry Figures="m 22.284251 12 c -0.353176 0 -0.706008 0.132613 -0.970889 0.397495 l -0.574256 0.573393 3.267049 3.267049 0.61823 -0.61823 c 0.529763 -0.529764 0.484926 -1.368039 -0.04483 -1.897803 L 23.255139 12.397495 C 22.990257 12.132613 22.681573 12 22.284251 12 Z m -2.163375 1.589118 -4.723381 4.723382 c -0.08829 0.08829 -0.132786 0.177277 -0.132786 0.265571 L 15 21.491599 c 0 0.132441 0.04449 0.264364 0.132786 0.352658 0.08829 0.08829 0.176243 0.132786 0.308684 0.132786 h 0.04397 l 2.913527 -0.26471 c 0.08829 0 0.221425 -0.04449 0.265572 -0.132786 l 4.723382 -4.72338 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="square" Fill="#000000">
+      <Path.Data>
+        <PathGeometry Figures="M 4 3 C 3.4 3 3 3.4 3 4 v 24 c 0 0.6 0.4 1 1 1 h 24 c 0.15 0 0.288281 -0.02539 0.410156 -0.07227 C 28.775781 28.787109 29 28.45 29 28 V 4 C 29 3.4 28.6 3 28 3 Z M 5 5 H 27 V 27 H 5 Z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+  </Canvas>
+</Viewbox>

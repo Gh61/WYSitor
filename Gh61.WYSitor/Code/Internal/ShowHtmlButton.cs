@@ -35,7 +35,6 @@ namespace Gh61.WYSitor.Code
         }
 
         // TODO: AddImage
-        // TODO: Prepare Image for insertion of [sign]
         // TODO: Disable browser context menu (on right click)
         // TODO: Binding or other way how to get html content (Binding preferably)
     }

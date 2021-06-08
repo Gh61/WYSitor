@@ -23,9 +23,9 @@ namespace Gh61.WYSitor.Code
             get => _underscore;
             set
             {
-                if (_underscore == null)
+                _underscore = value;
+                if (_underscore != null)
                 {
-                    _underscore = value;
                     _underscore.Fill = ColorPicker?.LastSelectedBrush ?? new SolidColorBrush(_defaultColor);
                 }
             }
@@ -48,7 +48,7 @@ namespace Gh61.WYSitor.Code
 
         protected override ContextMenu CreateContextMenu(IBrowserControl browserControl)
         {
-            ColorPicker = new ColorPickerControl(_defaultColor);
+            ColorPicker = new ColorPickerControl(ColorPicker?.LastSelectedColor ?? _defaultColor);
             ColorPicker.ColorSelected += (s, e) =>
             {
                 if (Underscore != null)
