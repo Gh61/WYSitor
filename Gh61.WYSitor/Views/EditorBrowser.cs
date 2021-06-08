@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using Gh61.WYSitor.Code;
 using Gh61.WYSitor.Html;
 using Gh61.WYSitor.Interfaces;
+using Gh61.WYSitor.ViewModels;
 using mshtml;
 
 namespace Gh61.WYSitor.Views
@@ -27,7 +30,12 @@ namespace Gh61.WYSitor.Views
         /// <summary>
         /// Gets actual WebBrowser component.
         /// </summary>
-        private WebBrowser Browser => Content as WebBrowser;
+        private WebBrowser Browser { get; set; }
+
+        /// <summary>
+        /// Gets html editor (typically hidden behind <see cref="Browser"/>).
+        /// </summary>
+        private TextBox HtmlEditor { get; set; }
 
         #region Browser init
 
@@ -36,17 +44,31 @@ namespace Gh61.WYSitor.Views
             if (this.Content != null)
                 throw new InvalidOperationException("Browser is already initialized!");
 
-            var browser = new WebBrowser();
-            browser.LoadCompleted += DocumentLoaded;
-            this.Content = browser;
+            HtmlEditor = new TextBox();
+            HtmlEditor.AcceptsReturn = true;
+            HtmlEditor.AcceptsTab = true;
+            HtmlEditor.AutoWordSelection = true;
+            HtmlEditor.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            HtmlEditor.TextWrapping = TextWrapping.Wrap;
+            HtmlEditor.Visibility = Visibility.Hidden;
+
+            Browser = new WebBrowser();
+            Browser.LoadCompleted += DocumentLoaded;
+
+            // control for both - Html and Browser control
+            var grid = new Grid();
+            grid.Children.Add(HtmlEditor);
+            grid.Children.Add(Browser);
+
+            this.Content = grid;
 
             // Load default empty document
             void FirstLoad(object s, RoutedEventArgs e)
             {
                 OpenDocument();
-                browser.Loaded -= FirstLoad;
+                Browser.Loaded -= FirstLoad;
             }
-            browser.Loaded += FirstLoad;
+            Browser.Loaded += FirstLoad;
         }
 
         private void DocumentLoaded(object sender, NavigationEventArgs e)
@@ -120,7 +142,29 @@ namespace Gh61.WYSitor.Views
 
         public void OpenDocument(string fileContent = null)
         {
-            Browser.NavigateToString(fileContent ?? Properties.Resources.Empty);
+            var content = fileContent ?? Properties.Resources.Empty;
+
+            if (IsInSourceEditMode)
+            {
+                HtmlEditor.Text = content;
+            }
+            else
+            {
+                Browser.NavigateToString(content);
+            }
+        }
+
+        public string GetCurrentHtml()
+        {
+            if (IsInSourceEditMode)
+            {
+                return HtmlEditor.Text;
+            }
+            else
+            {
+                var doc = CurrentDocument.documentElement.innerHTML;
+                return doc.Replace(" contentEditable=true", "");
+            }
         }
 
         public void ExecuteCommand(string commandId, bool showUI = false, object value = null)
@@ -144,6 +188,53 @@ namespace Gh61.WYSitor.Views
         void IBrowserControl.Focus()
         {
             TryFocusBody();
+        }
+
+        public bool IsInSourceEditMode => !Browser.IsVisible;
+
+        public void ToggleSourceEditor(ToolbarViewModel model, bool enableSourceEditor)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            // mode already set
+            if (enableSourceEditor == IsInSourceEditMode)
+                return;
+
+            // cannot manage container Items when no container is present
+            var itemsContainer = model.GetToolbarContainer();
+            if (itemsContainer == null)
+                return;
+
+            var toolbarItems = itemsContainer.Items
+                .OfType<FrameworkElement>()
+                .Where(e => e.Tag?.ToString() != ShowHtmlButton.ElementIdentifier)
+                .ToList();
+
+            if (enableSourceEditor)
+            {
+                // insert latest html code to editor
+                HtmlEditor.Text = GetCurrentHtml();
+
+                // switch visibility
+                HtmlEditor.Visibility = Visibility.Visible;
+                Browser.Visibility = Visibility.Hidden;
+
+                // disable all items
+                toolbarItems.ForEach(i => i.IsEnabled = false);
+            }
+            else
+            {
+                // load edited html code back to browser
+                Browser.NavigateToString(GetCurrentHtml());
+
+                // switch visibility
+                HtmlEditor.Visibility = Visibility.Hidden;
+                Browser.Visibility = Visibility.Visible;
+
+                // enable all items back
+                toolbarItems.ForEach(i => i.IsEnabled = true);
+            }
         }
 
         #endregion

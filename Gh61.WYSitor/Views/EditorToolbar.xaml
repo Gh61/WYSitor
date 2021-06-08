@@ -17,6 +17,24 @@
     <ToolBarTray>
         <!-- CommandBar is managed dynamically, this is just for preview/design purposes: -->
         <ToolBar x:Name="CommandBar" ToolBarTray.IsLocked="True">
+            <!-- Styles for disabled Paths/Images -->
+            <ToolBar.Resources>
+                <Style TargetType="Path">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToolBar.Resources>
+
             <ComboBox Width="128" />
             <ComboBox Width="42" />
             <Separator/>

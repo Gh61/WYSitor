@@ -89,6 +89,42 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Form_Cancel {
+            get {
+                return ResourceManager.GetString("Form_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string Form_OK {
+            get {
+                return ResourceManager.GetString("Form_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string LinkForm_Text {
+            get {
+                return ResourceManager.GetString("LinkForm_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL.
+        /// </summary>
+        internal static string LinkForm_Url {
+            get {
+                return ResourceManager.GetString("LinkForm_Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text align center.
         /// </summary>
         internal static string Text_AlignCenter {

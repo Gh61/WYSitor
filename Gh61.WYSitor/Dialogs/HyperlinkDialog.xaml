@@ -1,0 +1,50 @@
+﻿<Window x:Class="Gh61.WYSitor.Dialogs.HyperlinkDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Gh61.WYSitor.Dialogs"
+             xmlns:code="clr-namespace:Gh61.WYSitor.Code"
+             xmlns:resx="clr-namespace:Gh61.WYSitor.Properties"
+             WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False"
+             Title="{code:Resource resx:Resources.Text_Link}"
+             Width="400"
+             Height="150">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="2 0 0 0"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="6 0 0 6"/>
+            <Setter Property="Padding" Value="4 3"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Margin" Value="6 0 0 0"/>
+            <Setter Property="Padding" Value="8 0"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="{code:Resource resx:Resources.LinkForm_Text}" Target="{Binding ElementName=TxtText}" MouseLeftButtonUp="LabelClicked"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Text}" GotFocus="TextBoxOnFocus" Name="TxtText"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="{code:Resource resx:Resources.LinkForm_Url}" Target="{Binding ElementName=TxtUrl}" MouseLeftButtonUp="LabelClicked" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Url}" GotFocus="TextBoxOnFocus" Name="TxtUrl"/>
+
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="{code:Resource resx:Resources.Form_OK}" IsDefault="True" Click="OkClicked" />
+                <Button Content="{code:Resource resx:Resources.Form_Cancel}" IsCancel="True" Click="CancelClicked" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

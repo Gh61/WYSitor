@@ -49,6 +49,12 @@ namespace Gh61.WYSitor.ViewModels
         }
 
         /// <summary>
+        /// Gets toolbar container, where are created Toolbar Elements.
+        /// </summary>
+        /// <returns></returns>
+        internal ItemsControl GetToolbarContainer() => _container;
+
+        /// <summary>
         /// Collection of all toolbar elements is it's shown in toolbar above the browser.
         /// Adding, removing and changing position reflects on toolbar UI.
         /// </summary>

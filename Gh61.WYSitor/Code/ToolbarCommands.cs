@@ -35,7 +35,8 @@ namespace Gh61.WYSitor.Code
             Image = new ImageButton();
             Link = new LinkButton();
 
-            ShowHtml = new ShowHtmlButton();
+            // Created in register (need instance of ToolbarViewModel)
+            //ShowHtml = new ShowHtmlButton();
         }
 
         public static readonly ToolbarElement FontFamily;
@@ -55,7 +56,7 @@ namespace Gh61.WYSitor.Code
         public static readonly ToolbarElement BackgroundColor;
         public static readonly ToolbarButton Image;
         public static readonly ToolbarButton Link;
-        public static readonly ToolbarElement ShowHtml;
+        public static ToolbarElement ShowHtml;
 
         /// <summary>
         /// Restores toolbar elements to default.
@@ -111,6 +112,10 @@ namespace Gh61.WYSitor.Code
             model.ToolbarElements.Add(Link);
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
+            if (ShowHtml == null)
+            {
+                ShowHtml = new ShowHtmlButton(model);
+            }
             model.ToolbarElements.Add(ShowHtml);
         }
     }
