@@ -57,15 +57,19 @@
     <Compile Include="Code\Internal\HighlightColorButton.cs" />
     <Compile Include="Code\Internal\ImageButton.cs" />
     <Compile Include="Code\Internal\LinkButton.cs" />
-    <Compile Include="Code\Internal\ResourceExtensions.cs" />
+    <Compile Include="Code\Internal\ResourceExtension.cs" />
     <Compile Include="Code\Internal\ShowHtmlButton.cs" />
     <Compile Include="Code\Internal\TemplateGenerator.cs" />
     <Compile Include="Code\Utils.cs" />
     <Compile Include="Code\ResourceHelper.cs" />
     <Compile Include="Code\Internal\TextColorButton.cs" />
     <Compile Include="Code\ToolbarSplitButton.cs" />
+    <Compile Include="Dialogs\DialogBase.cs" />
     <Compile Include="Dialogs\HyperlinkDialog.xaml.cs">
       <DependentUpon>HyperlinkDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ImageDialog.xaml.cs">
+      <DependentUpon>ImageDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Html\FontSize.cs" />
     <Compile Include="Code\Internal\FontSizePicker.cs" />
@@ -100,6 +104,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Dialogs\HyperlinkDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ImageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

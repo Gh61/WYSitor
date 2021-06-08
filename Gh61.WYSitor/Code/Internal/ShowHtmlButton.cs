@@ -33,9 +33,5 @@ namespace Gh61.WYSitor.Code
 
             return button;
         }
-
-        // TODO: AddImage
-        // TODO: Disable browser context menu (on right click)
-        // TODO: Binding or other way how to get html content (Binding preferably)
     }
 }

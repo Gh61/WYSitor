@@ -16,6 +16,16 @@ namespace Gh61.WYSitor.Code
         });
 
         /// <summary>
+        /// Resources/Styles.xaml
+        /// </summary>
+        internal static Lazy<ResourceDictionary> Styles = new Lazy<ResourceDictionary>(() =>
+        {
+            var icons = new ResourceDictionary();
+            icons.Source = new Uri("/Gh61.WYSitor;component/Resources/Styles.xaml", UriKind.RelativeOrAbsolute);
+            return icons;
+        });
+
+        /// <summary>
         /// Get resource from Resources/Icons.xaml
         /// </summary>
         public static UIElement GetIcon(string name)

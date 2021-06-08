@@ -138,7 +138,7 @@ namespace Gh61.WYSitor.Views
 
         #endregion
 
-        #region Public functions
+        #region Public functions/interface implementation
 
         public void OpenDocument(string fileContent = null)
         {
@@ -169,11 +169,15 @@ namespace Gh61.WYSitor.Views
 
         public SelectedRange GetSelectedRange()
         {
+            OnlyInBrowserMode();
+
             return new SelectedRange((IHTMLTxtRange)CurrentDocument.selection.createRange());
         }
 
         public void ExecuteCommand(string commandId, bool showUI = false, object value = null)
         {
+            OnlyInBrowserMode();
+
             if (CurrentDocument.readyState != "complete")
                 return;
 
@@ -192,7 +196,14 @@ namespace Gh61.WYSitor.Views
 
         void IBrowserControl.Focus()
         {
-            TryFocusBody();
+            if (IsInSourceEditMode)
+            {
+                HtmlEditor.Focus();
+            }
+            else
+            {
+                TryFocusBody();
+            }
         }
 
         public bool IsInSourceEditMode => !Browser.IsVisible;
@@ -240,6 +251,14 @@ namespace Gh61.WYSitor.Views
                 // enable all items back
                 toolbarItems.ForEach(i => i.IsEnabled = true);
             }
+
+            ((IBrowserControl) this).Focus();
+        }
+
+        private void OnlyInBrowserMode()
+        {
+            if (IsInSourceEditMode)
+                throw new InvalidOperationException("This operation can be used only in browser edit mode.");
         }
 
         #endregion

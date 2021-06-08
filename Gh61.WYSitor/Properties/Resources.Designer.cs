@@ -66,16 +66,7 @@ namespace Gh61.WYSitor.Properties {
         ///&lt;head&gt;
         ///    &lt;title&gt;doc&lt;/title&gt;
         ///    &lt;meta content=&quot;text/html;utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
-        ///    &lt;style type=&quot;text/css&quot;&gt;
-        ///        p, ul, ol {
-        ///            font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-        ///        }
-        ///
-        ///        p {
-        ///            margin-bottom: 0;
-        ///            margin-top: 0;
-        ///        }
-        ///    &lt;/style&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;ol,p,ul{font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif}p{margin-bottom:0;margin-top:0}&lt;/style&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
         ///&lt;p&gt;&lt;/p&gt;
@@ -85,6 +76,15 @@ namespace Gh61.WYSitor.Properties {
         internal static string Empty {
             get {
                 return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse....
+        /// </summary>
+        internal static string Form_Browse {
+            get {
+                return ResourceManager.GetString("Form_Browse", resourceCulture);
             }
         }
         
@@ -103,6 +103,42 @@ namespace Gh61.WYSitor.Properties {
         internal static string Form_OK {
             get {
                 return ResourceManager.GetString("Form_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image file cannot be loaded.
+        /// </summary>
+        internal static string ImageForm_ErrorImage {
+            get {
+                return ResourceManager.GetString("ImageForm_ErrorImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image files.
+        /// </summary>
+        internal static string ImageForm_Filter {
+            get {
+                return ResourceManager.GetString("ImageForm_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        internal static string ImageForm_Path {
+            get {
+                return ResourceManager.GetString("ImageForm_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string ImageForm_Preview {
+            get {
+                return ResourceManager.GetString("ImageForm_Preview", resourceCulture);
             }
         }
         

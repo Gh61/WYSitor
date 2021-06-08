@@ -1,0 +1,55 @@
+﻿<local:DialogBase x:Class="Gh61.WYSitor.Dialogs.ImageDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Gh61.WYSitor.Dialogs"
+             xmlns:code="clr-namespace:Gh61.WYSitor.Code"
+             xmlns:resx="clr-namespace:Gh61.WYSitor.Properties"
+             Title="{code:Resource Member=resx:Resources.Text_Image}"
+             Width="600"
+             Height="400">
+    <local:DialogBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Gh61.WYSitor;component/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:DialogBase.Resources>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="{code:Resource Member=resx:Resources.ImageForm_Path}" Target="{Binding ElementName=TxtPath}" MouseLeftButtonUp="LabelClicked"/>
+            <TextBox Grid.Column="1" Name="TxtPath" Text="{Binding Path=ImagePath, Mode=OneWay}" IsReadOnly="True" />
+            <Button Grid.Column="2" Content="{code:Resource Member=resx:Resources.Form_Browse}" Click="BrowseClick"></Button>
+        </Grid>
+
+        <Border Grid.Row="1" Grid.Column="0" Background="WhiteSmoke" BorderThickness="1" BorderBrush="Gray">
+            <Grid>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="{code:Resource resx:Resources.ImageForm_Preview}"/>
+                <Image Source="{Binding ImageSource}" Stretch="Uniform"/>
+            </Grid>
+        </Border>
+        
+
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Content="{code:Resource Member=resx:Resources.Form_OK}" IsDefault="True" Click="OkClicked" IsEnabled="{Binding IsSuccess}" />
+                <Button Content="{code:Resource Member=resx:Resources.Form_Cancel}" IsCancel="True" Click="CancelClicked" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</local:DialogBase>

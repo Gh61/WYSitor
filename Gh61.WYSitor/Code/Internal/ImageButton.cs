@@ -1,6 +1,8 @@
 ﻿using System.Windows;
+using Gh61.WYSitor.Dialogs;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Views;
 
 namespace Gh61.WYSitor.Code
 {
@@ -12,7 +14,16 @@ namespace Gh61.WYSitor.Code
 
         public override void Clicked(IBrowserControl browserControl)
         {
-            MessageBox.Show("TODO: Open dialog box");
+            var imageDialog = new ImageDialog();
+            imageDialog.Owner = Window.GetWindow((EditorBrowser)browserControl);
+            if (imageDialog.ShowDialog() == true)
+            {
+                //TODO
+            }
+
+            // TODO: AddImage
+            // TODO: Disable browser context menu (on right click)
+            // TODO: Binding or other way how to get html content (Binding preferably)
         }
     }
 }
