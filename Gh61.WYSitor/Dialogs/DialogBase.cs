@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Gh61.WYSitor.Annotations;
 using Gh61.WYSitor.Code;
 
 namespace Gh61.WYSitor.Dialogs
@@ -28,6 +29,7 @@ namespace Gh61.WYSitor.Dialogs
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

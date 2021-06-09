@@ -125,6 +125,15 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        internal static string ImageForm_Height {
+            get {
+                return ResourceManager.GetString("ImageForm_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image.
         /// </summary>
         internal static string ImageForm_Path {
@@ -139,6 +148,42 @@ namespace Gh61.WYSitor.Properties {
         internal static string ImageForm_Preview {
             get {
                 return ResourceManager.GetString("ImageForm_Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show real size.
+        /// </summary>
+        internal static string ImageForm_ShowRealSize {
+            get {
+                return ResourceManager.GetString("ImageForm_ShowRealSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        internal static string ImageForm_Size {
+            get {
+                return ResourceManager.GetString("ImageForm_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string ImageForm_Title {
+            get {
+                return ResourceManager.GetString("ImageForm_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string ImageForm_Width {
+            get {
+                return ResourceManager.GetString("ImageForm_Width", resourceCulture);
             }
         }
         

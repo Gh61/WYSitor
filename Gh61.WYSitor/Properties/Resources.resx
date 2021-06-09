@@ -136,11 +136,26 @@
   <data name="ImageForm_Filter" xml:space="preserve">
     <value>Image files</value>
   </data>
+  <data name="ImageForm_Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
   <data name="ImageForm_Path" xml:space="preserve">
     <value>Image</value>
   </data>
   <data name="ImageForm_Preview" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="ImageForm_ShowRealSize" xml:space="preserve">
+    <value>Show real size</value>
+  </data>
+  <data name="ImageForm_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="ImageForm_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ImageForm_Width" xml:space="preserve">
+    <value>Width</value>
   </data>
   <data name="LinkForm_Text" xml:space="preserve">
     <value>Text</value>

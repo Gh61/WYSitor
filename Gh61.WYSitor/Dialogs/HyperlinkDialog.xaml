@@ -6,7 +6,7 @@
             xmlns:resx="clr-namespace:Gh61.WYSitor.Properties"
             Title="{code:Resource Member=resx:Resources.Text_Link}"
             Width="400"
-            Height="150">
+            Height="160">
     <local:DialogBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
