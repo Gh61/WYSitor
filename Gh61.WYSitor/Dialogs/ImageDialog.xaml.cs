@@ -103,6 +103,7 @@ namespace Gh61.WYSitor.Dialogs
         private int _originalHeight;
         private bool _sizeIsChanging;
         private bool _showRealSize;
+        private bool _doPhysicalResize = true; // in default we want the HTML make the smallest possible
 
         /// <summary>
         /// Gets or sets final width of selected image.
@@ -144,6 +145,20 @@ namespace Gh61.WYSitor.Dialogs
                 if (value == _reduceCoefficient) return;
                 _reduceCoefficient = value;
                 RecalculateSize();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets, whether the image should have physically reduced size.
+        /// </summary>
+        public bool DoPhysicalResize
+        {
+            get => _doPhysicalResize;
+            set
+            {
+                if (value == _doPhysicalResize) return;
+                _doPhysicalResize = value;
+                OnPropertyChanged();
             }
         }
 

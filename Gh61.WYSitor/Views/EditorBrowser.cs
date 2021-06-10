@@ -131,13 +131,13 @@ namespace Gh61.WYSitor.Views
             var selectedRange = GetSelectedRange();
 
             // when set, will search for last selected range
-            if (useFocusOutRange && string.IsNullOrEmpty(selectedRange.Text))
+            if (useFocusOutRange && selectedRange.IsEmpty && _focusOutSelectedRange != null)
             {
                 selectedRange = _focusOutSelectedRange;
             }
 
             // empty range = no range
-            if (string.IsNullOrEmpty(selectedRange.Text))
+            if (selectedRange.IsEmpty)
             {
                 selectedRange = null;
             }
@@ -213,7 +213,13 @@ namespace Gh61.WYSitor.Views
         {
             OnlyInBrowserMode();
 
-            return new SelectedRange((IHTMLTxtRange)CurrentDocument.selection.createRange());
+            var range = CurrentDocument.selection.createRange();
+            if (range is IHTMLTxtRange typedRange)
+            {
+                return new SelectedRange(typedRange);
+            }
+
+            return SelectedRange.Empty;
         }
 
         public void ExecuteCommand(string commandId, bool showUI = false, object value = null)

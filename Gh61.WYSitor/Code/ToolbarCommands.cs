@@ -22,9 +22,9 @@ namespace Gh61.WYSitor.Code
             LineHighlightColor = new HighlightColorButton();
             TextColor = new TextColorButton();
 
-            AlignLeft = new ToolbarButton(nameof(AlignLeft), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
-            AlignCenter = new ToolbarButton(nameof(AlignCenter), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
-            AlignRight = new ToolbarButton(nameof(AlignRight), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
+            AlignLeft = new ToolbarButton(nameof(AlignLeft), Resources.Text_AlignLeft, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
+            AlignCenter = new ToolbarButton(nameof(AlignCenter), Resources.Text_AlignCenter, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
+            AlignRight = new ToolbarButton(nameof(AlignRight), Resources.Text_AlignRight, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
 
             BulletList = new ToolbarButton(nameof(BulletList), Resources.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
             NumberedList = new ToolbarButton(nameof(NumberedList), Resources.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));

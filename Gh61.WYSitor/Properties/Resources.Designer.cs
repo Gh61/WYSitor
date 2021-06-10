@@ -125,6 +125,15 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make image physically smaller.
+        /// </summary>
+        internal static string ImageForm_DoPhysicalResize {
+            get {
+                return ResourceManager.GetString("ImageForm_DoPhysicalResize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image file cannot be loaded.
         /// </summary>
         internal static string ImageForm_ErrorImage {

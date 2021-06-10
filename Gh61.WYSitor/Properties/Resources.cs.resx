@@ -118,106 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ContextMenu_Delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Empty.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+    <value>Vymazat</value>
   </data>
   <data name="Form_Browse" xml:space="preserve">
-    <value>Browse...</value>
+    <value>Procházet...</value>
   </data>
   <data name="Form_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Storno</value>
   </data>
   <data name="Form_OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="ImageForm_DefaultAltText" xml:space="preserve">
-    <value>Image</value>
+    <value>Obrázek</value>
   </data>
   <data name="ImageForm_DoPhysicalResize" xml:space="preserve">
-    <value>Make image physically smaller</value>
+    <value>Zmenšit obrázek fyzicky</value>
   </data>
   <data name="ImageForm_ErrorImage" xml:space="preserve">
-    <value>Image file cannot be loaded</value>
+    <value>Soubor nemohl být načten</value>
   </data>
   <data name="ImageForm_Filter" xml:space="preserve">
-    <value>Image files</value>
+    <value>Soubory obrázků</value>
   </data>
   <data name="ImageForm_Height" xml:space="preserve">
-    <value>Height</value>
+    <value>Výška</value>
   </data>
   <data name="ImageForm_Path" xml:space="preserve">
-    <value>Image</value>
+    <value>Soubor</value>
   </data>
   <data name="ImageForm_Preview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Náhled</value>
   </data>
   <data name="ImageForm_ShowRealSize" xml:space="preserve">
-    <value>Show real size</value>
+    <value>Zobrazit skutečnou velikost</value>
   </data>
   <data name="ImageForm_Size" xml:space="preserve">
-    <value>Size</value>
+    <value>Velikost</value>
   </data>
   <data name="ImageForm_Title" xml:space="preserve">
-    <value>Title</value>
+    <value>Popis</value>
   </data>
   <data name="ImageForm_Width" xml:space="preserve">
-    <value>Width</value>
+    <value>Šířka</value>
   </data>
   <data name="LinkForm_Text" xml:space="preserve">
     <value>Text</value>
   </data>
   <data name="LinkForm_Url" xml:space="preserve">
-    <value>URL</value>
+    <value>Adresa</value>
   </data>
   <data name="Text_AlignCenter" xml:space="preserve">
-    <value>Text align center</value>
+    <value>Zarovnat na střed</value>
   </data>
   <data name="Text_AlignLeft" xml:space="preserve">
-    <value>Text align left</value>
+    <value>Zarovnat doleva</value>
   </data>
   <data name="Text_AlignRight" xml:space="preserve">
-    <value>Text align right</value>
+    <value>Zarovnat doprava</value>
   </data>
   <data name="Text_BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>Barva pozadí</value>
   </data>
   <data name="Text_Bold" xml:space="preserve">
-    <value>Bold</value>
+    <value>Tučné</value>
   </data>
   <data name="Text_BulletList" xml:space="preserve">
-    <value>Unordered list</value>
+    <value>Odrážkový seznam</value>
   </data>
   <data name="Text_HighlightColor" xml:space="preserve">
-    <value>Line highlight color</value>
+    <value>Barva zvýraznění textu</value>
   </data>
   <data name="Text_HtmlCode" xml:space="preserve">
-    <value>Show HTML code</value>
+    <value>Zobrazit HTML kód</value>
   </data>
   <data name="Text_Image" xml:space="preserve">
-    <value>Insert image</value>
+    <value>Vložit obrázek</value>
   </data>
   <data name="Text_Indent" xml:space="preserve">
-    <value>Bigger indent</value>
+    <value>Zvětšit odsazení</value>
   </data>
   <data name="Text_Italic" xml:space="preserve">
-    <value>Italic</value>
+    <value>Kurzíva</value>
   </data>
   <data name="Text_Link" xml:space="preserve">
-    <value>Insert link</value>
+    <value>Vložit odkaz</value>
   </data>
   <data name="Text_NumberedList" xml:space="preserve">
-    <value>Ordered list</value>
+    <value>Číselný seznam</value>
   </data>
   <data name="Text_Outdent" xml:space="preserve">
-    <value>Smaller indent</value>
+    <value>Zmenšit odsazení</value>
   </data>
   <data name="Text_TextColor" xml:space="preserve">
-    <value>Text color</value>
+    <value>Barva textu</value>
   </data>
   <data name="Text_Underline" xml:space="preserve">
-    <value>Underline</value>
+    <value>Podtržení</value>
   </data>
 </root>
