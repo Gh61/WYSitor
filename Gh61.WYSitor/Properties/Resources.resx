@@ -130,6 +130,9 @@
   <data name="Form_OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="ImageForm_DefaultAltText" xml:space="preserve">
+    <value>Image</value>
+  </data>
   <data name="ImageForm_ErrorImage" xml:space="preserve">
     <value>Image file cannot be loaded</value>
   </data>

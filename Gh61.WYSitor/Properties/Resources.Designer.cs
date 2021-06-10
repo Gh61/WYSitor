@@ -107,6 +107,15 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        internal static string ImageForm_DefaultAltText {
+            get {
+                return ResourceManager.GetString("ImageForm_DefaultAltText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image file cannot be loaded.
         /// </summary>
         internal static string ImageForm_ErrorImage {

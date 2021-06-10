@@ -105,7 +105,7 @@ namespace Gh61.WYSitor.Dialogs
         private bool _showRealSize;
 
         /// <summary>
-        /// Gets final width of selected image.
+        /// Gets or sets final width of selected image.
         /// </summary>
         public double ImageWidth
         {
@@ -119,7 +119,7 @@ namespace Gh61.WYSitor.Dialogs
         }
 
         /// <summary>
-        /// Gets final height of selected image.
+        /// Gets or sets final height of selected image.
         /// </summary>
         public double ImageHeight
         {
@@ -132,6 +132,10 @@ namespace Gh61.WYSitor.Dialogs
             }
         }
 
+        /// <summary>
+        /// Gets or sets coefficient, which is reducing size of the final image.
+        /// Range: 1-100.
+        /// </summary>
         public int ReduceCoefficient
         {
             get => _reduceCoefficient;
