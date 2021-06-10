@@ -16,6 +16,7 @@ namespace Gh61.WYSitor.Views
     internal class EditorBrowser : UserControl, IBrowserControl
     {
         private bool _scriptErrorsHidden;
+        private BrowserContextMenu _contextMenu;
 
         public EditorBrowser()
         {
@@ -30,7 +31,7 @@ namespace Gh61.WYSitor.Views
         /// <summary>
         /// Gets actual WebBrowser component.
         /// </summary>
-        private WebBrowser Browser { get; set; }
+        internal WebBrowser Browser { get; set; }
 
         /// <summary>
         /// Gets html editor (typically hidden behind <see cref="Browser"/>).
@@ -54,6 +55,9 @@ namespace Gh61.WYSitor.Views
 
             Browser = new WebBrowser();
             Browser.LoadCompleted += DocumentLoaded;
+
+            // custom menu
+            _contextMenu = new BrowserContextMenu(this);
 
             // control for both - Html and Browser control
             var grid = new Grid();
@@ -89,25 +93,63 @@ namespace Gh61.WYSitor.Views
             }
 
             ((HTMLBody)CurrentDocument.body).contentEditable = "true";
-            ((HTMLDocumentEvents2_Event)CurrentDocument).onclick += (htmlEvent) =>
+            var documentEvents = (HTMLDocumentEvents2_Event)CurrentDocument;
+            documentEvents.onclick += (htmlEvent) =>
             {
                 // click out of body tag will return focus back to body
-                if (htmlEvent.srcElement is HTMLHtmlElement)
+                if (htmlEvent.srcElement?.GetType().Name == "HTMLHtmlElementClass")
                 {
                     TryFocusBody();
                 }
 
                 return true;
             };
-            TryFocusBody();
+            // saving selected text, when control lost focus - so it can be back selected, for contextMenu
+            documentEvents.onfocusout += (htmlEvent) =>
+            {
+                _focusOutSelectedRange = GetSelectedRange();
+            };
+            documentEvents.oncontextmenu += (htmlEvent) =>
+            {
+                // open custom menu
+                _contextMenu.IsOpen = true;
+
+                // focusing back selected text, if is
+                TryFocusBody(true);
+
+                // disable default context menu
+                return false;
+            };
 
             // document is loaded - internal browser should be loaded
             TryHideScriptErrors(browser, true);
         }
 
-        private void TryFocusBody()
+        private SelectedRange _focusOutSelectedRange;
+        private void TryFocusBody(bool useFocusOutRange = false)
         {
+            var selectedRange = GetSelectedRange();
+
+            // when set, will search for last selected range
+            if (useFocusOutRange && string.IsNullOrEmpty(selectedRange.Text))
+            {
+                selectedRange = _focusOutSelectedRange;
+            }
+
+            // empty range = no range
+            if (string.IsNullOrEmpty(selectedRange.Text))
+            {
+                selectedRange = null;
+            }
+
             ((HTMLBody)CurrentDocument.body)?.focus();
+
+            // select back the selected text
+            selectedRange?.Select();
+
+            // clearing last selected range
+            if(useFocusOutRange)
+                _focusOutSelectedRange = null;
         }
 
         private void TryHideScriptErrors(WebBrowser wb, bool hide)
@@ -182,6 +224,22 @@ namespace Gh61.WYSitor.Views
                 return;
 
             CurrentDocument.execCommand(commandId, showUI, value);
+        }
+
+        public object QueryCommandState(string commandId)
+        {
+            if (IsInSourceEditMode)
+                return null;
+
+            return CurrentDocument.queryCommandState(commandId);
+        }
+
+        public bool QueryCommandEnabled(string commandId)
+        {
+            if (IsInSourceEditMode)
+                return false;
+
+            return CurrentDocument.queryCommandEnabled(commandId);
         }
 
         public void SetFont(FontFamily font)

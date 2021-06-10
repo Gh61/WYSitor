@@ -31,9 +31,25 @@ namespace Gh61.WYSitor.Interfaces
         /// Executes given command on current document.
         /// </summary>
         /// <remarks>
-        /// This is shortcut for CurrentDocument.execCommand, can be called without reference to mshtml.
+        /// This is shortcut for CurrentDocument.execCommand, but can be called without reference to mshtml.
         /// </remarks>
         void ExecuteCommand(string commandId, bool showUI = false, object value = null);
+
+        /// <summary>
+        /// Checks state of given command by its ID.
+        /// </summary>
+        /// <remarks>
+        /// This is shortcut for CurrentDocument.queryCommandState, but can be called without reference to mshtml.
+        /// </remarks>
+        object QueryCommandState(string commandId);
+
+        /// <summary>
+        /// Checks if given command is enabled by its ID.
+        /// </summary>
+        /// <remarks>
+        /// This is shortcut for CurrentDocument.queryCommandEnabled, but can be called without reference to mshtml.
+        /// </remarks>
+        bool QueryCommandEnabled(string commandId);
 
         /// <summary>
         /// Sets current font to the given one.

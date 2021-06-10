@@ -50,5 +50,7 @@ namespace Gh61.WYSitor
             get;
             private set;
         }
+
+        // TODO: Binding or other way how to get html content (Binding preferably)
     }
 }

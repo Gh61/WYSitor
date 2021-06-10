@@ -193,6 +193,9 @@ namespace Gh61.WYSitor.Dialogs
                         ReduceCoefficient = (int)(coef * 100);
                         break;
                 }
+
+                // after changing size - show real image size
+                ShowRealSize = true;
             }
             finally
             {
@@ -272,6 +275,9 @@ namespace Gh61.WYSitor.Dialogs
                 OnPropertyChanged(nameof(ImageWidth));
                 OnPropertyChanged(nameof(ImageHeight));
                 OnPropertyChanged(nameof(ReduceCoefficient));
+
+                // first preview show whole image
+                ShowRealSize = false;
             }
             catch
             {

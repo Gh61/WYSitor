@@ -54,6 +54,7 @@
     <Compile Include="Code\Internal\BackgroundColorButton.cs" />
     <Compile Include="Code\Internal\ColorButtonBase.cs" />
     <Compile Include="Code\Internal\ColorPickerControl.cs" />
+    <Compile Include="Code\Internal\BrowserContextMenu.cs" />
     <Compile Include="Code\Internal\FontPickerElement.cs" />
     <Compile Include="Code\Internal\HighlightColorButton.cs" />
     <Compile Include="Code\Internal\ImageButton.cs" />

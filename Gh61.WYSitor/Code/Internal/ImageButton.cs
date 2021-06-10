@@ -28,9 +28,6 @@ namespace Gh61.WYSitor.Code
                 var imgTag = CreateImageHtml(imageDialog);
                 browserControl.GetSelectedRange().PasteHtml(imgTag);
             }
-
-            // TODO: Disable browser context menu (on right click)
-            // TODO: Binding or other way how to get html content (Binding preferably)
         }
 
         private static string CreateImageHtml(ImageDialog dialog)

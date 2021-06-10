@@ -61,6 +61,15 @@ namespace Gh61.WYSitor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string ContextMenu_Delete {
+            get {
+                return ResourceManager.GetString("ContextMenu_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
         ///&lt;html&gt;
         ///&lt;head&gt;
