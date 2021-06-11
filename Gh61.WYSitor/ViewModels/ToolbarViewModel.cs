@@ -154,7 +154,11 @@ namespace Gh61.WYSitor.ViewModels
 
         private void TryCheckStyle(object sender, EventArgs e)
         {
-            if (_browser.CurrentDocument.readyState != "complete")
+            // no need to check if editor is invisible
+            if (!_browser.IsVisible)
+                return;
+
+            if (!_browser.CurrentDocument.IsCompletelyLoaded())
                 return;
 
             // going through all CheckState elements and calling CheckState

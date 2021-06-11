@@ -7,6 +7,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using mshtml;
 
 namespace Gh61.WYSitor.Code
 {
@@ -127,6 +128,20 @@ namespace Gh61.WYSitor.Code
                 return value;
             }
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Returns whether the current document is completely loaded.
+        /// </summary>
+        public static bool IsCompletelyLoaded(this HTMLDocument document)
+        {
+            if (document == null)
+                return false;
+
+            if (document.readyState != "complete")
+                return false;
+
+            return true;
         }
     }
 }

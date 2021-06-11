@@ -34,9 +34,9 @@ namespace Gh61.WYSitor.Code
         {
             if (TryGetBase64Data(dialog, out var pngBase64Data))
             {
-                var hasTitle = !string.IsNullOrWhiteSpace(dialog.Title);
+                var hasTitle = !string.IsNullOrWhiteSpace(dialog.ImageTitle);
                 // escaping quotes, so the attribute will not be broken by text with quotes
-                var escapedTitle = (hasTitle ? dialog.Title : Resources.ImageForm_DefaultAltText).Replace("\"", "&quot;");
+                var escapedTitle = (hasTitle ? dialog.ImageTitle : Resources.ImageForm_DefaultAltText).Replace("\"", "&quot;");
 
                 var imgTag = new StringBuilder("<img ");
                 imgTag.AppendFormat("src=\"data:image/png;base64,{0}\" ", pngBase64Data);

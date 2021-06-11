@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Gh61.WYSitor.Code;
+using Gh61.WYSitor.Code.Interop;
 using Gh61.WYSitor.Html;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.ViewModels;
@@ -17,6 +17,7 @@ namespace Gh61.WYSitor.Views
     {
         private bool _scriptErrorsHidden;
         private BrowserContextMenu _contextMenu;
+        private WebBrowserEventsSubscriber _browserEvents;
 
         public EditorBrowser()
         {
@@ -38,6 +39,19 @@ namespace Gh61.WYSitor.Views
         /// </summary>
         private TextBox HtmlEditor { get; set; }
 
+        /// <summary>
+        /// Fires when html content of this editor changes.
+        /// </summary>
+        internal event EventHandler HtmlContentChanged;
+
+        private void FireHtmlContentChanged()
+        {
+            if (!CurrentDocument.IsCompletelyLoaded())
+                return;
+
+            HtmlContentChanged?.Invoke(this, new EventArgs());
+        }
+
         #region Browser init
 
         private void InitInternalBrowser()
@@ -52,6 +66,7 @@ namespace Gh61.WYSitor.Views
             HtmlEditor.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             HtmlEditor.TextWrapping = TextWrapping.Wrap;
             HtmlEditor.Visibility = Visibility.Hidden;
+            HtmlEditor.TextChanged += (s, e) => FireHtmlContentChanged();
 
             Browser = new WebBrowser();
             Browser.LoadCompleted += DocumentLoaded;
@@ -67,9 +82,14 @@ namespace Gh61.WYSitor.Views
             this.Content = grid;
 
             // Load default empty document
-            void FirstLoad(object s, RoutedEventArgs e)
+            void FirstLoad(object sender, RoutedEventArgs args)
             {
                 OpenDocument();
+
+                // link to browser events
+                _browserEvents = WebBrowserEventsSubscriber.Create(Browser);
+                _browserEvents.StatusTextChanged += (s, e) => FireHtmlContentChanged();
+
                 Browser.Loaded -= FirstLoad;
             }
             Browser.Loaded += FirstLoad;
@@ -122,12 +142,15 @@ namespace Gh61.WYSitor.Views
             };
 
             // document is loaded - internal browser should be loaded
-            TryHideScriptErrors(browser, true);
+            TryHideScriptErrors(browser);
         }
 
         private SelectedRange _focusOutSelectedRange;
         private void TryFocusBody(bool useFocusOutRange = false)
         {
+            if (!CurrentDocument.IsCompletelyLoaded())
+                return;
+
             var selectedRange = GetSelectedRange();
 
             // when set, will search for last selected range
@@ -152,30 +175,12 @@ namespace Gh61.WYSitor.Views
                 _focusOutSelectedRange = null;
         }
 
-        private void TryHideScriptErrors(WebBrowser wb, bool hide)
+        private void TryHideScriptErrors(WebBrowser webBrowser)
         {
             if (_scriptErrorsHidden)
                 return;
 
-            // trying to get private field of COM component of browser
-            var comWebBrowserField = typeof(WebBrowser).GetField("_axIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
-            if (comWebBrowserField == null)
-            {
-                // was not found - ending
-                return;
-            }
-
-            // getting private COM component of browser
-            object comWebBrowser = comWebBrowserField.GetValue(wb);
-            if (comWebBrowser == null)
-            {
-                // is null, ending
-                return;
-            }
-
-            // setting script errors to silent
-            comWebBrowser.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, comWebBrowser, new object[] { hide });
-            _scriptErrorsHidden = true;
+            _scriptErrorsHidden = InteropHelper.TryHideScriptErrors(webBrowser);
         }
 
         #endregion
@@ -185,6 +190,10 @@ namespace Gh61.WYSitor.Views
         public void OpenDocument(string fileContent = null)
         {
             var content = fileContent ?? Properties.Resources.Empty;
+
+            // no need to change if it's the same content
+            if (content == GetCurrentHtml())
+                return;
 
             if (IsInSourceEditMode)
             {
@@ -204,6 +213,9 @@ namespace Gh61.WYSitor.Views
             }
             else
             {
+                if (!CurrentDocument.IsCompletelyLoaded())
+                    return string.Empty;
+
                 var doc = CurrentDocument.documentElement.innerHTML;
                 return doc.Replace(" contentEditable=true", "");
             }
@@ -213,10 +225,13 @@ namespace Gh61.WYSitor.Views
         {
             OnlyInBrowserMode();
 
-            var range = CurrentDocument.selection.createRange();
-            if (range is IHTMLTxtRange typedRange)
+            if (CurrentDocument.IsCompletelyLoaded())
             {
-                return new SelectedRange(typedRange);
+                var range = CurrentDocument.selection.createRange();
+                if (range is IHTMLTxtRange typedRange)
+                {
+                    return new SelectedRange(typedRange);
+                }
             }
 
             return SelectedRange.Empty;
@@ -226,7 +241,7 @@ namespace Gh61.WYSitor.Views
         {
             OnlyInBrowserMode();
 
-            if (CurrentDocument.readyState != "complete")
+            if (!CurrentDocument.IsCompletelyLoaded())
                 return;
 
             CurrentDocument.execCommand(commandId, showUI, value);
@@ -237,12 +252,18 @@ namespace Gh61.WYSitor.Views
             if (IsInSourceEditMode)
                 return null;
 
+            if (!CurrentDocument.IsCompletelyLoaded())
+                return null;
+
             return CurrentDocument.queryCommandState(commandId);
         }
 
         public bool QueryCommandEnabled(string commandId)
         {
             if (IsInSourceEditMode)
+                return false;
+
+            if (!CurrentDocument.IsCompletelyLoaded())
                 return false;
 
             return CurrentDocument.queryCommandEnabled(commandId);

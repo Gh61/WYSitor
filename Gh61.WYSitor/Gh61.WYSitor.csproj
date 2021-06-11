@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annotations\Annotations.cs" />
+    <Compile Include="Code\Interop\DWebBrowserEvents2.cs" />
+    <Compile Include="Code\Interop\InteropHelper.cs" />
+    <Compile Include="Code\Interop\WebBrowserEventSubscriber.cs" />
     <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\Internal\BackgroundColorButton.cs" />
     <Compile Include="Code\Internal\ColorButtonBase.cs" />
