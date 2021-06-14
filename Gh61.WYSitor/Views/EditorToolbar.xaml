@@ -87,6 +87,13 @@
             <Button><ContentControl Content="{StaticResource Icon_Earth}"/></Button>
             <Separator/>
             <ToggleButton><ContentControl Content="{StaticResource Icon_Code}"/></ToggleButton>
+            <!--<Separator/>
+            <Label Margin="0" Padding="0 2">Test:</Label>
+            <Button><ContentControl Content="{StaticResource Icon_Signature}"/></Button>
+            <Button><ContentControl Content="{StaticResource Icon_EmptyFile}"/></Button>
+            <Button><ContentControl Content="{StaticResource Icon_AddFile}"/></Button>
+            <Button><ContentControl Content="{StaticResource Icon_NewFile}"/></Button>
+            <Button><ContentControl Content="{StaticResource Icon_Save}"/></Button>-->
         </ToolBar>
     </ToolBarTray>
 </UserControl>

@@ -101,7 +101,7 @@ namespace Gh61.WYSitor.Tester
             var resetButton = new ToolbarButton(
                 "ResetButton",
                 "Resets the editor",
-                new Run("RESET"),
+                ResourceHelper.Icon_EmptyFile,
                 browser =>
                 {
                     HtmlEditor.Browser.OpenDocument();

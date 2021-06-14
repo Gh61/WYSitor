@@ -18,11 +18,8 @@ namespace Gh61.WYSitor.Code
         public static UIElement Icon_Earth => GetIcon("Icon_Earth");
         public static UIElement Icon_Code => GetIcon("Icon_Code");
         public static UIElement Icon_Signature => GetIcon("Icon_Signature");
-        public static UIElement Icon_HighlightColor_Main => GetIcon("Icon_HighlightColor_Main");
-        public static UIElement Icon_HighlightColor_Underscore => GetIcon("Icon_HighlightColor_Underscore");
-        public static UIElement Icon_TextColor_Main => GetIcon("Icon_TextColor_Main");
-        public static UIElement Icon_TextColor_Underscore => GetIcon("Icon_TextColor_Underscore");
-        public static UIElement Icon_Bucket_Main => GetIcon("Icon_Bucket_Main");
-        public static UIElement Icon_Bucket_UnderscoreAndDrop => GetIcon("Icon_Bucket_UnderscoreAndDrop");
+        public static UIElement Icon_EmptyFile => GetIcon("Icon_EmptyFile");
+        public static UIElement Icon_AddFile => GetIcon("Icon_AddFile");
+        public static UIElement Icon_NewFile => GetIcon("Icon_NewFile");
     }
 }

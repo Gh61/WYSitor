@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Icons" Width="32" Height="32">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: metadata-->
+  <!--Unknown tag: sodipodi:namedview-->
+  <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path8" Fill="#000000" Data="M 4 3 C 3.4 3 3 3.4 3 4 L 3 28 C 3 28.6 3.4 29 4 29 L 9 29 L 11 29 L 21 29 L 23 29 L 28 29 C 28.15 29 28.288281 28.974614 28.410156 28.927734 C 28.775781 28.787113 29 28.45 29 28 L 29 14.216797 L 29 11.386719 L 20.613281 3 L 20.53125 3 L 4 3 z M 5 5 L 9 5 L 9 10 C 9 10.6 9.4 11 10 11 L 10.8125 11 L 17.5 11 L 19 11 C 19.6 11 20 10.6 20 10 C 20 9.4 19.6 9 19 9 L 17.5 9 L 11 9 L 11 5 L 19.785156 5 L 27 12.216797 L 27 27 L 23 27 L 23 17 C 23 16.4 22.6 16 22 16 L 10 16 C 9.4 16 9 16.4 9 17 L 9 27 L 5 27 L 5 5 z M 11 18 L 21 18 L 21 27 L 11 27 L 11 18 z "/>
+</Canvas>

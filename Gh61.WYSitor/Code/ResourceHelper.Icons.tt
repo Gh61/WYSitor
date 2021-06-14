@@ -11,7 +11,13 @@
     List<string> icons = new List<string>();
 	Dictionary<string, bool> notPublicIcons = new Dictionary<string, bool>()
 	{
-		{ "Icon_DropDownArrow", true }
+		{ "Icon_DropDownArrow", true },
+		{ "Icon_HighlightColor_Main", true },
+		{ "Icon_HighlightColor_Underscore", true },
+		{ "Icon_TextColor_Main", true },
+		{ "Icon_TextColor_Underscore", true },
+		{ "Icon_Bucket_Main", true },
+		{ "Icon_Bucket_UnderscoreAndDrop", true }
 	};
 
 	int keyIndex = 0;
