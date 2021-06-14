@@ -17,5 +17,8 @@ Then I found [this solution](https://www.codeproject.com/Tips/870549/Csharp-WPF-
 Also I am planing to create much more friendly API, that will allow developers to work with this control more easily.
 There will be API to show/hide/rearrange controls in toolbar, even adding your own, wich can then react with internal browser control.
 
+## Features
+- TODO
+
 ## Usage
 TODO
