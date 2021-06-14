@@ -16,8 +16,10 @@ namespace Gh61.WYSitor.Views
     internal class EditorBrowser : UserControl, IBrowserControl
     {
         private bool _scriptErrorsHidden;
+        private bool _firstDocumentOpened = false;
         private BrowserContextMenu _contextMenu;
         private WebBrowserEventsSubscriber _browserEvents;
+        private readonly Throttler _htmlContentChangedEventThrottler = new Throttler(TimeConstants.MinHtmlChangedInterval);
 
         public EditorBrowser()
         {
@@ -49,7 +51,10 @@ namespace Gh61.WYSitor.Views
             if (!CurrentDocument.IsCompletelyLoaded())
                 return;
 
-            HtmlContentChanged?.Invoke(this, new EventArgs());
+            _htmlContentChangedEventThrottler.Fire(() =>
+            {
+                HtmlContentChanged?.Invoke(this, new EventArgs());
+            });
         }
 
         #region Browser init
@@ -84,7 +89,10 @@ namespace Gh61.WYSitor.Views
             // Load default empty document
             void FirstLoad(object sender, RoutedEventArgs args)
             {
-                OpenDocument();
+                if (!_firstDocumentOpened)
+                {
+                    OpenDocument();
+                }
 
                 // link to browser events
                 _browserEvents = WebBrowserEventsSubscriber.Create(Browser);
@@ -189,6 +197,9 @@ namespace Gh61.WYSitor.Views
 
         public void OpenDocument(string fileContent = null)
         {
+            if(!_firstDocumentOpened)
+                _firstDocumentOpened = true;
+
             var content = fileContent ?? Properties.Resources.Empty;
 
             // no need to change if it's the same content
@@ -216,7 +227,7 @@ namespace Gh61.WYSitor.Views
                 if (!CurrentDocument.IsCompletelyLoaded())
                     return string.Empty;
 
-                var doc = CurrentDocument.documentElement.innerHTML;
+                var doc = CurrentDocument.documentElement.outerHTML;
                 return doc.Replace(" contentEditable=true", "");
             }
         }

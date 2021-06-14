@@ -61,6 +61,15 @@ namespace Gh61.WYSitor.Code
         }
 
         /// <summary>
+        /// Gets or sets whether the 'focus editor after click' function may be disabled.
+        /// </summary>
+        public bool DisableEditorFocusAfterClick
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets whether this button can be toggled.
         /// </summary>
         public bool IsToggleable
@@ -99,7 +108,10 @@ namespace Gh61.WYSitor.Code
             button.Click += (s, e) =>
             {
                 Clicked(browserControl);
-                browserControl.Focus();
+                if (!DisableEditorFocusAfterClick)
+                {
+                    browserControl.Focus();
+                }
             };
 
             return button;

@@ -52,6 +52,7 @@
     <Compile Include="Annotations\Annotations.cs" />
     <Compile Include="Code\Interop\DWebBrowserEvents2.cs" />
     <Compile Include="Code\Interop\InteropHelper.cs" />
+    <Compile Include="Code\Interop\TimeConstants.cs" />
     <Compile Include="Code\Interop\WebBrowserEventSubscriber.cs" />
     <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\Internal\BackgroundColorButton.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Code\Internal\ResourceExtension.cs" />
     <Compile Include="Code\Internal\ShowHtmlButton.cs" />
     <Compile Include="Code\Internal\TemplateGenerator.cs" />
+    <Compile Include="Code\Throttler.cs" />
     <Compile Include="Code\Utils.cs" />
     <Compile Include="Code\ResourceHelper.cs" />
     <Compile Include="Code\Internal\TextColorButton.cs" />

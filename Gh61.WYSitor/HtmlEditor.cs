@@ -31,7 +31,7 @@ namespace Gh61.WYSitor
             browser.HtmlContentChanged += BrowserContentChanged;
 
             // set DataContexts and properties
-            DataContext = this;
+            // DataContext = this; // no need for changing data context, and it's killing the dependency property
             toolbar.DataContext = Toolbar = new ToolbarViewModel(browser);
             Browser = browser;
 
@@ -67,7 +67,7 @@ namespace Gh61.WYSitor
             get => (string)GetValue(HtmlContentProperty);
             set => SetValue(HtmlContentProperty, value);
         }
-        public static readonly DependencyProperty HtmlContentProperty = DependencyProperty.Register(nameof(HtmlContent), typeof(string), typeof(HtmlEditor), new PropertyMetadata(HtmlContentPropertyChanged));
+        public static readonly DependencyProperty HtmlContentProperty = DependencyProperty.Register(nameof(HtmlContent), typeof(string), typeof(HtmlEditor), new FrameworkPropertyMetadata(HtmlContentPropertyChanged){BindsTwoWayByDefault = true});
 
         private static void HtmlContentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

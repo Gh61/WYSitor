@@ -36,7 +36,7 @@ namespace Gh61.WYSitor.Code.Interop
             _browser = browser;
 
             _fallbackTimer = new DispatcherTimer();
-            _fallbackTimer.Interval = TimeSpan.FromSeconds(1); // 1s
+            _fallbackTimer.Interval = TimeConstants.FallbackHtmlChangedInterval;
             _fallbackTimer.Tick += FallbackTimerTick;
             browser.Loaded += (s, e) => _fallbackTimer.Start();
             browser.Unloaded += (s, e) => _fallbackTimer.Stop();

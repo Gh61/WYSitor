@@ -16,13 +16,68 @@ namespace Gh61.WYSitor.Tester
         {
             InitializeComponent();
 
+            this.DataContext = new TestViewModel();
+
             // Testing API
-            AddCustomButton();
+            AddCustomButtons();
+            AddPreviewButton();
         }
 
         private ObservableCollection<ToolbarElement> ToolbarItems => HtmlEditor.Toolbar.ToolbarElements;
 
-        private void AddCustomButton()
+        private void AddPreviewButton()
+        {
+            SourceCodePreview preview = null;
+            var previewButton = new ToolbarButton(
+                "SourceCodePreview",
+                "Source code Preview",
+                new Bold(new Run("HTML")),
+                b =>
+                {
+                    if (preview == null)
+                    {
+                        preview = new SourceCodePreview((TestViewModel)this.DataContext);
+                        preview.Closed += (s, e) =>
+                        {
+                            preview = null;
+                        };
+                    }
+                    preview.Show();
+                    preview.Focus();
+                });
+            previewButton.DisableEditorFocusAfterClick = true;
+
+            ToolbarItems.Add(previewButton);
+        }
+
+        private void AddCustomButtons()
+        {
+            ToolbarButton customButton = null;
+            customButton = new ToolbarButton(
+                "MyCustomButton",
+                "Try me!",
+                new Bold(new Run("TRY ME!") { FontFamily = new FontFamily("Times New Roman") }),
+                b =>
+                {
+                    MessageBox.Show("You clicked my custom button.\r\nEditing toolbar...", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    AddMoreButtons();
+                    RemoveUnderlineButton();
+                    SwitchBoldAndItalic();
+                    ReplaceSeparator();
+
+                    ToolbarItems.Remove(customButton);
+                });
+
+            // add button to last place
+            ToolbarItems.Add(customButton);
+
+            // insert separator before button
+            var position = ToolbarItems.Count - 1;
+            ToolbarItems.Insert(position, new ToolbarSeparatorElement());
+        }
+
+        private void AddMoreButtons()
         {
             var signatureButton = new ToolbarButton(
                 "Signature",
@@ -32,18 +87,6 @@ namespace Gh61.WYSitor.Tester
                 {
                     b.GetSelectedRange().PasteHtml("[SIGNATURE]");
                 });
-            var customButton = new ToolbarButton(
-                "MyCustomButton",
-                "Try me!",
-                new Bold(new Run("TRY ME!") { FontFamily = new FontFamily("Times New Roman") }),
-                b =>
-                {
-                    MessageBox.Show("You clicked my custom button.\r\nEditing toolbar...", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    RemoveUnderlineButton();
-                    SwitchBoldAndItalic();
-                    ReplaceSeparator();
-                });
             var restoreButton = new ToolbarButton(
                 "RestoreButton",
                 "Restores whole toolbar to default",
@@ -52,7 +95,6 @@ namespace Gh61.WYSitor.Tester
                 {
                     ToolbarCommands.RestoreAll(HtmlEditor.Toolbar);
                 });
-
             var resetButton = new ToolbarButton(
                 "ResetButton",
                 "Resets the editor",
@@ -62,15 +104,10 @@ namespace Gh61.WYSitor.Tester
                     HtmlEditor.Browser.OpenDocument();
                 });
 
-            // add button to last place
-            ToolbarItems.Add(signatureButton);
-            ToolbarItems.Add(customButton);
+            ToolbarItems.Add(new ToolbarSeparatorElement());
             ToolbarItems.Add(restoreButton);
             ToolbarItems.Add(resetButton);
-
-            // insert separator before button
-            var position = ToolbarItems.Count - 4;
-            ToolbarItems.Insert(position, new ToolbarSeparatorElement());
+            ToolbarItems.Add(signatureButton);
         }
 
         private void RemoveUnderlineButton()
@@ -90,7 +127,7 @@ namespace Gh61.WYSitor.Tester
         private void ReplaceSeparator()
         {
             var sepIndex = ToolbarItems.IndexOf(e => e is ToolbarSeparatorElement);
-            ToolbarItems[sepIndex] = new ToolbarButton("HA", "Separator", new Run("|||"), c => { });
+            ToolbarItems[sepIndex] = new ToolbarButton("HA", "Custom Separator", new Run("|"), c => { });
         }
     }
 }
