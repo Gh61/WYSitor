@@ -66,6 +66,11 @@
     <Compile Include="Code\Internal\ResourceExtension.cs" />
     <Compile Include="Code\Internal\ShowHtmlButton.cs" />
     <Compile Include="Code\Internal\TemplateGenerator.cs" />
+    <Compile Include="Code\ResourceHelper.Icons.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceHelper.Icons.tt</DependentUpon>
+    </Compile>
     <Compile Include="Code\Throttler.cs" />
     <Compile Include="Code\Utils.cs" />
     <Compile Include="Code\ResourceHelper.cs" />
@@ -134,6 +139,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Code\ResourceHelper.Icons.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ResourceHelper.Icons.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

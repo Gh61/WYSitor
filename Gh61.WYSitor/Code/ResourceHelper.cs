@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Gh61.WYSitor.Code
 {
-    public static class ResourceHelper
+    public static partial class ResourceHelper
     {
         /// <summary>
         /// Resources/Icons.xaml

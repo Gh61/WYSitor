@@ -85,7 +85,7 @@ namespace Gh61.WYSitor.Tester
             var signatureButton = new ToolbarButton(
                 "Signature",
                 "Signature",
-                ResourceHelper.GetIcon("Icon_Signature"),
+                ResourceHelper.Icon_Signature,
                 b =>
                 {
                     b.GetSelectedRange().PasteHtml("[SIGNATURE]");
