@@ -21,5 +21,6 @@ namespace Gh61.WYSitor.Code
         public static UIElement Icon_EmptyFile => GetIcon("Icon_EmptyFile");
         public static UIElement Icon_AddFile => GetIcon("Icon_AddFile");
         public static UIElement Icon_NewFile => GetIcon("Icon_NewFile");
+        public static UIElement Icon_Save => GetIcon("Icon_Save");
     }
 }
