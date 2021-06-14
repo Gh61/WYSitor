@@ -14,13 +14,13 @@ namespace Gh61.WYSitor.ViewModels
 {
     public class ToolbarViewModel
     {
-        private readonly EditorBrowser _browser;
+        private readonly EditorBrowser _browserControl;
         private DispatcherTimer _styleCheckTimer;
         private ItemsControl _container;
 
         internal ToolbarViewModel(EditorBrowser browser)
         {
-            _browser = browser;
+            _browserControl = browser;
             _elements = new Dictionary<string, Tuple<ToolbarElement, FrameworkElement>>();
             ToolbarElements = new ObservableCollection<ToolbarElement>();
             ToolbarElements.CollectionChanged += ToolbarChanged;
@@ -47,12 +47,6 @@ namespace Gh61.WYSitor.ViewModels
             // filling new container with old items
             oldItems?.ForEach(i => _container.Items.Add(i));
         }
-
-        /// <summary>
-        /// Gets toolbar container, where are created Toolbar Elements.
-        /// </summary>
-        /// <returns></returns>
-        internal ItemsControl GetToolbarContainer() => _container;
 
         /// <summary>
         /// Collection of all toolbar elements is it's shown in toolbar above the browser.
@@ -95,7 +89,7 @@ namespace Gh61.WYSitor.ViewModels
                     {
                         foreach (ToolbarElement item in e.NewItems)
                         {
-                            var uiElement = item.CreateElement(_browser);
+                            var uiElement = item.CreateElement(_browserControl);
 
                             // so the element never overflow the toolbar (where overflow toggle button is hidden)
                             ToolBar.SetOverflowMode(uiElement, OverflowMode.Never);
@@ -133,6 +127,23 @@ namespace Gh61.WYSitor.ViewModels
             }
         }
 
+        /// <summary>
+        /// Will set this toolbar to source edit mode.
+        /// </summary>
+        /// <param name="enabled">true = source mode, false = WYSIWYG</param>
+        internal void SetSourceMode(bool enabled)
+        {
+            if (_container == null)
+                return;
+
+            var toolbarItems = _elements.Values
+                .Where(v => !v.Item1.EnabledInSourceMode)
+                .Select(v => v.Item2)
+                .ToList();
+
+            toolbarItems.ForEach(i => i.IsEnabled = !enabled);
+        }
+
         #endregion
 
         #region Style-check timer
@@ -144,9 +155,9 @@ namespace Gh61.WYSitor.ViewModels
             _styleCheckTimer.Tick += TryCheckStyle;
 
             // Timer running only when browser is loaded
-            _browser.Unloaded += (s, e) => _styleCheckTimer.Stop();
-            _browser.Loaded += (s, e) => _styleCheckTimer.Start();
-            if (_browser.IsLoaded)
+            _browserControl.Unloaded += (s, e) => _styleCheckTimer.Stop();
+            _browserControl.Loaded += (s, e) => _styleCheckTimer.Start();
+            if (_browserControl.IsLoaded)
             {
                 _styleCheckTimer.Start();
             }
@@ -154,17 +165,25 @@ namespace Gh61.WYSitor.ViewModels
 
         private void TryCheckStyle(object sender, EventArgs e)
         {
-            // no need to check if editor is invisible
-            if (!_browser.IsVisible)
+            // no need to check if control is invisible
+            if (!_browserControl.IsVisible)
                 return;
 
-            if (!_browser.CurrentDocument.IsCompletelyLoaded())
+            if (!_browserControl.CurrentDocument.IsCompletelyLoaded())
                 return;
+
+            var items = _elements.Values.Where(el => el.Item1.EnableCheckState);
+
+            // browser is invisible
+            if (!_browserControl.Browser.IsVisible)
+            {
+                items = items.Where(el => el.Item1.EnabledInSourceMode);
+            }
 
             // going through all CheckState elements and calling CheckState
-            foreach (var visibleElement in _elements.Values.Where(el => el.Item1.EnableCheckState))
+            foreach (var visibleElement in items)
             {
-                visibleElement.Item1.CheckState(visibleElement.Item2, _browser);
+                visibleElement.Item1.CheckState(visibleElement.Item2, _browserControl);
             }
         }
 

@@ -44,8 +44,11 @@ namespace Gh61.WYSitor.Tester
                     }
                     preview.Show();
                     preview.Focus();
-                });
+                },
+                b => preview?.IsVisible == true
+            );
             previewButton.DisableEditorFocusAfterClick = true;
+            previewButton.EnabledInSourceMode = true;
 
             ToolbarItems.Add(previewButton);
         }

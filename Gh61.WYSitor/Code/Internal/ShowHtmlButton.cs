@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.Properties;
@@ -8,11 +9,9 @@ namespace Gh61.WYSitor.Code
 {
     internal class ShowHtmlButton : ToolbarElement
     {
-        public const string ElementIdentifier = "HtmlCode";
-
         private readonly ToolbarViewModel _toolbarViewModel;
 
-        public ShowHtmlButton(ToolbarViewModel toolbarViewModel) : base(ElementIdentifier)
+        public ShowHtmlButton(ToolbarViewModel toolbarViewModel) : base("HtmlCode")
         {
             _toolbarViewModel = toolbarViewModel;
         }
@@ -22,8 +21,6 @@ namespace Gh61.WYSitor.Code
             var button = new ToggleButton();
             button.ToolTip = Resources.Text_HtmlCode;
             button.Content = ResourceHelper.GetIcon("Icon_Code");
-            button.Tag = ElementIdentifier;
-            button.Name = ElementIdentifier;
 
             button.Click += (s, e) =>
             {
@@ -32,6 +29,12 @@ namespace Gh61.WYSitor.Code
             };
 
             return button;
+        }
+
+        public override bool EnabledInSourceMode
+        {
+            get => true;
+            set => throw new InvalidOperationException();
         }
     }
 }

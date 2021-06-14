@@ -30,6 +30,11 @@ namespace Gh61.WYSitor.Code
         public virtual bool EnableCheckState { get; protected set; }
 
         /// <summary>
+        /// Gets or sets whether this element should remain enabled in source edit mode.
+        /// </summary>
+        public virtual bool EnabledInSourceMode { get; set; }
+
+        /// <summary>
         /// Called periodically (when <see cref="EnableCheckState"/> = true), to allow this element to check its state.
         /// </summary>
         /// <param name="element">Element created by <see cref="CreateElement"/>.</param>

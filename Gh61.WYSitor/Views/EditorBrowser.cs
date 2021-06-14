@@ -313,16 +313,6 @@ namespace Gh61.WYSitor.Views
             if (enableSourceEditor == IsInSourceEditMode)
                 return;
 
-            // cannot manage container Items when no container is present
-            var itemsContainer = model.GetToolbarContainer();
-            if (itemsContainer == null)
-                return;
-
-            var toolbarItems = itemsContainer.Items
-                .OfType<FrameworkElement>()
-                .Where(e => e.Tag?.ToString() != ShowHtmlButton.ElementIdentifier)
-                .ToList();
-
             if (enableSourceEditor)
             {
                 // insert latest html code to editor
@@ -331,9 +321,6 @@ namespace Gh61.WYSitor.Views
                 // switch visibility
                 HtmlEditor.Visibility = Visibility.Visible;
                 Browser.Visibility = Visibility.Hidden;
-
-                // disable all items
-                toolbarItems.ForEach(i => i.IsEnabled = false);
             }
             else
             {
@@ -343,10 +330,10 @@ namespace Gh61.WYSitor.Views
                 // switch visibility
                 HtmlEditor.Visibility = Visibility.Hidden;
                 Browser.Visibility = Visibility.Visible;
-
-                // enable all items back
-                toolbarItems.ForEach(i => i.IsEnabled = true);
             }
+
+            // switch toolbar
+            model.SetSourceMode(enableSourceEditor);
 
             ((IBrowserControl) this).Focus();
         }
