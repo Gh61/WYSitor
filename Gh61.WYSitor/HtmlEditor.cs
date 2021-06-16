@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using Gh61.WYSitor.Interfaces;
@@ -31,7 +30,7 @@ namespace Gh61.WYSitor
             browser.HtmlContentChanged += BrowserContentChanged;
 
             // set DataContexts and properties
-            // DataContext = this; // no need for changing data context, and it's killing the dependency property
+            dockPanel.DataContext = this;
             toolbar.DataContext = Toolbar = new ToolbarViewModel(browser);
             Browser = browser;
 
@@ -73,16 +72,12 @@ namespace Gh61.WYSitor
         {
             var editor = (HtmlEditor)d;
 
-            Debug.WriteLine("HtmlContentPropChanged: " + e.NewValue + "\r\n----------------------------------");
-
             editor.Browser.OpenDocument((string)e.NewValue);
         }
 
         private void BrowserContentChanged(object sender, EventArgs e)
         {
             var content = Browser.GetCurrentHtml();
-
-            Debug.WriteLine("BrowserContentChanged: " + content + "\r\n----------------------------------");
 
             HtmlContent = content;
         }

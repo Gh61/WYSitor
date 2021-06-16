@@ -125,7 +125,7 @@ namespace Gh61.WYSitor.Views
             documentEvents.onclick += (htmlEvent) =>
             {
                 // click out of body tag will return focus back to body
-                if (htmlEvent.srcElement?.GetType().Name == "HTMLHtmlElementClass")
+                if (htmlEvent.srcElement is HTMLHtmlElement htmlTag && string.Equals(htmlTag.tagName, "HTML", StringComparison.InvariantCultureIgnoreCase))
                 {
                     TryFocusBody();
                 }
