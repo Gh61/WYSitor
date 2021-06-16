@@ -1,6 +1,9 @@
 # WYSitor
 WYSitor is WYSIWYG HTML Editor for WPF.
 
+### Preview
+![](Readme/preview.png?raw=true)
+
 ## Why another editor?
 
 ### Nothing usable (for my project)
@@ -12,5 +15,10 @@ Then I found [this solution](https://www.codeproject.com/Tips/870549/Csharp-WPF-
 
 ### Extensibility
 Also I am planing to create much more friendly API, that will allow developers to work with this control more easily.
-There will be API to show/hide/rearrange controls in toolbar, even adding your own.
-Also there will be API to work directly with inner WebBrowser control.
+There will be API to show/hide/rearrange controls in toolbar, even adding your own, wich can then react with internal browser control.
+
+## Features
+- TODO
+
+## Usage
+TODO
