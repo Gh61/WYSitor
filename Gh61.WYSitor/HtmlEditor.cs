@@ -16,6 +16,7 @@ namespace Gh61.WYSitor
          * Access keys are fired in web browser control, event when typing
          * (Error in complex environments, where Focus is handled badly for COM objects - see https://stackoverflow.com/questions/18256886/webbrowser-control-keyboard-and-focus-behavior).
          * For example when there is command with access key 'e', you couldn't write 'e' when editing text inside browser.
+         * Solution inspiration: https://stackoverflow.com/questions/8444012/access-key-getting-selected-even-we-did-not-press-alt-key-in-wpf
          */
 
         #region Access Keys resolve
