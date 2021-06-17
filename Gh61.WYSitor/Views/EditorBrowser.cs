@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Gh61.WYSitor.Code;
@@ -75,6 +76,7 @@ namespace Gh61.WYSitor.Views
 
             Browser = new WebBrowser();
             Browser.LoadCompleted += DocumentLoaded;
+            Browser.PreviewKeyDown += BrowserOnPreviewKeyDown;
 
             // custom menu
             _contextMenu = new BrowserContextMenu(this);
@@ -101,6 +103,35 @@ namespace Gh61.WYSitor.Views
                 Browser.Loaded -= FirstLoad;
             }
             Browser.Loaded += FirstLoad;
+        }
+
+        private void BrowserOnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
+            switch (key)
+            {
+                // disable F5
+                case Key.F5:
+                    e.Handled = true;
+                    return;
+                // disable Ctrl + O, Ctrl + N, Ctrl + L
+                case Key.O:
+                case Key.N:
+                case Key.L:
+                    if (e.KeyboardDevice.IsKeyDown(Key.LeftCtrl))
+                    {
+                        e.Handled = true;
+                    }
+                    return;
+                case Key.P: // Print dialog
+                    if (e.KeyboardDevice.IsKeyDown(Key.LeftCtrl))
+                    {
+                        // is handled, when printing is disabled
+                        e.Handled = !EnablePrintHotKey;
+                    }
+
+                    return;
+            }
         }
 
         private void DocumentLoaded(object sender, NavigationEventArgs e)
@@ -303,6 +334,8 @@ namespace Gh61.WYSitor.Views
         }
 
         public bool IsInSourceEditMode => !Browser.IsVisible;
+
+        public bool EnablePrintHotKey { get; set; }
 
         public void ToggleSourceEditor(ToolbarViewModel model, bool enableSourceEditor)
         {

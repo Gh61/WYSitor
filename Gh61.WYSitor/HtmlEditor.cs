@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Interop;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.ViewModels;
 using Gh61.WYSitor.Views;
@@ -9,9 +12,66 @@ namespace Gh61.WYSitor
 {
     public class HtmlEditor : UserControl
     {
+        /*
+         * Access keys are fired in web browser control, event when typing (Error in complex environments, where Focus is handled badly for COM objects).
+         * For example when there is command with access key 'e', you couldn't write 'e' when editing text inside browser.
+         */
+
+        #region Access Keys resolve
+
+        static HtmlEditor()
+        {
+            // registering for access key events
+            EventManager.RegisterClassHandler(
+                typeof(UIElement),
+                AccessKeyManager.AccessKeyPressedEvent,
+                new AccessKeyPressedEventHandler(AccessKeyPressedEventHandler)
+            );
+        }
+
+        private static void AccessKeyPressedEventHandler(object sender, AccessKeyPressedEventArgs e)
+        {
+            // If Alt key is not pressed - handle the event
+            if ((Keyboard.Modifiers & ModifierKeys.Alt) != ModifierKeys.Alt)
+            {
+                foreach (var kv in LoadedEditors)
+                {
+                    // if any HtmlEditor inner browser has focus - cancel this event
+                    if (kv.Key.InnerBrowserHasFocus)
+                    {
+                        e.Target = null;
+                        e.Handled = true;
+                        return;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Saving all currently loaded Editors inside.
+        /// </summary>
+        private static readonly ConcurrentDictionary<HtmlEditor, bool> LoadedEditors = new ConcurrentDictionary<HtmlEditor, bool>();
+
+        private static void OnControlLoaded(object sender, RoutedEventArgs e)
+        {
+            var editor = (HtmlEditor)sender;
+            LoadedEditors.TryAdd(editor, true);
+        }
+
+        private static void OnControlUnloaded(object sender, RoutedEventArgs e)
+        {
+            var editor = (HtmlEditor)sender;
+            LoadedEditors.TryRemove(editor, out _);
+        }
+
+        #endregion
+
         public HtmlEditor()
         {
             InitializeEditor();
+
+            this.Loaded += OnControlLoaded;
+            this.Unloaded += OnControlUnloaded;
         }
 
         private void InitializeEditor()
@@ -55,6 +115,27 @@ namespace Gh61.WYSitor
             get;
             private set;
         }
+
+        /// <summary>
+        /// Gets whether this HtmlEditor has Focus inside.
+        /// Handles the situation even when the focus is inside the WebBrowser control (COM Object).
+        /// </summary>
+        public bool HasFocusInside
+        {
+            get
+            {
+                if (IsKeyboardFocusWithin)
+                    return true;
+
+                // focus can also be inside the browser
+                return InnerBrowserHasFocus;
+            }
+        }
+
+        /// <summary>
+        /// Gets whether the inner WebBrowser COM object has focus.
+        /// </summary>
+        private bool InnerBrowserHasFocus => ((IKeyboardInputSink)((EditorBrowser)Browser).Browser).HasFocusWithin();
 
         #region HtmlContent dependency property
 

@@ -73,6 +73,11 @@ namespace Gh61.WYSitor.Interfaces
         bool IsInSourceEditMode { get; }
 
         /// <summary>
+        /// Gets or sets whether the print dialog (after Ctrl+P hotKeys) is enabled.
+        /// </summary>
+        bool EnablePrintHotKey { get; set; }
+
+        /// <summary>
         /// Will change switch between WYSIWYG and HTML code editor.
         /// </summary>
         /// <param name="model">Instance of ToolbarViewModel.</param>
