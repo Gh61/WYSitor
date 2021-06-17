@@ -13,7 +13,8 @@ namespace Gh61.WYSitor
     public class HtmlEditor : UserControl
     {
         /*
-         * Access keys are fired in web browser control, event when typing (Error in complex environments, where Focus is handled badly for COM objects).
+         * Access keys are fired in web browser control, event when typing
+         * (Error in complex environments, where Focus is handled badly for COM objects - see https://stackoverflow.com/questions/18256886/webbrowser-control-keyboard-and-focus-behavior).
          * For example when there is command with access key 'e', you couldn't write 'e' when editing text inside browser.
          */
 
@@ -135,6 +136,9 @@ namespace Gh61.WYSitor
         /// <summary>
         /// Gets whether the inner WebBrowser COM object has focus.
         /// </summary>
+        /// <remarks>
+        /// https://stackoverflow.com/questions/18256886/webbrowser-control-keyboard-and-focus-behavior
+        /// </remarks>
         private bool InnerBrowserHasFocus => ((IKeyboardInputSink)((EditorBrowser)Browser).Browser).HasFocusWithin();
 
         #region HtmlContent dependency property
