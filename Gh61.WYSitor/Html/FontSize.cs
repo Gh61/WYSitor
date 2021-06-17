@@ -5,9 +5,9 @@ namespace Gh61.WYSitor.Html
 {
     public class FontSize
     {
-        public int Key { get; set; }
-        public double Size { get; set; }
-        public string Text { get; set; }
+        public int Key { get; private set; }
+        public double Size { get; private set; }
+        public string Text { get; private set; }
 
         public static readonly FontSize XXSmall = new FontSize { Key = 1, Size = 8.5, Text = "8" };
         public static readonly FontSize XSmall = new FontSize { Key = 2, Size = 10.5, Text = "10" };

@@ -42,7 +42,7 @@ namespace Gh61.WYSitor.Code
             comboBox.Width = 128;
 
             var itemStyle = new Style(typeof(ComboBoxItem));
-            itemStyle.Setters.Add(new Setter(Control.FontFamilyProperty, new Binding("Content"){ RelativeSource = RelativeSource.Self }));
+            itemStyle.Setters.Add(new Setter(Control.FontFamilyProperty, new Binding(".")));
             itemStyle.Setters.Add(new Setter(Control.FontSizeProperty, (double)14));
             comboBox.ItemContainerStyle = itemStyle;
 
