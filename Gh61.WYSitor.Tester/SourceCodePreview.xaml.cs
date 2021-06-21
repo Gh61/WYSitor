@@ -13,5 +13,10 @@ namespace Gh61.WYSitor.Tester
 
             this.DataContext = vm;
         }
+
+        private void RestoreDefaultContent(object sender, RoutedEventArgs e)
+        {
+            ((TestViewModel) DataContext).RestoreDefaultContent();
+        }
     }
 }

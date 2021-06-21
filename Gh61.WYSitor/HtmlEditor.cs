@@ -145,6 +145,17 @@ namespace Gh61.WYSitor
         #region HtmlContent dependency property
 
         /// <summary>
+        /// Gets or sets whether the HtmlContent dependency property change should not be called after setting new value.
+        /// When this is turned off, you will se the HtmlContent to internal browser and after the browser will load the HTML,
+        /// it will se the HtmlContent dependency property back to new (altered) html content, used to render the UI of WYSIWYG (even when the user does not make any change).
+        /// </summary>
+        public bool HtmlContentDisableInitialChange
+        {
+            get;
+            set;
+        } = true;
+
+        /// <summary>
         /// Gets or sets html content of this editor.
         /// </summary>
         public string HtmlContent
@@ -158,15 +169,46 @@ namespace Gh61.WYSitor
         {
             var editor = (HtmlEditor)d;
 
-            editor.Browser.OpenDocument((string)e.NewValue);
+            // if the content had changed, resetting tracking variables
+            if (editor.Browser.OpenDocument((string) e.NewValue))
+            {
+                editor._firstLoadedContent = null;
+                editor._hasChangedAfterFirstLoad = false;
+
+                // in source edit mode, BrowserContentChanged method is called immediately in OpenDocument method
+                // so i need to call it again manually, to initiate tracking variables
+                if (editor.Browser.IsInSourceEditMode)
+                {
+                    editor.BrowserContentChanged(editor, null);
+                }
+            }
         }
 
         private void BrowserContentChanged(object sender, EventArgs e)
         {
             var content = Browser.GetCurrentHtml();
 
+            if (HtmlContentDisableInitialChange)
+            {
+                // after first load - saving the (maybe transformed) HTML editor
+                if (_firstLoadedContent == null)
+                {
+                    _firstLoadedContent = content;
+                    return;
+                }
+                // checking if the content has not changed
+                if (!_hasChangedAfterFirstLoad && content == _firstLoadedContent)
+                {
+                    return;
+                }
+                _hasChangedAfterFirstLoad = true;
+            }
+
             HtmlContent = content;
         }
+
+        private bool _hasChangedAfterFirstLoad;
+        private string _firstLoadedContent;
 
         #endregion
     }

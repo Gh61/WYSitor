@@ -15,7 +15,8 @@ namespace Gh61.WYSitor.Interfaces
         /// <summary>
         /// Loads given HTML or standard empty document.
         /// </summary>
-        void OpenDocument(string fileContent = null);
+        /// <returns>Returns if content has changed.</returns>
+        bool OpenDocument(string fileContent = null);
 
         /// <summary>
         /// Returns current html content of this editor.

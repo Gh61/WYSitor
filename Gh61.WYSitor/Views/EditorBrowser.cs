@@ -226,7 +226,7 @@ namespace Gh61.WYSitor.Views
 
         #region Public functions/interface implementation
 
-        public void OpenDocument(string fileContent = null)
+        public bool OpenDocument(string fileContent = null)
         {
             if(!_firstDocumentOpened)
                 _firstDocumentOpened = true;
@@ -235,7 +235,7 @@ namespace Gh61.WYSitor.Views
 
             // no need to change if it's the same content
             if (content == GetCurrentHtml())
-                return;
+                return false;
 
             if (IsInSourceEditMode)
             {
@@ -245,6 +245,8 @@ namespace Gh61.WYSitor.Views
             {
                 Browser.NavigateToString(content);
             }
+
+            return true;
         }
 
         public string GetCurrentHtml()

@@ -5,6 +5,14 @@
              Width="600"
              Height="400">
     <Grid>
-        <TextBox Text="{Binding Path=SourceCode, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap"></TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left">
+            <Button Width="140" Click="RestoreDefaultContent">Restore Default content</Button>
+        </StackPanel>
+        <TextBox Grid.Row="1" VerticalAlignment="Stretch" Text="{Binding Path=SourceCode, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap"></TextBox>
     </Grid>
 </Window>
