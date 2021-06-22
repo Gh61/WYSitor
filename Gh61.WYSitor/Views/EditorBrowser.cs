@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,7 +16,7 @@ namespace Gh61.WYSitor.Views
     internal class EditorBrowser : UserControl, IBrowserControl
     {
         private bool _scriptErrorsHidden;
-        private bool _firstDocumentOpened = false;
+        private bool _firstDocumentOpened;
         private BrowserContextMenu _contextMenu;
         private WebBrowserEventsSubscriber _browserEvents;
         private readonly Throttler _htmlContentChangedEventThrottler = new Throttler(TimeConstants.MinHtmlChangedInterval);
@@ -231,7 +230,9 @@ namespace Gh61.WYSitor.Views
             if(!_firstDocumentOpened)
                 _firstDocumentOpened = true;
 
-            var content = fileContent ?? Properties.Resources.Empty;
+            var content = !string.IsNullOrEmpty(fileContent)
+                                ? fileContent
+                                : Properties.Resources.Empty;
 
             // no need to change if it's the same content
             if (content == GetCurrentHtml())
@@ -335,7 +336,7 @@ namespace Gh61.WYSitor.Views
             }
         }
 
-        public bool IsInSourceEditMode => !Browser.IsVisible;
+        public bool IsInSourceEditMode { get; private set; }
 
         public bool EnablePrintHotKey { get; set; }
 
@@ -356,6 +357,7 @@ namespace Gh61.WYSitor.Views
                 // switch visibility
                 HtmlEditor.Visibility = Visibility.Visible;
                 Browser.Visibility = Visibility.Hidden;
+                IsInSourceEditMode = true;
             }
             else
             {
@@ -365,6 +367,7 @@ namespace Gh61.WYSitor.Views
                 // switch visibility
                 HtmlEditor.Visibility = Visibility.Hidden;
                 Browser.Visibility = Visibility.Visible;
+                IsInSourceEditMode = false;
             }
 
             // switch toolbar
