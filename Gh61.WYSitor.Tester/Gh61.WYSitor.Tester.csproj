@@ -54,10 +54,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnotherEditor.xaml.cs">
+      <DependentUpon>AnotherEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SourceCodePreview.xaml.cs">
       <DependentUpon>SourceCodePreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestViewModel.cs" />
+    <Page Include="AnotherEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

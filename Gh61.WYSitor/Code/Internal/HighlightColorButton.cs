@@ -9,7 +9,7 @@ namespace Gh61.WYSitor.Code
 {
     internal class HighlightColorButton : ColorButtonBase
     {
-        public HighlightColorButton() : base("HighlightColor", Resources.Text_HighlightColor, Colors.Yellow)
+        public HighlightColorButton() : base(nameof(StandardToolbarElement.LineHighlightColor), Resources.Text_HighlightColor, Colors.Yellow)
         {
         }
 

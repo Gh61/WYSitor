@@ -9,21 +9,21 @@ namespace Gh61.WYSitor.Code
 {
     internal sealed class FontPickerElement : ToolbarElement
     {
-        public FontPickerElement() : base("Font")
+        public FontPickerElement() : base(nameof(StandardToolbarElement.FontFamily))
         {
             EnableCheckState = true;
         }
 
-        public override void CheckState(FrameworkElement element, IBrowserControl browserControl)
+        protected override void CheckState(FrameworkElement element, IBrowserControl browserControl)
         {
             var currentFont = GetCurrentFont(browserControl);
             if (currentFont != null)
             {
-                ((ComboBox) element).SelectedItem = currentFont;
+                ((ComboBox)element).SelectedItem = currentFont;
             }
         }
 
-        public override FrameworkElement CreateElement(IBrowserControl browserControl)
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             /*
              * <ComboBox Width="128">

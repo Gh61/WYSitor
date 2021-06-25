@@ -11,12 +11,12 @@ namespace Gh61.WYSitor.Code
     {
         private readonly ToolbarViewModel _toolbarViewModel;
 
-        public ShowHtmlButton(ToolbarViewModel toolbarViewModel) : base("HtmlCode")
+        public ShowHtmlButton(ToolbarViewModel toolbarViewModel) : base(nameof(StandardToolbarElement.ToggleHtmlCode))
         {
             _toolbarViewModel = toolbarViewModel;
         }
 
-        public override FrameworkElement CreateElement(IBrowserControl browserControl)
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             var button = new ToggleButton();
             button.ToolTip = Resources.Text_HtmlCode;

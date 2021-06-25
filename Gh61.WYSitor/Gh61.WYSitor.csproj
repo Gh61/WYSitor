@@ -71,6 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceHelper.Icons.tt</DependentUpon>
     </Compile>
+    <Compile Include="Code\StandardToolbarElement.cs" />
     <Compile Include="Code\Throttler.cs" />
     <Compile Include="Code\Utils.cs" />
     <Compile Include="Code\ResourceHelper.cs" />

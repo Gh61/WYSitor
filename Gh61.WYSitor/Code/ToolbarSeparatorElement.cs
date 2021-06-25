@@ -15,7 +15,7 @@ namespace Gh61.WYSitor.Code
         public ToolbarSeparatorElement() : base("Separator" + ++_separatorCount)
         { }
 
-        public override FrameworkElement CreateElement(IBrowserControl browserControl)
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             return new Separator();
         }

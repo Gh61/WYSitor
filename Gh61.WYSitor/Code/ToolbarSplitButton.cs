@@ -1,65 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.ViewModels;
 
 namespace Gh61.WYSitor.Code
 {
     /// <summary>
     /// Toolbar element containing button and dropdown arrow.
     /// </summary>
-    public abstract class ToolbarSplitButton
+    public abstract class ToolbarSplitButton : ToolbarElement
     {
-        private readonly string _identifier;
+        private readonly MainButtonElement _mainButton;
+        private readonly DropDownButtonElement _dropDownButton;
 
-        protected ToolbarSplitButton(string identifier, string name)
+        protected ToolbarSplitButton(string identifier, string name) : base(identifier)
         {
-            _identifier = identifier;
-
-            MainButton = new MainButtonElement(identifier, name, CreateMainButtonContent, CreateContextMenu, MainButtonClicked);
-            DropDownButton = new DropDownButtonElement(identifier, name, (MainButtonElement)MainButton);
-        }
-
-        /// <summary>
-        /// Gets Toolbar element of main part of this SplitButton.
-        /// </summary>
-        public ToolbarButton MainButton
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Gets Toolbar element of dropdown part of this SplitButton.
-        /// </summary>
-        public ToolbarElement DropDownButton
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Registers this button on toolbar.
-        /// </summary>
-        public void Register(ToolbarViewModel model)
-        {
-            model.ToolbarElements.Add(MainButton);
-            model.ToolbarElements.Add(DropDownButton);
-        }
-
-        /// <summary>
-        /// Removes this button from toolbar.
-        /// </summary>
-        public void UnRegister(ToolbarViewModel model)
-        {
-            var mainName = MainButtonElement.GetIdentifier(_identifier);
-            var dropName = DropDownButtonElement.GetIdentifier(_identifier);
-
-            var mainIndex = model.ToolbarElements.IndexOf(e => e.Identifier == mainName);
-            var dropIndex = model.ToolbarElements.IndexOf(e => e.Identifier == dropName);
-
-            model.ToolbarElements.RemoveAt(mainIndex);
-            model.ToolbarElements.RemoveAt(dropIndex);
+            _mainButton = new MainButtonElement(identifier, name, CreateMainButtonContent, CreateContextMenu, MainButtonClicked);
+            _dropDownButton = new DropDownButtonElement(identifier, name, _mainButton);
         }
 
         /// <summary>
@@ -78,6 +37,23 @@ namespace Gh61.WYSitor.Code
         protected abstract ContextMenu CreateContextMenu(IBrowserControl browserControl);
 
         /// <summary>
+        /// Not used method.
+        /// </summary>
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
+        {
+            throw new InvalidOperationException("[ToolbarSplitButton] Invalid call to CreateElement. Use CreateElements method instead.");
+        }
+
+        /// <summary>
+        /// Creates both main a dropdown button controls.
+        /// </summary>
+        public override IEnumerable<FrameworkElement> CreateElements(IBrowserControl browserControl)
+        {
+            yield return _mainButton.CreateElementInternal(browserControl);
+            yield return _dropDownButton.CreateElementInternal(browserControl);
+        }
+
+        /// <summary>
         /// Class helping with standard button behaviour.
         /// </summary>
         private class MainButtonElement : ToolbarButton
@@ -86,7 +62,7 @@ namespace Gh61.WYSitor.Code
             private readonly Func<IBrowserControl, ContextMenu> _createContextMenu;
 
             public MainButtonElement(string identifier, string name, Func<UIElement> createButtonContent, Func<IBrowserControl, ContextMenu> createContextMenu, Action<IBrowserControl> onClick)
-                : base(GetIdentifier(identifier), name, (UIElement)null, onClick)
+                : base(identifier + "_main", name, (UIElement)null, onClick)
             {
                 _createButtonContent = createButtonContent;
                 _createContextMenu = createContextMenu;
@@ -94,7 +70,9 @@ namespace Gh61.WYSitor.Code
 
             protected override object GetButtonContent() => _createButtonContent();
 
-            public override FrameworkElement CreateElement(IBrowserControl browserControl)
+            public FrameworkElement CreateElementInternal(IBrowserControl browserControl) => CreateElement(browserControl);
+
+            protected override FrameworkElement CreateElement(IBrowserControl browserControl)
             {
                 var button = (Button)base.CreateElement(browserControl);
                 button.Padding = new Thickness(2, 2, 0, 2);
@@ -113,8 +91,6 @@ namespace Gh61.WYSitor.Code
                 get;
                 private set;
             }
-
-            public static string GetIdentifier(string baseIdentifier) => baseIdentifier + "_main";
         }
 
         /// <summary>
@@ -125,13 +101,15 @@ namespace Gh61.WYSitor.Code
             private readonly MainButtonElement _mainButton;
             private readonly string _name;
 
-            public DropDownButtonElement(string identifier, string name, MainButtonElement mainButton) : base(GetIdentifier(identifier))
+            public DropDownButtonElement(string identifier, string name, MainButtonElement mainButton) : base(identifier + "_dropdown")
             {
                 _mainButton = mainButton;
                 _name = name;
             }
 
-            public override FrameworkElement CreateElement(IBrowserControl browserControl)
+            public FrameworkElement CreateElementInternal(IBrowserControl browserControl) => CreateElement(browserControl);
+
+            protected override FrameworkElement CreateElement(IBrowserControl browserControl)
             {
                 /*
                  * <ToggleButton Margin="0" Padding="0,7,2,7">
@@ -149,8 +127,6 @@ namespace Gh61.WYSitor.Code
 
                 return button;
             }
-
-            public static string GetIdentifier(string baseIdentifier) => baseIdentifier + "_dropdown";
         }
     }
 }

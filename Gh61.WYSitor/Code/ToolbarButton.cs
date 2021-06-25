@@ -90,7 +90,7 @@ namespace Gh61.WYSitor.Code
 
         protected virtual object GetButtonContent() => _buttonContent;
 
-        public override FrameworkElement CreateElement(IBrowserControl browserControl)
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             ButtonBase button;
 
@@ -117,9 +117,9 @@ namespace Gh61.WYSitor.Code
             return button;
         }
 
-        public override void CheckState(FrameworkElement element, IBrowserControl browserControl)
+        protected override void CheckState(FrameworkElement element, IBrowserControl browserControl)
         {
-            ((ToggleButton) element).IsChecked = GetToggleState(browserControl);
+            ((ToggleButton)element).IsChecked = GetToggleState(browserControl);
         }
     }
 }

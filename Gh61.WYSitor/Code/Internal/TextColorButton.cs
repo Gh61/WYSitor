@@ -9,7 +9,7 @@ namespace Gh61.WYSitor.Code
 {
     internal class TextColorButton : ColorButtonBase
     {
-        public TextColorButton() : base("TextColor", Resources.Text_TextColor, Colors.Red)
+        public TextColorButton() : base(nameof(StandardToolbarElement.TextColor), Resources.Text_TextColor, Colors.Red)
         {
         }
 

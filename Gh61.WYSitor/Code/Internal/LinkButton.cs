@@ -9,7 +9,7 @@ namespace Gh61.WYSitor.Code
 {
     internal class LinkButton : ToolbarButton
     {
-        public LinkButton() : base("Link", Resources.Text_Link, ResourceHelper.GetIcon("Icon_Earth"), null)
+        public LinkButton() : base(nameof(StandardToolbarElement.Link), Resources.Text_Link, ResourceHelper.GetIcon("Icon_Earth"), null)
         {
         }
 

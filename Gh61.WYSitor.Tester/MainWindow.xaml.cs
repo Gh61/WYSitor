@@ -51,6 +51,12 @@ namespace Gh61.WYSitor.Tester
             previewButton.EnabledInSourceMode = true;
 
             ToolbarItems.Add(previewButton);
+
+            ToolbarItems.Add(new ToolbarButton("AnotherEditor", "Opens another editor", new Run("ANOTHER!"), (b) =>
+            {
+                var another = new AnotherEditor();
+                another.Show();
+            }));
         }
 
         private void AddCustomButtons()

@@ -10,11 +10,11 @@ namespace Gh61.WYSitor.Code
 {
     internal class BackgroundColorButton : ToolbarElement
     {
-        public BackgroundColorButton() : base("BackgroundColor")
+        public BackgroundColorButton() : base(nameof(StandardToolbarElement.BackgroundColor))
         {
         }
 
-        public override FrameworkElement CreateElement(IBrowserControl browserControl)
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             /*
              * <ToggleButton>

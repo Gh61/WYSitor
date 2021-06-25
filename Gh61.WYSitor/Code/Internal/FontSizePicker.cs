@@ -7,21 +7,21 @@ namespace Gh61.WYSitor.Code
 {
     internal sealed class FontSizePicker : ToolbarElement
     {
-        public FontSizePicker()  : base("FontSize")
+        public FontSizePicker()  : base(nameof(StandardToolbarElement.FontSize))
         {
             EnableCheckState = true;
         }
 
-        public override void CheckState(FrameworkElement element, IBrowserControl browserControl)
+        protected override void CheckState(FrameworkElement element, IBrowserControl browserControl)
         {
             var currentSize = GetCurrentFontSize(browserControl);
             if (currentSize != null)
             {
-                ((ComboBox) element).SelectedItem = currentSize;
+                ((ComboBox)element).SelectedItem = currentSize;
             }
         }
 
-        public override FrameworkElement CreateElement(IBrowserControl browserControl)
+        protected override FrameworkElement CreateElement(IBrowserControl browserControl)
         {
             /*
              * <ComboBox Width="42">

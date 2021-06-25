@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Gh61.WYSitor.Interfaces;
 using Gh61.WYSitor.Properties;
 using Gh61.WYSitor.ViewModels;
@@ -10,53 +11,78 @@ namespace Gh61.WYSitor.Code
     /// </summary>
     public static class ToolbarCommands
     {
-        static ToolbarCommands()
+        /// <summary>
+        /// Returns one of standard toolbar elements from passed ToolbarViewModel.
+        /// Return null, if the element is not present.
+        /// </summary>
+        public static ToolbarElement Get(StandardToolbarElement elementType, ToolbarViewModel model)
         {
-            FontFamily = new FontPickerElement();
-            FontSize = new FontSizePicker();
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
 
-            Bold = new ToolbarButton(nameof(Bold), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
-            Italic = new ToolbarButton(nameof(Italic), Resources.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
-            Underline = new ToolbarButton(nameof(Underline), Resources.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
-
-            LineHighlightColor = new HighlightColorButton();
-            TextColor = new TextColorButton();
-
-            AlignLeft = new ToolbarButton(nameof(AlignLeft), Resources.Text_AlignLeft, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
-            AlignCenter = new ToolbarButton(nameof(AlignCenter), Resources.Text_AlignCenter, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
-            AlignRight = new ToolbarButton(nameof(AlignRight), Resources.Text_AlignRight, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
-
-            BulletList = new ToolbarButton(nameof(BulletList), Resources.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
-            NumberedList = new ToolbarButton(nameof(NumberedList), Resources.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));
-            Outdent = new ToolbarButton(nameof(Outdent), Resources.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
-            Indent = new ToolbarButton(nameof(Indent), Resources.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
-
-            BackgroundColor = new BackgroundColorButton();
-            Image = new ImageButton();
-            Link = new LinkButton();
-
-            // Created in register (need instance of ToolbarViewModel)
-            //ShowHtml = new ShowHtmlButton();
+            var identifier = elementType.ToString();
+            var foundElement = model.ToolbarElements.FirstOrDefault(e => e.Identifier == identifier);
+            return foundElement;
         }
 
-        public static readonly ToolbarElement FontFamily;
-        public static readonly ToolbarElement FontSize;
-        public static readonly ToolbarButton Bold;
-        public static readonly ToolbarButton Italic;
-        public static readonly ToolbarButton Underline;
-        public static readonly ToolbarSplitButton LineHighlightColor;
-        public static readonly ToolbarSplitButton TextColor;
-        public static readonly ToolbarButton AlignLeft;
-        public static readonly ToolbarButton AlignCenter;
-        public static readonly ToolbarButton AlignRight;
-        public static readonly ToolbarButton BulletList;
-        public static readonly ToolbarButton NumberedList;
-        public static readonly ToolbarButton Outdent;
-        public static readonly ToolbarButton Indent;
-        public static readonly ToolbarElement BackgroundColor;
-        public static readonly ToolbarButton Image;
-        public static readonly ToolbarButton Link;
-        public static ToolbarElement ShowHtml;
+        /// <summary>
+        /// Creates new instance of standard toolbar element.
+        /// Note, that you can't add another instance of the same control to the toolbar (because it has the same identifier).
+        /// </summary>
+        public static ToolbarElement Create(StandardToolbarElement elementType, ToolbarViewModel model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            switch (elementType)
+            {
+                case StandardToolbarElement.FontFamily:
+                    return new FontPickerElement();
+                case StandardToolbarElement.FontSize:
+                    return new FontSizePicker();
+
+                case StandardToolbarElement.Bold:
+                    return new ToolbarButton(nameof(StandardToolbarElement.Bold), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
+                case StandardToolbarElement.Italic:
+                    return new ToolbarButton(nameof(StandardToolbarElement.Italic), Resources.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
+                case StandardToolbarElement.Underline:
+                    return new ToolbarButton(nameof(StandardToolbarElement.Underline), Resources.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
+
+                case StandardToolbarElement.LineHighlightColor:
+                    return new HighlightColorButton();
+                case StandardToolbarElement.TextColor:
+                    return new TextColorButton();
+
+                case StandardToolbarElement.AlignLeft:
+                    return new ToolbarButton(nameof(StandardToolbarElement.AlignLeft), Resources.Text_AlignLeft, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
+                case StandardToolbarElement.AlignCenter:
+                    return new ToolbarButton(nameof(StandardToolbarElement.AlignCenter), Resources.Text_AlignCenter, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
+                case StandardToolbarElement.AlignRight:
+                    return new ToolbarButton(nameof(StandardToolbarElement.AlignRight), Resources.Text_AlignRight, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
+
+                case StandardToolbarElement.BulletList:
+                    return new ToolbarButton(nameof(StandardToolbarElement.BulletList), Resources.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
+                case StandardToolbarElement.NumberedList:
+                    return new ToolbarButton(nameof(StandardToolbarElement.NumberedList), Resources.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));
+                case StandardToolbarElement.Outdent:
+                    return new ToolbarButton(nameof(StandardToolbarElement.Outdent), Resources.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
+                case StandardToolbarElement.Indent:
+                    return new ToolbarButton(nameof(StandardToolbarElement.Indent), Resources.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
+
+                case StandardToolbarElement.BackgroundColor:
+                    return new BackgroundColorButton();
+                case StandardToolbarElement.Image:
+                    return new ImageButton();
+                case StandardToolbarElement.Link:
+                    return new LinkButton();
+
+                case StandardToolbarElement.ToggleHtmlCode:
+                    return new ShowHtmlButton(model);
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(elementType), elementType, null);
+            }
+        }
 
         /// <summary>
         /// Restores toolbar elements to default.
@@ -81,42 +107,38 @@ namespace Gh61.WYSitor.Code
 
         internal static void RegisterAll(ToolbarViewModel model)
         {
-            model.ToolbarElements.Add(FontFamily);
-            model.ToolbarElements.Add(FontSize);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.FontFamily, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.FontSize, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            model.ToolbarElements.Add(Bold);
-            model.ToolbarElements.Add(Italic);
-            model.ToolbarElements.Add(Underline);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Bold, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Italic, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Underline, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            LineHighlightColor.Register(model);
-            TextColor.Register(model);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.LineHighlightColor, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.TextColor, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            model.ToolbarElements.Add(AlignLeft);
-            model.ToolbarElements.Add(AlignCenter);
-            model.ToolbarElements.Add(AlignRight);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.AlignLeft, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.AlignCenter, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.AlignRight, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            model.ToolbarElements.Add(BulletList);
-            model.ToolbarElements.Add(NumberedList);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.BulletList, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.NumberedList, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            model.ToolbarElements.Add(Outdent);
-            model.ToolbarElements.Add(Indent);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Outdent, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Indent, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            model.ToolbarElements.Add(BackgroundColor);
-            model.ToolbarElements.Add(Image);
-            model.ToolbarElements.Add(Link);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.BackgroundColor, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Image, model));
+            model.ToolbarElements.Add(Create(StandardToolbarElement.Link, model));
             model.ToolbarElements.Add(new ToolbarSeparatorElement());
 
-            if (ShowHtml == null)
-            {
-                ShowHtml = new ShowHtmlButton(model);
-            }
-            model.ToolbarElements.Add(ShowHtml);
+            model.ToolbarElements.Add(Create(StandardToolbarElement.ToggleHtmlCode, model));
         }
     }
 }

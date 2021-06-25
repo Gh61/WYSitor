@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Gh61.WYSitor.Code;
 using Gh61.WYSitor.Views;
-using VisibleElement = System.Tuple<Gh61.WYSitor.Code.ToolbarElement, System.Windows.FrameworkElement>;
+using VisibleElement = System.Tuple<Gh61.WYSitor.Code.ToolbarElement, System.Collections.Generic.IReadOnlyCollection<System.Windows.FrameworkElement>>;
 
 namespace Gh61.WYSitor.ViewModels
 {
@@ -21,7 +20,7 @@ namespace Gh61.WYSitor.ViewModels
         internal ToolbarViewModel(EditorBrowser browser)
         {
             _browserControl = browser;
-            _elements = new Dictionary<string, Tuple<ToolbarElement, FrameworkElement>>();
+            _elements = new Dictionary<string, VisibleElement>();
             ToolbarElements = new ObservableCollection<ToolbarElement>();
             ToolbarElements.CollectionChanged += ToolbarChanged;
 
@@ -80,35 +79,62 @@ namespace Gh61.WYSitor.ViewModels
                         {
                             var visibleElement = _elements[item.Identifier];
 
-                            _container.Items.Remove(visibleElement.Item2);
+                            // removing all created elements
+                            foreach (var controlItem in visibleElement.Item2)
+                            {
+                                _container.Items.Remove(controlItem);
+                            }
                             _elements.Remove(item.Identifier);
                         }
                     }
 
                     if (e.NewItems != null)
                     {
+                        int? realInsertIndex = null;
+
                         foreach (ToolbarElement item in e.NewItems)
                         {
-                            var uiElement = item.CreateElement(_browserControl);
-
-                            // so the element never overflow the toolbar (where overflow toggle button is hidden)
-                            ToolBar.SetOverflowMode(uiElement, OverflowMode.Never);
-
                             // custom exception - better searching for error
                             if(_elements.ContainsKey(item.Identifier))
                                 throw new InvalidOperationException($"Cannot add second toolbar element with identifier '{item.Identifier}'.");
 
+                            // create all elements
+                            var uiElements = item.CreateElements(_browserControl).ToList().AsReadOnly();
+
                             // saving for fast access
-                            _elements[item.Identifier] = new VisibleElement(item, uiElement);
+                            _elements[item.Identifier] = new VisibleElement(item, uiElements);
+
+                            // so the elements never overflow the toolbar (where overflow toggle button is hidden)
+                            foreach (var uiElement in uiElements)
+                            {
+                                ToolBar.SetOverflowMode(uiElement, OverflowMode.Never);
+                            }
 
                             // adding to container
-                            if (e.NewStartingIndex < 0) // just to be sure
+                            if (e.NewStartingIndex < 0 || e.NewStartingIndex + e.NewItems.Count == ToolbarElements.Count) // just to be sure
                             {
-                                _container.Items.Add(uiElement);
+                                // adding on the end - easy
+                                foreach (var uiElement in uiElements)
+                                {
+                                    _container.Items.Add(uiElement);
+                                }
                             }
                             else
                             {
-                                _container.Items.Insert(e.NewStartingIndex, uiElement);
+                                // need to find the real index where tu put these items
+                                if (realInsertIndex == null)
+                                {
+                                    realInsertIndex = ToolbarElements.Take(e.NewStartingIndex).Sum(te => _elements[te.Identifier].Item2.Count);
+                                }
+
+                                // adding on index and incrementing
+                                foreach (var uiElement in uiElements)
+                                {
+                                    _container.Items.Insert(realInsertIndex.Value, uiElement);
+
+                                    // increment
+                                    realInsertIndex = realInsertIndex.Value + 1;
+                                }
                             }
                         }
                     }
@@ -138,7 +164,7 @@ namespace Gh61.WYSitor.ViewModels
 
             var toolbarItems = _elements.Values
                 .Where(v => !v.Item1.EnabledInSourceMode)
-                .Select(v => v.Item2)
+                .SelectMany(v => v.Item2)
                 .ToList();
 
             toolbarItems.ForEach(i => i.IsEnabled = !enabled);

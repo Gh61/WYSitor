@@ -15,7 +15,7 @@ namespace Gh61.WYSitor.Code
 {
     internal class ImageButton : ToolbarButton
     {
-        public ImageButton() : base("Image", Resources.Text_Image, ResourceHelper.GetIcon("Icon_Image"), null)
+        public ImageButton() : base(nameof(StandardToolbarElement.Image), Resources.Text_Image, ResourceHelper.GetIcon("Icon_Image"), null)
         {
         }
 
