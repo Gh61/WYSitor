@@ -232,7 +232,7 @@ namespace Gh61.WYSitor.Views
 
             var content = !string.IsNullOrEmpty(fileContent)
                                 ? fileContent
-                                : Properties.Resources.Empty;
+                                : ResourceHelper.GetDefaultHtmlDocument();
 
             // no need to change if it's the same content
             if (content == GetCurrentHtml())

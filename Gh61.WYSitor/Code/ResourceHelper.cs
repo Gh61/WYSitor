@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Gh61.WYSitor.Properties;
 
 namespace Gh61.WYSitor.Code
 {
@@ -31,6 +32,14 @@ namespace Gh61.WYSitor.Code
         public static UIElement GetIcon(string name)
         {
             return (UIElement)Icons.Value[name];
+        }
+
+        /// <summary>
+        /// Returns default empty HTML document. (used in <see cref="Interfaces.IBrowserControl.OpenDocument"/> when no string is passed)
+        /// </summary>
+        public static string GetDefaultHtmlDocument()
+        {
+            return Resources.Empty;
         }
     }
 }

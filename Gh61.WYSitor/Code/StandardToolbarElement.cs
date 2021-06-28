@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Enum of standard toolbar buttons.
+    /// Values of this enum are also used as identifiers for ToolbarElements.
     /// </summary>
     public enum StandardToolbarElement
     {
