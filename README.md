@@ -26,6 +26,7 @@ TODO
 ## Known Issues
 #### Visible part of editor is not working
 *WYSIWYG part is completely white, but you can see in source code editor mode that it's working (when you try to type something).*
+
 This problem occurs, when this component is used in window, that has `AllowTransparent` set to `True`.
 This is caused by the fact, that this component is using .NET WPF WebBrowser control, wich is just wrapped ActiveX control and thus not rendered by WPF (not supporting transparency).
 You can fix this easily by setting the `AllowTransparent` property to `False` in parent window. There are some workarounds wich you can use, but official statement is that this is not supported.
