@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using Gh61.WYSitor.Html;
 using Gh61.WYSitor.ViewModels;
 using mshtml;
@@ -7,6 +8,18 @@ namespace Gh61.WYSitor.Interfaces
 {
     public interface IBrowserControl
     {
+        /// <summary>
+        /// Event, fired when internal browser got focus.
+        /// (Internal browser is sometimes causing weird things when got/lost focus (eg previous binding not working correctly) - with this you can handle it.)
+        /// </summary>
+        event EventHandler InternalBrowserGotFocus;
+
+        /// <summary>
+        /// Event, fired when internal browser lost focus.
+        /// (Internal browser is sometimes causing weird things when got/lost focus (eg previous binding not working correctly) - with this you can handle it.)
+        /// </summary>
+        event EventHandler InternalBrowserLostFocus;
+
         /// <summary>
         /// Gets actually opened HTML document by internal browser.
         /// </summary>

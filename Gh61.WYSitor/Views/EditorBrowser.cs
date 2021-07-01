@@ -27,6 +27,16 @@ namespace Gh61.WYSitor.Views
         }
 
         /// <summary>
+        /// Event, fired when internal browser got focus.
+        /// </summary>
+        public event EventHandler InternalBrowserGotFocus;
+
+        /// <summary>
+        /// Event, fired when internal browser lost focus.
+        /// </summary>
+        public event EventHandler InternalBrowserLostFocus;
+
+        /// <summary>
         /// Gets actually opened HTML document by <see cref="Browser"/>.
         /// </summary>
         public HTMLDocument CurrentDocument { get; private set; }
@@ -166,6 +176,11 @@ namespace Gh61.WYSitor.Views
             documentEvents.onfocusout += (htmlEvent) =>
             {
                 _focusOutSelectedRange = GetSelectedRange();
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    InternalBrowserLostFocus?.Invoke(this, EventArgs.Empty);
+                }));
             };
             documentEvents.oncontextmenu += (htmlEvent) =>
             {
@@ -177,6 +192,13 @@ namespace Gh61.WYSitor.Views
 
                 // disable default context menu
                 return false;
+            };
+            documentEvents.onfocusin += (htmlEvent) =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    InternalBrowserGotFocus?.Invoke(this, EventArgs.Empty);
+                }));
             };
 
             // document is loaded - internal browser should be loaded
