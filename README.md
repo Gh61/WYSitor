@@ -22,3 +22,15 @@ There will be API to show/hide/rearrange controls in toolbar, even adding your o
 
 ## Usage
 TODO
+
+## Known Issues
+#### Visible part of editor is not working
+*WYSIWYG part is completely white, but you can see in source code editor mode that it's working (when you try to type something).*
+
+This problem occurs, when this component is used in window, that has `AllowTransparent` set to `True`.
+This is caused by the fact, that this component is using .NET WPF WebBrowser control, wich is just wrapped ActiveX control and thus not rendered by WPF (not supporting transparency).
+You can fix this easily by setting the `AllowTransparent` property to `False` in parent window. There are some workarounds wich you can use, but official statement is that this is not supported.
+Some useful links, if you want to try your own solution on this problem:
+- [MSDN Forum](https://social.msdn.microsoft.com/Forums/en-US/61a901d3-3273-4d8e-8e08-9441dc11010f/wpf-webbrowser-in-a-transparent-window?forum=wpf)
+- [CodeProject](https://www.codeproject.com/Questions/217236/WPF-WebBrowser-Problem-if-AllowsTransparencyequals)
+- [StackOverflow](https://stackoverflow.com/questions/19444457/c-sharp-wpf-displaying-webbrowser-on-window-with-allowtransparency-true-does-n)
