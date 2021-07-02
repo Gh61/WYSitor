@@ -48,6 +48,7 @@
     <ProjectReference Include="..\Gh61.WYSitor\Gh61.WYSitor.csproj">
       <Project>{04009e2d-9e54-423f-b6f0-62e15f1c8ae8}</Project>
       <Name>Gh61.WYSitor</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

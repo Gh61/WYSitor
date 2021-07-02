@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Globalization;
+using System.Threading;
 using System.Windows;
 
 namespace Gh61.WYSitor.Tester
@@ -13,5 +9,11 @@ namespace Gh61.WYSitor.Tester
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
+            base.OnStartup(e);
+        }
     }
 }
