@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gh61.WYSitor", "Gh61.WYSito
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gh61.WYSitor.Tester", "Gh61.WYSitor.Tester\Gh61.WYSitor.Tester.csproj", "{747DD279-D9F7-405C-BB09-21E914EC17B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gh61.WYSitor.Locale.Default", "Gh61.WYSitor.Locale.Default\Gh61.WYSitor.Locale.Default.csproj", "{CC1FF81E-F694-4B1B-9E04-3DEB2DE00B6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gh61.WYSitor.Locale.Override", "Gh61.WYSitor.Locale.Override\Gh61.WYSitor.Locale.Override.csproj", "{0E9B62BC-442C-440A-86A8-B9F2ECE40209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747DD279-D9F7-405C-BB09-21E914EC17B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1FF81E-F694-4B1B-9E04-3DEB2DE00B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1FF81E-F694-4B1B-9E04-3DEB2DE00B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1FF81E-F694-4B1B-9E04-3DEB2DE00B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1FF81E-F694-4B1B-9E04-3DEB2DE00B6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9B62BC-442C-440A-86A8-B9F2ECE40209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9B62BC-442C-440A-86A8-B9F2ECE40209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9B62BC-442C-440A-86A8-B9F2ECE40209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9B62BC-442C-440A-86A8-B9F2ECE40209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 using Gh61.WYSitor.ViewModels;
 
 namespace Gh61.WYSitor.Code
@@ -42,11 +42,11 @@ namespace Gh61.WYSitor.Code
                     return new FontSizePicker();
 
                 case StandardToolbarElement.Bold:
-                    return new ToolbarButton(nameof(StandardToolbarElement.Bold), Resources.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.Bold), ResourceManager.Text_Bold, ResourceHelper.GetIcon("Icon_Bold"), ExecCommand("Bold"), CheckState("Bold"));
                 case StandardToolbarElement.Italic:
-                    return new ToolbarButton(nameof(StandardToolbarElement.Italic), Resources.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.Italic), ResourceManager.Text_Italic, ResourceHelper.GetIcon("Icon_Italic"), ExecCommand("Italic"), CheckState("Italic"));
                 case StandardToolbarElement.Underline:
-                    return new ToolbarButton(nameof(StandardToolbarElement.Underline), Resources.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.Underline), ResourceManager.Text_Underline, ResourceHelper.GetIcon("Icon_Underline"), ExecCommand("Underline"), CheckState("Underline"));
 
                 case StandardToolbarElement.LineHighlightColor:
                     return new HighlightColorButton();
@@ -54,20 +54,20 @@ namespace Gh61.WYSitor.Code
                     return new TextColorButton();
 
                 case StandardToolbarElement.AlignLeft:
-                    return new ToolbarButton(nameof(StandardToolbarElement.AlignLeft), Resources.Text_AlignLeft, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.AlignLeft), ResourceManager.Text_AlignLeft, ResourceHelper.GetIcon("Icon_AlignLeft"), ExecCommand("JustifyLeft"), CheckState("JustifyLeft"));
                 case StandardToolbarElement.AlignCenter:
-                    return new ToolbarButton(nameof(StandardToolbarElement.AlignCenter), Resources.Text_AlignCenter, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.AlignCenter), ResourceManager.Text_AlignCenter, ResourceHelper.GetIcon("Icon_AlignCenter"), ExecCommand("JustifyCenter"), CheckState("JustifyCenter"));
                 case StandardToolbarElement.AlignRight:
-                    return new ToolbarButton(nameof(StandardToolbarElement.AlignRight), Resources.Text_AlignRight, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.AlignRight), ResourceManager.Text_AlignRight, ResourceHelper.GetIcon("Icon_AlignRight"), ExecCommand("JustifyRight"), CheckState("JustifyRight"));
 
                 case StandardToolbarElement.BulletList:
-                    return new ToolbarButton(nameof(StandardToolbarElement.BulletList), Resources.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.BulletList), ResourceManager.Text_BulletList, ResourceHelper.GetIcon("Icon_BulletList"), ExecCommand("InsertUnorderedList"), CheckState("InsertUnorderedList"));
                 case StandardToolbarElement.NumberedList:
-                    return new ToolbarButton(nameof(StandardToolbarElement.NumberedList), Resources.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.NumberedList), ResourceManager.Text_NumberedList, ResourceHelper.GetIcon("Icon_NumberedList"), ExecCommand("InsertOrderedList"), CheckState("InsertOrderedList"));
                 case StandardToolbarElement.Outdent:
-                    return new ToolbarButton(nameof(StandardToolbarElement.Outdent), Resources.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.Outdent), ResourceManager.Text_Outdent, ResourceHelper.GetIcon("Icon_Outdent"), ExecCommand("Outdent"));
                 case StandardToolbarElement.Indent:
-                    return new ToolbarButton(nameof(StandardToolbarElement.Indent), Resources.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
+                    return new ToolbarButton(nameof(StandardToolbarElement.Indent), ResourceManager.Text_Indent, ResourceHelper.GetIcon("Icon_Indent"), ExecCommand("Indent"));
 
                 case StandardToolbarElement.BackgroundColor:
                     return new BackgroundColorButton();

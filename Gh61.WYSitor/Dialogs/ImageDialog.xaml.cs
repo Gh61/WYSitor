@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Gh61.WYSitor.Localization;
 using Microsoft.Win32;
 
 namespace Gh61.WYSitor.Dialogs
@@ -297,7 +298,7 @@ namespace Gh61.WYSitor.Dialogs
             catch
             {
                 IsSuccess = false;
-                ImagePath = Properties.Resources.ImageForm_ErrorImage;
+                ImagePath = ResourceManager.ImageForm_ErrorImage;
                 ImageSource = new BitmapImage(); // empty
 
             }
@@ -309,7 +310,7 @@ namespace Gh61.WYSitor.Dialogs
             {
                 _openFileDialog = new OpenFileDialog();
                 _openFileDialog.Title = this.Title;
-                _openFileDialog.Filter = Properties.Resources.ImageForm_Filter + " (*.png, *.jpg, *.jpeg, *.bmp)|*.png;*.jpg;*.jpeg;*.bmp;";
+                _openFileDialog.Filter = ResourceManager.ImageForm_Filter + " (*.png, *.jpg, *.jpeg, *.bmp)|*.png;*.jpg;*.jpeg;*.bmp;";
             }
         }
 

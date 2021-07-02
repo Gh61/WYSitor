@@ -3,13 +3,13 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 
 namespace Gh61.WYSitor.Code
 {
     internal class TextColorButton : ColorButtonBase
     {
-        public TextColorButton() : base(nameof(StandardToolbarElement.TextColor), Resources.Text_TextColor, Colors.Red)
+        public TextColorButton() : base(nameof(StandardToolbarElement.TextColor), ResourceManager.Text_TextColor, Colors.Red)
         {
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 using Gh61.WYSitor.Views;
 
 namespace Gh61.WYSitor.Code
@@ -40,7 +40,7 @@ namespace Gh61.WYSitor.Code
             contextMenu.Items.Add(new MenuItem() {Command = ApplicationCommands.Cut});
             contextMenu.Items.Add(new MenuItem() {Command = ApplicationCommands.Copy});
             contextMenu.Items.Add(new MenuItem() {Command = ApplicationCommands.Paste});
-            contextMenu.Items.Add(new MenuItem() {Command = ApplicationCommands.Delete, Header = Resources.ContextMenu_Delete}); // Delete is not localized in default
+            contextMenu.Items.Add(new MenuItem() {Command = ApplicationCommands.Delete, Header = ResourceManager.ContextMenu_Delete}); // Delete is not localized in default
             contextMenu.Items.Add(new Separator());
             contextMenu.Items.Add(new MenuItem() {Command = ApplicationCommands.SelectAll});
 

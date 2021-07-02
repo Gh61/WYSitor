@@ -4,7 +4,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 
 namespace Gh61.WYSitor.Code
 {
@@ -29,7 +29,7 @@ namespace Gh61.WYSitor.Code
              */
 
             var button = new ToggleButton();
-            button.ToolTip = Resources.Text_BackgroundColor;
+            button.ToolTip = ResourceManager.Text_BackgroundColor;
 
             var scaler = new Viewbox();
             scaler.Height = 16;

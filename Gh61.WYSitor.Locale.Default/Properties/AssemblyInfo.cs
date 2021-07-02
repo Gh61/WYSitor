@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Gh61.WYSitor")]
+[assembly: AssemblyTitle("Gh61.WYSitor.Locale.Default")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Gh61.WYSitor")]
+[assembly: AssemblyProduct("Gh61.WYSitor.Locale.Default")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,4 +20,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("04009e2d-9e54-423f-b6f0-62e15f1c8ae8")]
+[assembly: Guid("cc1ff81e-f694-4b1b-9e04-3deb2de00b6a")]

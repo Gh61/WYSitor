@@ -91,6 +91,10 @@
 
 </ResourceDictionary>
 
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- When changing/adding new icon, don't forget to REGENERATE Code/ResourceHelper.Icons.tt -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
 <!-- Source: https://www.iconfinder.com/iconsets/text-editing-7 -->
 <!-- Credit to: https://www.iconfinder.com/bitfreak86 -->
 <!-- With little edits of me Gh61  -->

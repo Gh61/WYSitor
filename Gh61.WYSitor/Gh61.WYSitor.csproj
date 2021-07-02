@@ -93,7 +93,20 @@
     <Compile Include="HtmlEditor.cs" />
     <Compile Include="Html\SelectedRange.cs" />
     <Compile Include="Interfaces\IBrowserControl.cs" />
+    <Compile Include="Localization\DefaultResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\IResourceManager.cs" />
+    <Compile Include="Localization\ResourceManager.cs" />
+    <Compile Include="Localization\ResourceManager.Texts.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceManager.Texts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyVersion.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,7 +119,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.cs.resx" />
+    <EmbeddedResource Include="Localization\DefaultResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -148,6 +164,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ResourceHelper.Icons.cs</LastGenOutput>
     </Content>
+    <Content Include="Localization\ResourceManager.Texts.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ResourceManager.Texts.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,14 +8,14 @@ using System.Text;
 using System.Windows;
 using Gh61.WYSitor.Dialogs;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 using Gh61.WYSitor.Views;
 
 namespace Gh61.WYSitor.Code
 {
     internal class ImageButton : ToolbarButton
     {
-        public ImageButton() : base(nameof(StandardToolbarElement.Image), Resources.Text_Image, ResourceHelper.GetIcon("Icon_Image"), null)
+        public ImageButton() : base(nameof(StandardToolbarElement.Image), ResourceManager.Text_Image, ResourceHelper.GetIcon("Icon_Image"), null)
         {
         }
 
@@ -36,11 +36,11 @@ namespace Gh61.WYSitor.Code
             {
                 var hasTitle = !string.IsNullOrWhiteSpace(dialog.ImageTitle);
                 // escaping quotes, so the attribute will not be broken by text with quotes
-                var escapedTitle = (hasTitle ? dialog.ImageTitle : Resources.ImageForm_DefaultAltText).Replace("\"", "&quot;");
+                var escapedTitle = (hasTitle ? dialog.ImageTitle : ResourceManager.ImageForm_DefaultAltText).Replace("\"", "&quot;");
 
                 var imgTag = new StringBuilder("<img ");
                 imgTag.AppendFormat("src=\"data:image/png;base64,{0}\" ", pngBase64Data);
-                imgTag.AppendFormat("alt=\"{0}\" ", hasTitle ? escapedTitle : Resources.ImageForm_DefaultAltText);
+                imgTag.AppendFormat("alt=\"{0}\" ", hasTitle ? escapedTitle : ResourceManager.ImageForm_DefaultAltText);
                 if (hasTitle)
                 {
                     imgTag.AppendFormat("title=\"{0}\" ", escapedTitle);

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Gh61.WYSitor.Dialogs;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 using Gh61.WYSitor.Views;
 using mshtml;
 
@@ -9,7 +9,7 @@ namespace Gh61.WYSitor.Code
 {
     internal class LinkButton : ToolbarButton
     {
-        public LinkButton() : base(nameof(StandardToolbarElement.Link), Resources.Text_Link, ResourceHelper.GetIcon("Icon_Earth"), null)
+        public LinkButton() : base(nameof(StandardToolbarElement.Link), ResourceManager.Text_Link, ResourceHelper.GetIcon("Icon_Earth"), null)
         {
         }
 

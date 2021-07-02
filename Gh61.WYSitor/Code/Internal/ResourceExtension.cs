@@ -11,7 +11,7 @@ namespace Gh61.WYSitor.Code
     [MarkupExtensionReturnType(typeof(string))]
     internal class ResourceExtension : MarkupExtension
     {
-        private readonly Type _defaultResourcesType = typeof(Properties.Resources);
+        private readonly Type _defaultResourcesType = typeof(Localization.ResourceManager);
 
         private string _member;
 
@@ -94,7 +94,5 @@ namespace Gh61.WYSitor.Code
             value = null;
             return false;
         }
-
-
     }
 }

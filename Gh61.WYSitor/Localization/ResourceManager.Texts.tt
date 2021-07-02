@@ -1,0 +1,29 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Resources" #>
+<#@ output extension=".cs" #>
+<#
+    var path = Path.GetDirectoryName(Host.TemplateFile) + "\\DefaultResources.resx";
+    var localeFile = Host.ResolvePath(path);
+    ResXResourceSet resourceSet = new ResXResourceSet(localeFile);
+#>
+// ReSharper disable InconsistentNaming
+
+namespace Gh61.WYSitor.Localization
+{
+    internal static partial class ResourceManager
+    {
+<# foreach (DictionaryEntry item in resourceSet) { #>
+        ///<summary>
+        /// Looks up a localized string similar to <#=("" + item.Value)#>.
+        ///</summary>
+        public static string <#=item.Key.ToString()#> => GetString("<#=item.Key.ToString()#>");
+
+<# } #>
+    }
+}

@@ -109,6 +109,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gh61.WYSitor.Locale.Default\Gh61.WYSitor.Locale.Default.csproj">
+      <Project>{cc1ff81e-f694-4b1b-9e04-3deb2de00b6a}</Project>
+      <Name>Gh61.WYSitor.Locale.Default</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gh61.WYSitor.Locale.Override\Gh61.WYSitor.Locale.Override.csproj">
+      <Project>{0e9b62bc-442c-440a-86a8-b9f2ece40209}</Project>
+      <Name>Gh61.WYSitor.Locale.Override</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gh61.WYSitor\Gh61.WYSitor.csproj">
       <Project>{04009e2d-9e54-423f-b6f0-62e15f1c8ae8}</Project>
       <Name>Gh61.WYSitor</Name>

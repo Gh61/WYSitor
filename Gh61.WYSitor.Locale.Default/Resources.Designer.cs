@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gh61.WYSitor.Properties {
+namespace Gh61.WYSitor.Locale.Default {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Gh61.WYSitor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gh61.WYSitor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gh61.WYSitor.Locale.Default.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,25 +57,6 @@ namespace Gh61.WYSitor.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
-        ///&lt;html&gt;
-        ///&lt;head&gt;
-        ///    &lt;title&gt;doc&lt;/title&gt;
-        ///    &lt;meta content=&quot;text/html;utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
-        ///    &lt;style type=&quot;text/css&quot;&gt;ol,p,ul{font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif}p{margin-bottom:0;margin-top:0}&lt;/style&gt;
-        ///&lt;/head&gt;
-        ///&lt;body&gt;
-        ///&lt;p&gt;&lt;/p&gt;
-        ///&lt;/body&gt;
-        ///&lt;/html&gt;.
-        /// </summary>
-        internal static string Empty {
-            get {
-                return ResourceManager.GetString("Empty", resourceCulture);
             }
         }
     }

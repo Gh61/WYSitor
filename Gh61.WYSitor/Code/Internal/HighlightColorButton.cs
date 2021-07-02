@@ -3,13 +3,13 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Gh61.WYSitor.Interfaces;
-using Gh61.WYSitor.Properties;
+using Gh61.WYSitor.Localization;
 
 namespace Gh61.WYSitor.Code
 {
     internal class HighlightColorButton : ColorButtonBase
     {
-        public HighlightColorButton() : base(nameof(StandardToolbarElement.LineHighlightColor), Resources.Text_HighlightColor, Colors.Yellow)
+        public HighlightColorButton() : base(nameof(StandardToolbarElement.LineHighlightColor), ResourceManager.Text_HighlightColor, Colors.Yellow)
         {
         }
 
