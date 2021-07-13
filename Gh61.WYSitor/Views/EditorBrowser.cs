@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -44,7 +45,7 @@ namespace Gh61.WYSitor.Views
         /// <summary>
         /// Gets actual WebBrowser component.
         /// </summary>
-        internal WebBrowser Browser { get; set; }
+        internal WebBrowser Browser { get; private set; }
 
         /// <summary>
         /// Gets html editor (typically hidden behind <see cref="Browser"/>).
@@ -82,6 +83,16 @@ namespace Gh61.WYSitor.Views
             HtmlEditor.TextWrapping = TextWrapping.Wrap;
             HtmlEditor.Visibility = Visibility.Hidden;
             HtmlEditor.TextChanged += (s, e) => FireHtmlContentChanged();
+
+            this.SizeChanged += (s, e) =>
+            {
+                // Width has changed
+                if (e.WidthChanged)
+                {
+                    // Limiting max width of source code editor (as it tends to grow when image is inside and has enough space)
+                    HtmlEditor.MaxWidth = e.NewSize.Width;
+                }
+            };
 
             Browser = new WebBrowser();
             Browser.LoadCompleted += DocumentLoaded;
