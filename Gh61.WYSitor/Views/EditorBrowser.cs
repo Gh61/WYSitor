@@ -64,7 +64,7 @@ namespace Gh61.WYSitor.Views
 
             _htmlContentChangedEventThrottler.Fire(() =>
             {
-                HtmlContentChanged?.Invoke(this, new EventArgs());
+                HtmlContentChanged?.Invoke(this, EventArgs.Empty);
             });
         }
 
@@ -91,6 +91,13 @@ namespace Gh61.WYSitor.Views
                 {
                     // Limiting max width of source code editor (as it tends to grow when image is inside and has enough space)
                     HtmlEditor.MaxWidth = e.NewSize.Width;
+                }
+                // Height has changed
+                if (e.HeightChanged)
+                {
+                    // Limit max height of source code editor (when resizing control)
+                    var diff = e.PreviousSize.Height - HtmlEditor.MaxHeight;
+                    HtmlEditor.MaxHeight = e.NewSize.Height - diff;
                 }
             };
 
@@ -386,6 +393,10 @@ namespace Gh61.WYSitor.Views
             {
                 // insert latest html code to editor
                 HtmlEditor.Text = GetCurrentHtml();
+
+                // limit size of html code editor to current browser size
+                HtmlEditor.MaxHeight = Browser.ActualHeight;
+                HtmlEditor.MaxWidth = Browser.ActualWidth;
 
                 // switch visibility
                 HtmlEditor.Visibility = Visibility.Visible;
