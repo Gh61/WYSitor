@@ -1,6 +1,5 @@
-﻿using System.Globalization;
-using System.Threading;
-using System.Windows;
+﻿using System.Windows;
+using Gh61.WYSitor.Localization;
 
 namespace Gh61.WYSitor.Tester
 {
@@ -12,6 +11,9 @@ namespace Gh61.WYSitor.Tester
         protected override void OnStartup(StartupEventArgs e)
         {
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
+            // Custom resource manager
+            ResourceManager.Managers.Insert(0, new MyResources());
 
             base.OnStartup(e);
         }

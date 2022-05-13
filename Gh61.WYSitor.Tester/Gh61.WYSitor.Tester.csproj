@@ -57,6 +57,7 @@
     <Compile Include="AnotherEditor.xaml.cs">
       <DependentUpon>AnotherEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyResources.cs" />
     <Compile Include="SourceCodePreview.xaml.cs">
       <DependentUpon>SourceCodePreview.xaml</DependentUpon>
     </Compile>

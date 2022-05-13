@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -23,7 +22,7 @@ namespace Gh61.WYSitor.Tester
             AddPreviewButton();
         }
 
-        private ObservableCollection<ToolbarElement> ToolbarItems => HtmlEditor.Toolbar.ToolbarElements;
+        private ObservableCollection<ToolbarElement> ToolbarItems => editor.Toolbar.ToolbarElements;
 
         private void AddPreviewButton()
         {
@@ -90,7 +89,7 @@ namespace Gh61.WYSitor.Tester
         {
             var signatureButton = new ToolbarButton(
                 "Signature",
-                "Signature",
+                "Inserts signature markup",
                 ResourceHelper.Icon_Signature,
                 b =>
                 {
@@ -102,7 +101,7 @@ namespace Gh61.WYSitor.Tester
                 new Run("RESTORE"),
                 browser =>
                 {
-                    ToolbarCommands.RestoreAll(HtmlEditor.Toolbar);
+                    ToolbarCommands.RestoreAll(editor.Toolbar);
                 });
             var resetButton = new ToolbarButton(
                 "ResetButton",
@@ -110,7 +109,7 @@ namespace Gh61.WYSitor.Tester
                 ResourceHelper.Icon_EmptyFile,
                 browser =>
                 {
-                    HtmlEditor.Browser.OpenDocument();
+                    browser.OpenDocument();
                 });
 
             ToolbarItems.Add(new ToolbarSeparatorElement());
@@ -121,14 +120,14 @@ namespace Gh61.WYSitor.Tester
 
         private void RemoveUnderlineButton()
         {
-            var underlineButton = ToolbarItems.FirstOrDefault(e => e.Identifier == "Underline");
+            var underlineButton = ToolbarCommands.Get(StandardToolbarElement.Underline, editor.Toolbar);
             ToolbarItems.Remove(underlineButton);
         }
 
         private void SwitchBoldAndItalic()
         {
-            var boldIndex = ToolbarItems.IndexOf(e => e.Identifier == "Bold");
-            var italicIndex = ToolbarItems.IndexOf(e => e.Identifier == "Italic");
+            var boldIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Bold));
+            var italicIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Italic));
 
             ToolbarItems.Move(boldIndex, italicIndex);
         }

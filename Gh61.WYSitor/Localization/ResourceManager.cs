@@ -12,7 +12,7 @@ namespace Gh61.WYSitor.Localization
     /// <summary>
     /// Resource manager for localization of UI texts.
     /// </summary>
-    internal static partial class ResourceManager
+    public static partial class ResourceManager
     {
         private static readonly object InitLock = new object();
         private static List<IResourceManager> _loadedManagers;
@@ -30,10 +30,7 @@ namespace Gh61.WYSitor.Localization
         /// </summary>
         public static string GetString(string key, CultureInfo culture)
         {
-            // ensure that all managers from 
-            EnsureLoadedManagers();
-
-            foreach (var manager in _loadedManagers)
+            foreach (var manager in Managers)
             {
                 // if the localization was successful (and not empty text was returned)
                 if (manager.TryProvideString(key, culture, out var localizedText) && !string.IsNullOrEmpty(localizedText))
@@ -45,6 +42,21 @@ namespace Gh61.WYSitor.Localization
 
             // none of the managers succeed localizing this text - using default resource
             return DefaultResources.ResourceManager.GetString(key, culture);
+        }
+
+        /// <summary>
+        /// You can add or remove any additional resource managers here.
+        /// When localizing some text, all managers (based on order in this list) would have chance to return it's own text.
+        /// </summary>
+        public static List<IResourceManager> Managers
+        {
+            get
+            {
+                // ensure that all managers from external DLLs are loaded
+                EnsureLoadedManagers();
+
+                return _loadedManagers;
+            }
         }
 
         /// <summary>

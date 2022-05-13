@@ -2,7 +2,7 @@
 
 namespace Gh61.WYSitor.Localization
 {
-    internal static partial class ResourceManager
+    public static partial class ResourceManager
     {
         ///<summary>
         /// Looks up a localized string similar to Ordered list.

@@ -16,7 +16,7 @@
 
 namespace Gh61.WYSitor.Localization
 {
-    internal static partial class ResourceManager
+    public static partial class ResourceManager
     {
 <# foreach (DictionaryEntry item in resourceSet) { #>
         ///<summary>
