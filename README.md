@@ -13,18 +13,170 @@ Then there is project [SmithHtmlEditor](https://github.com/adambarath/SmithHtmlE
 
 Then I found [this solution](https://www.codeproject.com/Tips/870549/Csharp-WPF-WYSIWYG-HTML-Editor) wich is inspiration for this project. *Though it's similar to SmithHtmlEditor, it's using native WPF WebBrowser control (not WindowsFormsHost) wich I hope will be more stable.* Inspiration for some core functionality comes also from [SmithHtmlEditor](https://github.com/adambarath/SmithHtmlEditor).
 
-### Extensibility
-Also I am planing to create much more friendly API, that will allow developers to work with this control more easily.
-There will be API to show/hide/rearrange controls in toolbar, even adding your own, wich can then react with internal browser control.
-
 ## Features
-- TODO
+- stable WYSIWYG HTML editor
+- standard WPF control
+- HtmlContent TwoWay Binding
+- Customizable Toolbar
 
 ## Usage
-TODO
+### Standard XAML usage:
+`<wySitor:HtmlEditor x:Name="editor" Margin="0 12 0 0" HtmlContent="{Binding SourceCode}"/>`
+
+*You can of course create this element using code behind and adding it to the view later.*
+
+## Change Toolbar
+**This code applies to all examples**
+```
+using Gh61.WYSitor.Code;
+
+// `editor` variable is instance of HtmlEditor from xaml view
+private ObservableCollection<ToolbarElement> ToolbarItems => editor.Toolbar.ToolbarElements;
+```
+
+### Get toolbar element
+You can get any default button with helper method **ToolbarCommands.Get**
+```
+var underlineButton = ToolbarCommands.Get(StandardToolbarElement.Underline, editor.Toolbar);
+```
+
+Then you can remove this button:
+### Remove button
+```
+private void RemoveUnderlineButton()
+{
+    var underlineButton = ToolbarCommands.Get(StandardToolbarElement.Underline, editor.Toolbar);
+    ToolbarItems.Remove(underlineButton);
+}
+```
+### Change position of buttons
+If you want to switch position of some buttons, you can search their index by using their **[Identifier](#manually-identify-toolbar-elements)**
+```
+private void SwitchBoldAndItalic()
+{
+    var boldIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Bold));
+    var italicIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Italic));
+
+    ToolbarItems.Move(boldIndex, italicIndex);
+}
+```
+### Replace separator
+If you want to do something with separators, you need to find them by class **ToolbarSeparatorElement** or by **Indentifier** "Separator{number}". *See [Manually identify toolbar elements](#manually-identify-toolbar-elements)*
+```
+private void ReplaceSeparator()
+{
+    var sepIndex = ToolbarItems.IndexOf(e => e is ToolbarSeparatorElement);
+    ToolbarItems[sepIndex] = new ToolbarButton("HA", "Custom Separator", new Run("|"), c => { });
+}
+```
+
+#### Manually identify toolbar elements
+- all default toolbar buttons have predictable **Identifier** from *StandardToolbarElement* enum
+- **separators** can be identified as *ToolbarSeparatorElement* class
+  - they are using Identifiers "Separator{number}" where number is counted from 1 and increasing with every new ToolbarSeparatorElement instance
+
+```
+var boldIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Bold));
+var firstSepIndex = ToolbarItems.IndexOf(e => e is ToolbarSeparatorElement);
+```
+
+## Custom Toolbar Elements
+You can add your own elements to toolbar. It waill have access to internal browser behind the [IBrowserControl interface](Gh61.WYSitor/Interfaces/IBrowserControl.cs)
+- **ToolbarButton** class
+  - can contain any content you want (and there are prepared some icons in `ResourceHelper.Icon_XXX`)
+  - can be toggleable
+  - can work with browser on click
+  - can has disabled automatic focus to browser after click
+  - can be enabled in source mode 
+- **ToolbarSeparatorElement** class
+  - simple create new instance and add it anywhere to ToolbarElements
+- **ToolbarSplitButton** class
+  - you need to implement this on your own
+  - override methods to:
+    - create content of main button
+    - click on main button
+    - create content of dropdown menu
+  - can be enabled in source mode 
+- **ToolbarElement** class
+  - you can implement your very own ToolbarElement that can do anything
+
+### Examples of custom **ToolbarButton**:
+
+#### Simple button
+```
+var signatureButton = new ToolbarButton(
+                "Signature", // Identifier
+                "Inserts signature markup", // Title - for tooltip
+                ResourceHelper.Icon_Signature, // Content of button (icon)
+                b => // action on button click
+                {
+                    b.GetSelectedRange().PasteHtml("[SIGNATURE]");
+                });
+ToolbarItems.Add(signatureButton);
+```
+
+#### Custom html code preview window
+```
+SourceCodePreview preview = null;
+var previewButton = new ToolbarButton(
+    "SourceCodePreview", // Identifier
+    "Source code Preview", // Title - for tooltip
+    new Bold(new Run("HTML")), // Content of button - bold "HTML" text
+    b => // create new window on click and show html preview
+    {
+        if (preview == null)
+        {
+            preview = new SourceCodePreview((TestViewModel)this.DataContext);
+            preview.Closed += (s, e) =>
+            {
+                preview = null;
+            };
+        }
+        preview.Show();
+        preview.Focus();
+    },
+    b => preview?.IsVisible == true // Toggle indicator
+);
+previewButton.DisableEditorFocusAfterClick = true; // will not set focus into editor, when clicken on this button
+previewButton.EnabledInSourceMode = true; // this button will be enabled in source mode
+
+ToolbarItems.Add(previewButton);
+```
+
+## Localization
+Default implementation contains library Gh61.WYSitor.Locale.Default.dll, where is localization for these languages:
+- `cs` (Czech)
+- ... possibly more to come?
+- 
+*If you don't want or need this localization, simply drop reference to this DLL.*
+
+**Your own localization:**
+
+You can localize WYSitor easily any way you want with one of these two methods:
+
+### Assigning ResourceManager in code
+1. Implement [IResourceManager intarface](Gh61.WYSitor/Localization/IResourceManager.cs)
+2. Create instance of your manager
+3. Add it to `Gh61.WYSitor.Localization.ResourceManager.Managers` list (preferably at the beginning).
+
+```
+using Gh61.WYSitor.Localization;
+
+internal class MyResources : IResourceManager
+{ ... }
+
+// Add this to AppStart or somewhere before first HtmlEditor instance is created
+ResourceManager.Managers.Insert(0, new MyResources());
+```
+
+### Loading ResourceManager from external DLL (Gh61.WYSitor.Locale.XXX.dll)
+1. Create project named Gh61.WYSitor.Locale.XXX.dll (where XXX is anything you want)
+2. In this project create public class implementing [IResourceManager intarface](Gh61.WYSitor/Localization/IResourceManager.cs)
+3. This class needs to have parameterless constructor
+4. Place DLL in same folder as Gh61.WYSitor.dll (basicaly just add this project as reference to project, where you are using HtmlEditor)
 
 ## Known Issues
-#### Visible part of editor is not working
+### Visible part of editor is not working
 *WYSIWYG part is completely white, but you can see in source code editor mode that it's working (when you try to type something).*
 
 This problem occurs, when this component is used in window, that has `AllowTransparent` set to `True`.
