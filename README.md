@@ -21,13 +21,15 @@ Then I found [this solution](https://www.codeproject.com/Tips/870549/Csharp-WPF-
 
 ## Usage
 ### Standard XAML usage:
-`<wySitor:HtmlEditor x:Name="editor" Margin="0 12 0 0" HtmlContent="{Binding SourceCode}"/>`
+```xml
+<wySitor:HtmlEditor x:Name="editor" Margin="0 12 0 0" HtmlContent="{Binding SourceCode}"/>
+```
 
 *You can of course create this element using code behind and adding it to the view later.*
 
 ## Change Toolbar
 **This code applies to all examples**
-```
+```csharp
 using Gh61.WYSitor.Code;
 
 // `editor` variable is instance of HtmlEditor from xaml view
@@ -36,13 +38,13 @@ private ObservableCollection<ToolbarElement> ToolbarItems => editor.Toolbar.Tool
 
 ### Get toolbar element
 You can get any default button with helper method **ToolbarCommands.Get**
-```
+```csharp
 var underlineButton = ToolbarCommands.Get(StandardToolbarElement.Underline, editor.Toolbar);
 ```
 
 Then you can remove this button:
 ### Remove button
-```
+```csharp
 private void RemoveUnderlineButton()
 {
     var underlineButton = ToolbarCommands.Get(StandardToolbarElement.Underline, editor.Toolbar);
@@ -51,7 +53,7 @@ private void RemoveUnderlineButton()
 ```
 ### Change position of buttons
 If you want to switch position of some buttons, you can search their index by using their **[Identifier](#manually-identify-toolbar-elements)**
-```
+```csharp
 private void SwitchBoldAndItalic()
 {
     var boldIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Bold));
@@ -62,7 +64,7 @@ private void SwitchBoldAndItalic()
 ```
 ### Replace separator
 If you want to do something with separators, you need to find them by class **ToolbarSeparatorElement** or by **Indentifier** "Separator{number}". *See [Manually identify toolbar elements](#manually-identify-toolbar-elements)*
-```
+```csharp
 private void ReplaceSeparator()
 {
     var sepIndex = ToolbarItems.IndexOf(e => e is ToolbarSeparatorElement);
@@ -75,7 +77,7 @@ private void ReplaceSeparator()
 - **separators** can be identified as *ToolbarSeparatorElement* class
   - they are using Identifiers "Separator{number}" where number is counted from 1 and increasing with every new ToolbarSeparatorElement instance
 
-```
+```csharp
 var boldIndex = ToolbarItems.IndexOf(e => e.Identifier == nameof(StandardToolbarElement.Bold));
 var firstSepIndex = ToolbarItems.IndexOf(e => e is ToolbarSeparatorElement);
 ```
@@ -83,7 +85,7 @@ var firstSepIndex = ToolbarItems.IndexOf(e => e is ToolbarSeparatorElement);
 ## Custom Toolbar Elements
 You can add your own elements to toolbar. It waill have access to internal browser behind the [IBrowserControl interface](Gh61.WYSitor/Interfaces/IBrowserControl.cs)
 - **ToolbarButton** class
-  - can contain any content you want (and there are prepared some icons in `ResourceHelper.Icon_XXX`)
+  - can contain any content you want (and there are some prepared icons in `ResourceHelper.Icon_XXX`)
   - can be toggleable
   - can work with browser on click
   - can has disabled automatic focus to browser after click
@@ -103,7 +105,7 @@ You can add your own elements to toolbar. It waill have access to internal brows
 ### Examples of custom **ToolbarButton**:
 
 #### Simple button
-```
+```csharp
 var signatureButton = new ToolbarButton(
                 "Signature", // Identifier
                 "Inserts signature markup", // Title - for tooltip
@@ -116,7 +118,7 @@ ToolbarItems.Add(signatureButton);
 ```
 
 #### Custom html code preview window
-```
+```csharp
 SourceCodePreview preview = null;
 var previewButton = new ToolbarButton(
     "SourceCodePreview", // Identifier
@@ -159,7 +161,7 @@ You can localize WYSitor easily any way you want with one of these two methods:
 2. Create instance of your manager
 3. Add it to `Gh61.WYSitor.Localization.ResourceManager.Managers` list (preferably at the beginning).
 
-```
+```csharp
 using Gh61.WYSitor.Localization;
 
 internal class MyResources : IResourceManager
