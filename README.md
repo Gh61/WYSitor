@@ -29,6 +29,7 @@ Then I found [this solution](https://www.codeproject.com/Tips/870549/Csharp-WPF-
 
 ## Change Toolbar
 **Enable/Disable OverflowMode**
+
 With this property you can enable (or disable) the overflow behaviour of Toolbar.
 When this is set, all controls that will not fit on the toolbar with current size, will be polaced to oveflow menu (opened via small arrow at the end of toolbar).
 ```csharp
