@@ -18,36 +18,72 @@ namespace Gh61.WYSitor.Views
             {
                 Loaded += (s, e) =>
                 {
-                    HideToolbarOverflowToggleButton(CommandBar);
-                    InitViewModel();
+                    if (!InitViewModel())
+                    {
+                        AdjustToolbarOverflowToggleButton(CommandBar);
+                    }
                 };
                 DataContextChanged += (s, e) => InitViewModel();
             }
         }
 
         private bool _isInitialized;
-        private void InitViewModel()
+        private bool InitViewModel()
         {
             if (!_isInitialized && ViewModel != null)
             {
                 ViewModel.SetToolbarContainer(CommandBar);
                 ToolbarCommands.RegisterAll(ViewModel);
+                ViewModel.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == nameof(ViewModel.EnableOverflowMode))
+                    {
+                        AdjustToolbarOverflowToggleButton(CommandBar);
+                    }
+                };
+
+                AdjustToolbarOverflowToggleButton(CommandBar);
                 _isInitialized = true;
+
+                return true;
             }
+
+            return false;
         }
 
-        private static void HideToolbarOverflowToggleButton(ToolBar toolBar)
+        #region Overflow button
+
+        private Visibility? _overflowGridDefaultVisibility;
+        private Thickness? _mainPanelBorderDefaultMargin;
+
+        private void AdjustToolbarOverflowToggleButton(ToolBar toolBar)
         {
             if (toolBar.Template.FindName("OverflowGrid", toolBar) is FrameworkElement overflowGrid)
             {
-                overflowGrid.Visibility = Visibility.Collapsed;
+                if (_overflowGridDefaultVisibility == null)
+                {
+                    _overflowGridDefaultVisibility = overflowGrid.Visibility;
+                }
+
+                overflowGrid.Visibility = ViewModel.EnableOverflowMode
+                    ? _overflowGridDefaultVisibility.Value
+                    : Visibility.Collapsed;
             }
 
             if (toolBar.Template.FindName("MainPanelBorder", toolBar) is FrameworkElement mainPanelBorder)
             {
-                mainPanelBorder.Margin = new Thickness();
+                if (_mainPanelBorderDefaultMargin == null)
+                {
+                    _mainPanelBorderDefaultMargin = mainPanelBorder.Margin;
+                }
+
+                mainPanelBorder.Margin = ViewModel.EnableOverflowMode
+                    ? _mainPanelBorderDefaultMargin.Value
+                    : new Thickness();
             }
         }
+
+        #endregion
 
         /// <summary>
         /// Gets current ViewModel.

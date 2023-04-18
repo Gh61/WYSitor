@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Gh61.WYSitor.Code;
@@ -11,11 +14,12 @@ using VisibleElement = System.Tuple<Gh61.WYSitor.Code.ToolbarElement, System.Col
 
 namespace Gh61.WYSitor.ViewModels
 {
-    public class ToolbarViewModel
+    public class ToolbarViewModel : INotifyPropertyChanged
     {
         private readonly EditorBrowser _browserControl;
         private DispatcherTimer _styleCheckTimer;
         private ItemsControl _container;
+        private bool _enableOverflowMode = false;
 
         internal ToolbarViewModel(EditorBrowser browser)
         {
@@ -54,6 +58,22 @@ namespace Gh61.WYSitor.ViewModels
         public ObservableCollection<ToolbarElement> ToolbarElements
         {
             get;
+        }
+
+        /// <summary>
+        /// Gets or sets whether the items in the Toolbar can overflow (if the place for toolbar is smaller than it's full width).
+        /// </summary>
+        public bool EnableOverflowMode
+        {
+            get => _enableOverflowMode;
+            set
+            {
+                if (SetField(ref _enableOverflowMode, value))
+                {
+                    var allElements = _elements.Values.SelectMany(e => e.Item2);
+                    SetOverflowMode(allElements);
+                }
+            }
         }
 
         #region Manage toolbar items
@@ -104,11 +124,8 @@ namespace Gh61.WYSitor.ViewModels
                             // saving for fast access
                             _elements[item.Identifier] = new VisibleElement(item, uiElements);
 
-                            // so the elements never overflow the toolbar (where overflow toggle button is hidden)
-                            foreach (var uiElement in uiElements)
-                            {
-                                ToolBar.SetOverflowMode(uiElement, OverflowMode.Never);
-                            }
+                            // set overflow mode according to this model
+                            SetOverflowMode(uiElements);
 
                             // adding to container
                             if (e.NewStartingIndex < 0 || e.NewStartingIndex + e.NewItems.Count == ToolbarElements.Count) // just to be sure
@@ -150,6 +167,18 @@ namespace Gh61.WYSitor.ViewModels
                     _container.Dispatcher.Invoke(() => { }, DispatcherPriority.Render);
 
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Will set overflow properties of passed elements according to setting <see cref="EnableOverflowMode"/> in this ViewModel.
+        /// </summary>
+        private void SetOverflowMode(IEnumerable<FrameworkElement> uiElements)
+        {
+            var mode = EnableOverflowMode ? OverflowMode.AsNeeded : OverflowMode.Never;
+            foreach (var uiElement in uiElements)
+            {
+                ToolBar.SetOverflowMode(uiElement, mode);
             }
         }
 
@@ -211,6 +240,25 @@ namespace Gh61.WYSitor.ViewModels
             {
                 visibleElement.Item1.CheckState(visibleElement.Item2, _browserControl);
             }
+        }
+
+        #endregion
+
+        #region Property Changed
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
 
         #endregion

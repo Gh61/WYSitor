@@ -83,6 +83,19 @@ namespace Gh61.WYSitor.Tester
             // insert separator before button
             var position = ToolbarItems.Count - 1;
             ToolbarItems.Insert(position, new ToolbarSeparatorElement());
+
+            // add posibility to turn on/off Overflow mode
+            var overflowBtn = new ToolbarButton(
+                "OverflowButton",
+                "OverFlow",
+                new Run("OF"),
+                b =>
+                {
+                    editor.Toolbar.EnableOverflowMode = !editor.Toolbar.EnableOverflowMode;
+                },
+                b => editor.Toolbar.EnableOverflowMode);
+            ToolbarItems.Insert(0, overflowBtn);
+            ToolbarItems.Insert(1, new ToolbarSeparatorElement());
         }
 
         private void AddMoreButtons()

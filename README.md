@@ -28,7 +28,18 @@ Then I found [this solution](https://www.codeproject.com/Tips/870549/Csharp-WPF-
 *You can of course create this element using code behind and adding it to the view later.*
 
 ## Change Toolbar
-**This code applies to all examples**
+**Enable/Disable OverflowMode**
+With this property you can enable (or disable) the overflow behaviour of Toolbar.
+When this is set, all controls that will not fit on the toolbar with current size, will be polaced to oveflow menu (opened via small arrow at the end of toolbar).
+```csharp
+using Gh61.WYSitor.Code;
+
+// `editor` variable is instance of HtmlEditor from xaml view
+editor.Toolbar.EnableOverflowMode = true;
+```
+*Default value is `false`*
+
+**This code applies to all further examples**
 ```csharp
 using Gh61.WYSitor.Code;
 
