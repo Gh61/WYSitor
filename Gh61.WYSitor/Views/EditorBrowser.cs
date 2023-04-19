@@ -292,18 +292,33 @@ namespace Gh61.WYSitor.Views
 
         public string GetCurrentHtml()
         {
+            string result;
+
             if (IsInSourceEditMode)
             {
-                return HtmlEditor.Text;
+                result = HtmlEditor.Text;
             }
             else
             {
                 if (!CurrentDocument.IsCompletelyLoaded())
-                    return string.Empty;
-
-                var doc = CurrentDocument.documentElement.outerHTML;
-                return doc.Replace(" contentEditable=true", "");
+                {
+                    result = string.Empty;
+                }
+                else
+                {
+                    var doc = CurrentDocument.documentElement.outerHTML;
+                    result = doc.Replace(" contentEditable=true", "");
+                }
             }
+
+            // Cannot return empty string, because WebBrowser element would throw exception
+            // Returning single space works thou
+            if (string.IsNullOrEmpty(result))
+            {
+                return " ";
+            }
+
+            return result;
         }
 
         public SelectedRange GetSelectedRange()

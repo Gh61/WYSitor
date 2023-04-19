@@ -131,14 +131,15 @@ namespace Gh61.WYSitor.Code
         }
 
         /// <summary>
-        /// Returns whether the current document is completely loaded.
+        /// Returns whether the current document is completely loaded (or enough for interaction).
         /// </summary>
         public static bool IsCompletelyLoaded(this HTMLDocument document)
         {
             if (document == null)
                 return false;
 
-            if (document.readyState != "complete")
+            if (document.readyState != "complete" &&
+                document.readyState != "interactive")
                 return false;
 
             return true;
